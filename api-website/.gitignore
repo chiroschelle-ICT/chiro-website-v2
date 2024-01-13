@@ -1,0 +1,61 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment configuration
+.env
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt/
+
+# Compiled binary addons (https://github.com/nodejs/node-gyp)
+build/
+
+# Uncomment if you have configuration file
+# .config/
+
+# Local .env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Directory for compiled JavaScript. Uncomment if you have a TypeScript project
+# dist/
+
+# Yarn integrity file
+.yarn-integrity
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# npm
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+__tests__/
