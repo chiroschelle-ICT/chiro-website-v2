@@ -3,7 +3,7 @@ const db = require('../databases/local_database');
 // GET All Blog Posts
 exports.getAllBlogPosts = (req, res) => {
     db.query('SELECT * FROM blogposts', (err, results) => {
-      if (err) {
+      if (err) { 
         console.error('Error querying database: ' + err.stack);
         res.status(500).send('Error querying database');
         return;
@@ -15,9 +15,12 @@ exports.getAllBlogPosts = (req, res) => {
 // GET Blog Post by Id
 exports.getBlogPostById =  (req, res) => {
     const bpId = req.params.id;
+    
+        
     if (!bpId) {
-        return res.status(400).send('Missing required parameter: blogpost Id');
+        return res.status(400).json({ error: 'All fields are required' });
     }
+    
     const query = "SELECT * FROM blogposts WHERE id = ?";
     
     db.query(query, [bpId], (err, results) => {
@@ -33,6 +36,11 @@ exports.getBlogPostById =  (req, res) => {
 // POST Add new Blog Post
 exports.postBlogPost = (req, res) => {
     const { title, description, userId, Image } = req.body;
+
+    if (!title || !description || !userId || !Image) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
     const query = 'INSERT INTO blogposts (id, title, description, userId, Image) VALUES (NULL, ?, ?, ?, ?)';
     db.query(query, [title, description, userId, Image], (err, results) => { 
         if(err) {
@@ -40,14 +48,27 @@ exports.postBlogPost = (req, res) => {
             res.status(500).send('ERROR Querying Database');
             return;
         }
-        res.json({ message: 'User created successfully' });
+        res.json({ message: 'Blogpost created successfully' });
     });
 };
 
-// PU Update BLog post
-exports.putBlogPOst = (req, res) => {
-    const blogId = req.params.id;
+// PUT Update BLog post
+exports.putBlogPost = (req, res) => {
+    const bpId = req.params.id;
     const { title, description, userId, Image } = req.body;
+    const query = 'UPDATE blogposts SET title = ?, description = ?, userId = ?, Image = ? WHERE id = ?';
+    
+    if (!title || !description || !userId || !Image || !bpId) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
 
+    db.query(query, [title, description, userId, Image, bpId], (err, results) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json({ message: 'Blogpost Updated successfully' });
+    });    
 };
 

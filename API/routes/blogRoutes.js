@@ -12,7 +12,7 @@ router.get('/blogPosts/:id', blogPostsController.getBlogPostById);
 router.post('/blogPost/addBlogpost', blogPostsController.postBlogPost);
 
 // PUT | Update blogpost
-router.get('/blogPost/:id', );
+router.put('/blogPost/editBlogPost/:id', blogPostsController.putBlogPost);
 
 
 
