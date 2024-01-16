@@ -13,10 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // Import Route Files
-const blogPostRoutes = require('./routes/blogRoutes')
+const blogRoutes = require('./routes/blogRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Use Route Files
-app.use('/api', blogPostRoutes)
+app.use('/api', blogRoutes);
+app.use('/api', userRoutes);
 
 
 // Start the server

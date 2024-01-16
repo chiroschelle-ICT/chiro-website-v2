@@ -72,3 +72,22 @@ exports.putBlogPost = (req, res) => {
     });    
 };
 
+// DELETE blogpost
+exports.deleteBlogPost = (req, res) => {
+    const bpId = req.params.id;
+    if(!bpId) {
+        return res.status(400).json({error: 'No ID in parameter'});
+    }
+    const query = 'DELETE FROM blogposts WHERE id = ?';
+
+    db.query(query, [bpId], (err, results) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json({ message: 'Blogpost Deleted successfully' });
+    });
+
+};
+
