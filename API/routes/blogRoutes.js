@@ -17,6 +17,4 @@ router.put('/blogPost/editBlogPost/:id', blogPostsController.putBlogPost);
 // DELETE | Delete blogpost by id
 router.delete('/blogPost/deletePost/:id', blogPostsController.deleteBlogPost);
 
-
-
 module.exports = router;
