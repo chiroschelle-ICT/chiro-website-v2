@@ -46,8 +46,26 @@ exports.postUser = (req, res) => {
             res.status(500).send('ERROR Querying Database');
             return;
         }
-        res.json({ message: 'Blogpost Updated Succesfully' });
+        res.json({ message: 'User Added Succesfully' });
     });
+}
+
+exports.putUser = (req, res) => {
+    const {Name, AfdelingId } = req.body;
+    if(!Name || !AfdelingId) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const query = 'UPDATE users SET Name = ?, AfdelingId = ?';
+
+    db.query(query, [Name, AfdelingId], (err, result) => {
+        console.error('ERROR querying database: ' + err.stack);
+        res.status(200).send('ERROR Querying database');
+        return;
+    })
+    res.json({message: 'User Update Succesfully'})
+
+
 }
 
 // DELETE | delete a pogbost

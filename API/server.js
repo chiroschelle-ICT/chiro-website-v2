@@ -20,7 +20,6 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api', blogRoutes);
 app.use('/api', userRoutes);
 
-
 // Start the server
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
