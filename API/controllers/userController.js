@@ -17,7 +17,7 @@ exports.getUserById = (req, res) => {
     const UId = req.parameter.id;
     const query = "SELECT * FROM users WHERE id = ?";
 
-    if(!Id) {
+    if(!UId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -74,4 +74,14 @@ exports. deleteUser = (req, res) => {
     if(!uId) {
         return res.status(400).json({error: 'No ID in parameter'});
     }
+
+    
+    db.query(query, [uId], (err, results) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json({ message: 'User Deleted successfully' });
+    });
 }
