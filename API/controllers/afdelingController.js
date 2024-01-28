@@ -1,8 +1,8 @@
 const db = require('../databases/local_database');
 
-// GET All programmas
-exports.getAllProgrammas = (req, res) => {
-    db.query('SELECT * FROM programma', (err, results) => {
+// GET All Afdelingen
+exports.getAllAfdelingen = (req, res) => {
+    db.query('SELECT * FROM afdeling', (err, results) => {
         if (err) { 
           console.error('Error querying database: ' + err.stack);
           res.status(500).send('Error querying database');
@@ -12,15 +12,15 @@ exports.getAllProgrammas = (req, res) => {
       });
 }
 
-// GET programma by id
-exports.getProgrammaById = (req, res) => {
-    const pId = req.params.id;
+// GET Afdeling by id
+exports.getAfdelingById = (req, res) => {
+    const aId = req.params.id;
             
-    if (!pId) {
+    if (!aId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
     
-    const query = "SELECT * FROM programma WHERE id = ?";
+    const query = "SELECT * FROM afdeling WHERE id = ?";
     
     db.query(query, [pId], (err, results) => {
         if(err) {
