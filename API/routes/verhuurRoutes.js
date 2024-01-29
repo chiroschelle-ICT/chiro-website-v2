@@ -9,10 +9,12 @@ router.get('/verhuur', verhuurController.getAllVerhuur);
 router.get('/verhuur/:id', verhuurController.getVerhuurById);
 
 // POST | Add new verhuur Item
-router.post('/verhuur', verhuurController.postVerhuur);
+router.post('/verhuur/addVerhuur', verhuurController.postVerhuur);
 
 // PUT | edit Verhuur Item
-router.put('/verhuur/:id', verhuurController.putVerhuur);
+router.put('/verhuur/editVerhuur/:id', verhuurController.putVerhuur);
 
 // DELETE | delete Verhuur item
-router.post('/verhuur/:id', verhuurController.deleteVrhuur);
+router.post('/verhuur/deleteVerhuur/:id', verhuurController.deleteVerhuur);
+
+module.exports = router;

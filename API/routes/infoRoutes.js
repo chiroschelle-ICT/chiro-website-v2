@@ -9,10 +9,12 @@ router.get('/info', infoController.getAllInfo);
 router.get('/info/:id', infoController.getInfoById);
 
 // POST | Add new Info Item
-router.post('/info', infoController.postInfo);
+router.post('/info/postInfo', infoController.postInfo);
 
 // PUT | edit info Item
-router.put('/info/:id', infoController.putInfo);
+router.put('/info/putInfo/:id', infoController.putInfo);
 
 // DELETE | delete Info item
-router.post('/info/:id', infoController.deleteVrhuur);
+router.post('/info/deleteInfo/:id', infoController.deleteInfo);
+
+module.exports = router;
