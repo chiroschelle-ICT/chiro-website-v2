@@ -22,7 +22,7 @@ exports.getAfdelingById = (req, res) => {
     
     const query = "SELECT * FROM afdeling WHERE id = ?";
     
-    db.query(query, [pId], (err, results) => {
+    db.query(query, [aId], (err, results) => {
         if(err) {
             console.error('ERROR Querying databse: ' + err.stack);
             res.status(500).send('Error Querying Database');

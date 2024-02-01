@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const programmaController = require('../controllers/programmaControllers');
+const programmaController = require('../controllers/programmaController');
 
 // GET | Return all programmas
 router.get('/programma', programmaController.getAllProgramma);
@@ -17,3 +17,5 @@ router.put('/programma/putProgramma/:id', programmaController.putProgramma);
 // DELETE | Delete Programma
 router.delete('/programma/deleteProgramma/:id', programmaController.deleteProgramma);
 
+
+module.exports = router;
