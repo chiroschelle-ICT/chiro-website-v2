@@ -13,11 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // Import Route Files
-const blogPostRoutes = require('./routes/blogRoutes')
+const blogRoutes = require('./routes/blogRoutes');
+const userRoutes = require('./routes/userRoutes');
+const infoRoutes = require('./routes/infoRoutes');
+const afdelingRoutes = require('./routes/afdelingRoutes');
+const verhuurRoutes = require('./routes/verhuurRoutes');
+const programmaRoutes = require('./routes/programmaRoutes');
 
 // Use Route Files
-app.use('/api', blogPostRoutes)
-
+app.use('/api', blogRoutes);
+app.use('/api', userRoutes);
+app.use('/api', infoRoutes);
+app.use('/api', afdelingRoutes);
+app.use('/api', verhuurRoutes);
+app.use('/api', programmaRoutes);
 
 // Start the server
 app.listen(port, () => {
