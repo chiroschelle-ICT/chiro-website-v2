@@ -6,7 +6,7 @@ exports.getAllInfo = (req, res) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
             res.status(500).send('Erro Querying Database');
-            return;
+            return; 
         }
         res.json(results);
     })
@@ -21,7 +21,7 @@ exports.getInfoById = (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    db.query(query, [Id], (err, result) => {
+    db.query(query, [Id], (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
             res.status(500).send('Erro Querying Database');
