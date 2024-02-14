@@ -52,7 +52,7 @@ exports.getInfoByUserId = (req, res) => {
 // POST | Add new Info
 exports.postInfo = (req, res) => {
     const { userId ,afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
-    if(!userId || !afdelingId || !email || !phone || !groeps || !jaar_leiding || !leeftijd) {
+    if(!userId || !afdelingId || !email || !phone || !jaar_leiding || !leeftijd) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -70,25 +70,28 @@ exports.postInfo = (req, res) => {
 
 // PUT | Update info box
 exports.putInfo = (req, res) => {
-    const { userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
-    if(!userId || !afdelingId || !email || !phone || !groeps || !jaar_leiding || !leeftijd) {
+    const Id = req.params.id;
+    const { userId ,afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
+    if(!Id || !userId || !afdelingId || !email || !phone || !jaar_leiding || !leeftijd) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'UPDATE info SET id = NULL, userId = ?, afdelingId = ?, email = ?, phone = ?, groeps = ?, jaar_leiding = ?, leeftijd = ?';
+    const query = 'UPDATE info SET userId = ?, afdelingId = ?, email = ?, phone = ?, groeps = ?, jaar_leiding = ?, leeftijd = ? WHERE id = ?';
 
-    db.query(query, [userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd ], (err, result) => {
-        console.error('ERROR querying database: ' + err.stack);
-        res.status(200).send('ERROR Querying database');
-        return;
+    db.query(query, [userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd, Id ], (err, result) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json({message: 'info Update Succesfully'})
     })
-    res.json({message: 'info Update Succesfully'})
 
 
 }
 
 // DELETE | delete a info box
-exports. deleteInfo = (req, res) => {
+exports.deleteInfo = (req, res) => {
     const Id = req.params.id;
     if(!Id) {
         return res.status(400).json({error: 'No ID in parameter'});
