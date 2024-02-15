@@ -8,6 +8,9 @@ router.get('/info', infoController.getAllInfo);
 // GET | Return Info item by id
 router.get('/info/:id', infoController.getInfoById);
 
+// GET | Return info item by userId
+router.get('/infoUser/:userId', infoController.getInfoByUserId);
+
 // POST | Add new Info Item
 router.post('/info/postInfo', infoController.postInfo);
 
@@ -15,6 +18,6 @@ router.post('/info/postInfo', infoController.postInfo);
 router.put('/info/putInfo/:id', infoController.putInfo);
 
 // DELETE | delete Info item
-router.post('/info/deleteInfo/:id', infoController.deleteInfo);
+router.delete('/info/deleteInfo/:id', infoController.deleteInfo);
 
 module.exports = router;

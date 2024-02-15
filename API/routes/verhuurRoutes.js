@@ -15,6 +15,6 @@ router.post('/verhuur/addVerhuur', verhuurController.postVerhuur);
 router.put('/verhuur/editVerhuur/:id', verhuurController.putVerhuur);
 
 // DELETE | delete Verhuur item
-router.post('/verhuur/deleteVerhuur/:id', verhuurController.deleteVerhuur);
+router.delete('/verhuur/deleteVerhuur/:id', verhuurController.deleteVerhuur);
 
 module.exports = router;

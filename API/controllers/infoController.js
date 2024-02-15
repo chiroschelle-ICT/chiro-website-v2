@@ -14,7 +14,7 @@ exports.getAllInfo = (req, res) => {
 
 // GET | return Info by Id
 exports.getInfoById = (req, res) => {
-    const Id = req.parameter.id;
+    const Id = req.params.id;
     const query = "SELECT * FROM info WHERE id = ?";
 
     if(!Id) {
@@ -30,17 +30,35 @@ exports.getInfoById = (req, res) => {
         res.json(results);
     }); 
 }
+// GET | return Info By userId
+exports.getInfoByUserId = (req, res) => {
+    const userId = req.params.userId;
+    const query = "SELECT * FROM info WHERE userId = ?";
 
-// POST | Add new Blog post
-exports.postInfo = (req, res) => {
-    const { AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd } = req.body;
-    if(!AfdelingId || !Email || !Phone || !Groeps || !Jaar_Leiding || !Leeftijd) {
+    if(!userId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'INSERT INTO info (id, name, afdelingId) VALUES (NULL, ?, ?)';
+    db.query(query, [userId], (err, results) => {
+        if(err) {
+            console.error('Erro Querying Database: ' + err.stack);
+            res.status(500).send('Erro Querying Database');
+            return;
+        }
+        res.json(results);
+    });
+}
 
-    db.query(query, [AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd], (err, result) => {
+// POST | Add new Info
+exports.postInfo = (req, res) => {
+    const { userId ,afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
+    if(!userId || !afdelingId || !email || !phone || !jaar_leiding || !leeftijd) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const query = 'INSERT INTO info (id ,userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)';
+
+    db.query(query, [userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd], (err, result) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
             res.status(500).send('ERROR Querying Database');
@@ -50,26 +68,30 @@ exports.postInfo = (req, res) => {
     });
 }
 
+// PUT | Update info box
 exports.putInfo = (req, res) => {
-    const { AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd } = req.body;
-    if(!AfdelingId || !Email || !Phone || !Groeps || !Jaar_Leiding || !Leeftijd) {
+    const Id = req.params.id;
+    const { userId ,afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
+    if(!Id || !userId || !afdelingId || !email || !phone || !jaar_leiding || !leeftijd) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'UPDATE info SET Name = ?, AfdelingId = ?';
+    const query = 'UPDATE info SET userId = ?, afdelingId = ?, email = ?, phone = ?, groeps = ?, jaar_leiding = ?, leeftijd = ? WHERE id = ?';
 
-    db.query(query, [AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd], (err, result) => {
-        console.error('ERROR querying database: ' + err.stack);
-        res.status(200).send('ERROR Querying database');
-        return;
+    db.query(query, [userId, afdelingId, email, phone, groeps, jaar_leiding, leeftijd, Id ], (err, result) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json({message: 'info Update Succesfully'})
     })
-    res.json({message: 'info Update Succesfully'})
 
 
 }
 
-// DELETE | delete a pogbost
-exports. deleteInfo = (req, res) => {
+// DELETE | delete a info box
+exports.deleteInfo = (req, res) => {
     const Id = req.params.id;
     if(!Id) {
         return res.status(400).json({error: 'No ID in parameter'});

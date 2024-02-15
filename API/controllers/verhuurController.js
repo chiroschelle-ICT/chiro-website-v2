@@ -16,7 +16,7 @@ exports.getAllVerhuur = (req, res) => {
 exports.getVerhuurById = (req, res) => {
     const vId = req.params.id;
 
-    if(vId) {
+    if(!vId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -34,15 +34,15 @@ exports.getVerhuurById = (req, res) => {
 
 // POST verhuur item
 exports.postVerhuur = (req, res) => {
-    const { Item, Prijs, Waarborg, UserId } = req.body;
+    const { item, prijs, waarborg, userId } = req.body;
 
-    if(!Item || !Prijs || !Waarborg || !UserId) {
+    if(!item || !prijs || !waarborg || !userId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'INSERT INTO verhuur (id, item, prijs, waarborg, userId VALUES NULL, ?, ?, ?, ?';
+    const query = 'INSERT INTO verhuur (id, item, prijs, waarborg, userId) VALUES (NULL, ?, ?, ?, ?)';
 
-    db.query(query, [Item, Prijs, Waarborg, UserId], (err, results) => {
+    db.query(query, [item, prijs, waarborg, userId], (err, results) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
             res.status(500).send('ERROR Querying Database');
@@ -55,15 +55,15 @@ exports.postVerhuur = (req, res) => {
 // PUT verhuur item
 exports.putVerhuur = (req, res) => {
     const vId = req.params.id;
-    const { Item, Prijs, Waarborg, UserId } = req.body;
+    const { item, prijs, waarborg, userId } = req.body;
 
-    if(!Item || !Prijs || !Waarborg || !UserId || !vId) {
+    if(!vId || !item || !prijs || !waarborg || !userId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
     const query = 'UPDATE verhuur SET item = ?, prijs = ?, waarborg = ?, userId = ? WHERE id = ? ';
 
-    db.query(query, [Item, Prijs, Waarborg, UserId, vId], (err, results) => {
+    db.query(query, [item, prijs, waarborg, userId, vId], (err, results) => {
         if(err) {
             console.err('ERROR Querying database: ' + err.stack);
             res.status(500).send('Error Querying Database');
@@ -77,7 +77,7 @@ exports.putVerhuur = (req, res) => {
 exports.deleteVerhuur = (req, res) => {
     const vId = req.params.id;
     
-    if(vId) {
+    if(!vId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
