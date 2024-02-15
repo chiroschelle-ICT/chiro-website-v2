@@ -14,7 +14,6 @@ router.post('/users/addUser', userController.postUser);
 // PUT | Update User
 router.put('/users/editUser/:id', userController.putUser);
 
-
 // DELETE | Delete user by id
 router.delete('/users/deleteUser/:id', userController.deleteUser);
 

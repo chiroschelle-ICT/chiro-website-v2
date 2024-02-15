@@ -5,7 +5,7 @@ exports.getAllUsers = (req, res) => {
     db.query('SELECT * FROM users', (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
-            res.status(500).send('Erro Querying Database');
+            res.status(500).send('Error Querying Database');
             return;
         }
         res.json(results);
@@ -14,7 +14,7 @@ exports.getAllUsers = (req, res) => {
 
 // GET | return user by Id
 exports.getUserById = (req, res) => {
-    const UId = req.parameter.id;
+    const UId = req.params.id;
     const query = "SELECT * FROM users WHERE id = ?";
 
     if(!UId) {
@@ -27,7 +27,7 @@ exports.getUserById = (req, res) => {
             res.status(500).send('Erro Querying Database');
             return;
         }
-        res.json(results);
+        res.json(result);
     }); 
 }
 
@@ -38,7 +38,7 @@ exports.postUser = (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'INSERT INTO users (id, name, afdelingId) VALUES (NULL, ?, ?)';
+    const query = 'INSERT INTO users (id, Name, AfdelingId) VALUES (NULL, ?, ?)';
 
     db.query(query, [Name, AfdelingId], (err, result) => {
         if(err) {
@@ -51,14 +51,15 @@ exports.postUser = (req, res) => {
 }
 
 exports.putUser = (req, res) => {
+    const UId = req.params.id
     const {Name, AfdelingId } = req.body;
-    if(!Name || !AfdelingId) {
+    if(!UId || !Name || !AfdelingId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'UPDATE users SET Name = ?, AfdelingId = ?';
+    const query = 'UPDATE users SET Name = ?, AfdelingId = ? WHERE id = ?';
 
-    db.query(query, [Name, AfdelingId], (err, result) => {
+    db.query(query, [Name, AfdelingId, UId], (err, result) => {
         console.error('ERROR querying database: ' + err.stack);
         res.status(200).send('ERROR Querying database');
         return;
@@ -69,13 +70,14 @@ exports.putUser = (req, res) => {
 }
 
 // DELETE | delete a pogbost
-exports. deleteUser = (req, res) => {
+exports.deleteUser = (req, res) => {
     const uId = req.params.id;
     if(!uId) {
         return res.status(400).json({error: 'No ID in parameter'});
     }
 
-    
+    const query = "DELETE FROM users WHERE id = ?";
+
     db.query(query, [uId], (err, results) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);

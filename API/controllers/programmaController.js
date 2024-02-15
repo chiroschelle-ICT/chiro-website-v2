@@ -14,7 +14,7 @@ exports.getAllProgramma = (req, res) => {
 
 // GET | return Programma by Id
 exports.getProgrammaById = (req, res) => {
-    const Id = req.parameter.id;
+    const Id = req.params.id;
     const query = "SELECT * FROM programma WHERE id = ?";
 
     if(!Id) {
@@ -27,20 +27,20 @@ exports.getProgrammaById = (req, res) => {
             res.status(500).send('Error Querying Database');
             return;
         }
-        res.json(results);
+        res.json(result);
     }); 
 }
 
 // POST | Add new Blog post
 exports.postProgramma = (req, res) => {
-    const { AfdelingId, Programma, Datum } = req.body;
-    if(!AfdelingId || !Programma || !Datum ) {
+    const { afdelingId, programma, datum } = req.body;
+    if(!afdelingId || !programma || !datum ) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
     const query = 'INSERT INTO programma (id, afdelingId, programma, datum) VALUES (NULL, ?, ?, ?)';
 
-    db.query(query, [AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd], (err, result) => {
+    db.query(query, [afdelingId, programma, datum], (err, result) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
             res.status(500).send('ERROR Querying Database');
@@ -51,17 +51,21 @@ exports.postProgramma = (req, res) => {
 }
 
 exports.putProgramma = (req, res) => {
-    const { AfdelingId, Programma, Datum } = req.body;
-    if(!AfdelingId || !Programma || !Datum ) {
+    const { afdelingId, programma, datum } = req.body;
+    const pId = req.params.id
+    if(!pId || !afdelingId || !programma || !datum ) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'UPDATE programma SET AfdelingId = ?, Programma = ?, Datum = ?';
 
-    db.query(query, [AfdelingId, Email, Phone, Groeps, Jaar_Leiding, Leeftijd], (err, result) => {
-        console.error('ERROR querying database: ' + err.stack);
-        res.status(200).send('ERROR Querying database');
-        return;
+    const query = 'UPDATE programma SET AfdelingId = ?, Programma = ?, Datum = ? WHERE id = ?';
+
+    db.query(query, [afdelingId, programma, datum, pId], (err, result) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(200).send('ERROR Querying database');
+            return;         
+        }
     })
     res.json({message: 'Programma Update Succesfully'})
 
