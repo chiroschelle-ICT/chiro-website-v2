@@ -1,21 +1,23 @@
 <header class="bg-red-500 p-2">
-  <nav class="flex justify-between items-center">
-      <div class="text-white text-xl font-semibold">
-          <a href="#">  
-              <img src="assets/Logos/logoChiroSchelle.png" alt="" style="height: 60px;" />
-          </a>
-      </div>
-      <ul class="flex space-x-4 items-center justify-center w-full absolute mx-auto">
-          <!-- <li routerLink="/" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Dashboard</a></li> -->
-          <li routerLink="/afdelingen" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Home</a></li>
-          <li routerLink="/login" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Leidingsploeg</a></li>
-          <li routerLink="/logout" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Programma</a></li>
-          <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Bouw</a></li>
-          <!-- <li [routerLink]="['/subParent']" routerLinkActive="router-link-active" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Super Scary Subject stuff</a></li> -->
+  <div class="grid grid-cols-3">
+    <div class="col-span-1">
+      <a href="#">  
+        <img src="assets/Logos/logoChiroSchelle.png" alt="" style="height: 60px;" />
+      </a>
+    </div>
+    <div class="col-span-1 text-sm font-semibold flex items-center justify-center">
+      <ul class="flex">
+        <li routerLink="/afdelingen" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Home</a></li>
+        <li routerLink="/login" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Leidingsploeg</a></li>
+        <li routerLink="/logout" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Programma</a></li>
+        <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Bouw</a></li>
       </ul>
-      <div class="relative">
-        <a href="https://www.facebook.com/chiroschelle"><i class="hover:text-facebook-blue fa-brands fa-facebook fa-xl font-medium text-black cursor-pointer mr-3 "></i></a>
-        <a href="https://www.instagram.com/chiroschelle/"><i class="hover:text-instagram-purple-violet fa-brands fa-instagram fa-xl font-semibold text-black cursor-pointer "></i></a>    
-      </div>
-  </nav>
+      
+    </div>
+    <div class="col-span-1 flex items-center justify-end space-x-4 mr-6">
+      <a href="https://www.facebook.com/chiroschelle" class="text-white hover:text-facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/chiroschelle/" class="text-white hover:text-instagram-purple-violet"><i class="fab fa-instagram"></i></a>
+    </div>
+</div>
 </header>
+ 
