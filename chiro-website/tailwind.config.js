@@ -5,6 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        '150px': '150px',
+        '600px': '600px',
+        '180px' : '180px'
+      },
       colors: {
         'facebook-blue': '#316FF6',
         'instagram-purple-violet': '#8a3ab9',
