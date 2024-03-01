@@ -8,7 +8,8 @@ module.exports = {
       spacing: {
         '150px': '150px',
         '600px': '600px',
-        '180px' : '180px'
+        '180px': '180px',
+        '350px': '350px',
       },
       colors: {
         'facebook-blue': '#316FF6',
