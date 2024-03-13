@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Blogposts } from '../Model/blogposts';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Blogposts } from '../Model/Blogposts';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,13 @@ export class HomeService {
   // --- API CALLS ---
   // --- API CALLS ---
   
-  // Get All Blogposts
+  // GET All Blogposts
   getBlogposts(): Observable<Blogposts[]> {
     return this.http.get<Blogposts[]>(this.routeBlogposts)
+  }
+  // GET Blogposts per ID
+  getBlogpostPerId(id:number): Observable<Blogposts> {
+    return this.http.get<Blogposts>(this.routeBlogposts+"${id}")
   }
 
 }
