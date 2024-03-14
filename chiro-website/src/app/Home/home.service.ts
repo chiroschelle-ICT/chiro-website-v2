@@ -11,7 +11,7 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   // Base API Routes
-  private routeBlogposts = 'https://localhost:3000/api/blogposts';
+  private routeBlogposts = 'http://localhost:3000/api/blogPosts';
 
 
   // --- API CALLS ---

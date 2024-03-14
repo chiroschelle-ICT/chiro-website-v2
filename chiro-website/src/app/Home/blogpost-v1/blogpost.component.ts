@@ -3,12 +3,14 @@ import { Blogposts } from '../../Model/Blogposts';
 import { HomeService } from '../home.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from '../home.module';
 
 @Component({
   selector: 'app-blogpost',
   standalone: true,
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    HomeModule
   ],
   templateUrl: './blogpost.component.html',
   styleUrl: './blogpost.component.css'
