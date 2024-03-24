@@ -50,6 +50,7 @@ exports.postUser = (req, res) => {
     });
 }
 
+// PUT | Add new user
 exports.putUser = (req, res) => {
     const UId = req.params.id
     const {Name, AfdelingId } = req.body;
@@ -69,7 +70,7 @@ exports.putUser = (req, res) => {
 
 }
 
-// DELETE | delete a pogbost
+// DELETE | delete a user
 exports.deleteUser = (req, res) => {
     const uId = req.params.id;
     if(!uId) {

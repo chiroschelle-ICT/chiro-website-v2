@@ -17,15 +17,9 @@ import { HomeService } from '../home.service';
     ]
 })
 export class HomeComponent implements OnInit {
-    blogposts: Blogposts[] = [];
-
-    constructor(private homeService : HomeService) {}
   
     ngOnInit() {
-      this.homeService.getBlogposts().subscribe((data: Blogposts[]) => {
-        this.blogposts = data;
-        console.log(this.blogposts)
-      })
+     
     }
   
 }

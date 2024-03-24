@@ -19,11 +19,12 @@ export class BlogpostComponent implements OnInit{
 
   blogposts: Blogposts[] = [];
 
-  constructor(private homeService : HomeService, private route : ActivatedRoute, private router : Router) {}
+  constructor(private homeService : HomeService) {}
 
   ngOnInit() {
     this.homeService.getBlogposts().subscribe((data: Blogposts[]) => {
       this.blogposts = data;
+      console.log(this.blogposts[0].category)
     })
   }
 

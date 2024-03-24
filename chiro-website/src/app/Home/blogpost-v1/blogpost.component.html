@@ -1,7 +1,40 @@
 <div class=" w-10/12 mx-auto p-2 rounded-md mb-4 grid grid-cols-4 gap-4" style="overflow: auto;">
+   @for (blogpost of blogposts; track blogpost ) {
+      <div class="group col-span-1 border-4 border-red-300 bg-red-200 rounded-lg">
 
-   <div *NgFor="let blogpost of blogposts">
-        {{blogpost}}
-   </div>
-    
+         <div class="flex w-full flex-col gap-2">
+ 
+             <div class="rounded-xl w-fit">
+                 <img class="rounded-sm" src="assets\{{blogpost.Image}}" alt="" style="max-width: 100%; max-height: 100%;">
+             </div>
+ 
+             <div class="border-2 border-purple-600 bg-purple-400 px-4 text-xs rounded-xl font-semibold w-fit mx-auto">
+                 {{ blogpost.category }}
+             </div>
+ 
+             <div class="">
+                 <div class="text-xl text-center font-bold"> {{blogpost.title}} </div>
+             </div>
+ 
+ 
+             <div class="text-center mb-4">
+                {{blogpost.description}}
+             </div>
+             <div class="flex justify-between items-center p-2 m-2">
+                 <div class="flex items-center">
+                     <div class="rounded-full h-7 w-7 overflow-hidden mr-2">
+                         <img class="h-full w-full object-cover" src="assets\Blogposts_images\patron.jpg" alt="User Profile Image">
+                     </div>
+                     <span class="text-sm font-semibold ">Killian Serluppens</span>
+                 </div>
+                 <div>
+                     <span class="text-sm opacity-45 ">1 uur Geleden</span>
+                 </div>
+             </div>
+ 
+         </div>
+     </div>
+   }    
+
+   
 </div>
