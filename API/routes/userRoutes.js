@@ -9,7 +9,7 @@ router.get('/users', userController.getAllUsers);
 router.get('/users/:id', userController.getUserById);
 
 // POST | Create new user
-router.post('/users/addUser', userController.postUser);
+router.post('/users/addUser', userController.postUsers);
 
 // PUT | Update User
 router.put('/users/editUser/:id', userController.putUser);

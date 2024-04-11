@@ -24,7 +24,6 @@ export class BlogpostComponent implements OnInit{
   ngOnInit() {
     this.homeService.getBlogposts().subscribe((data: Blogposts[]) => {
       this.blogposts = data;
-      console.log(this.blogposts[0].category)
     })
   }
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Users } from '../../Model/Users';
 
 @Component({
   selector: 'app-leiding-card-v3',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
   templateUrl: './leiding-card-v3.component.html',
   styleUrl: './leiding-card-v3.component.css'
 })
-export class LeidingCardV3Component {
+export class LeidingCardV3Component implements OnInit{
+  @Input() FilteredUsers!: Users[][]
+
+  ngOnInit(): void {
+    
+  }
 
 }
