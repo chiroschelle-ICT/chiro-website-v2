@@ -1,15 +1,15 @@
 export class Users
 {
-    Id:null;
-    UserName: string;
+    id:number;
+    Name: string;
     AfdelingId: number;
     constructor(
-        id:null,
-        username:string,
+        id:number,
+        name:string,
         afdelingid:number
     ) {
-        this.Id = id;
-        this.UserName = username;
+        this.id = id;
+        this.Name = name;
         this.AfdelingId = afdelingid;
     }
 }

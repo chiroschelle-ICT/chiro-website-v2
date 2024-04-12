@@ -31,6 +31,9 @@ exports.getUserById = (req, res) => {
     }); 
 }
 
+
+
+
 // POST | Add new Blog post
 exports.postUsers = (req, res) => {
     const users = req.body; // Assuming req.body is the array of users
@@ -53,7 +56,6 @@ exports.postUsers = (req, res) => {
                 // Continue with the next user even if an error occurs
                 return;
             }
-            console.log(`User '${Name}' added successfully`);
         });
     });
 

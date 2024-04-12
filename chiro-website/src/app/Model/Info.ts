@@ -1,27 +1,30 @@
 export class Info 
 {
-    Id:null;
-    Afdeling:string;
-    Email:string;
-    Phone:string;
-    Groeps:boolean;
-    JaarLeiding:number;
-    Age:number
+    id:null;
+    userId: number;
+    email:string;
+    phone:string;
+    groeps:boolean;
+    jaar_leiding:number;
+    leeftijd:number;
+    image:string
     constructor(
         id:null,
-        afdeling:string,
+        userid: number,
+        image:string,
         email:string,
         phone:string,
         groeps:boolean,
         jaarleiding:number,
         age:number
     ) {
-        this.Id = id;
-        this.Afdeling = afdeling;
-        this.Email = email;
-        this.Phone = phone;
-        this.Groeps = groeps;
-        this.JaarLeiding = jaarleiding;
-        this.Age = age;
+        this.id = id;
+        this.userId = userid;
+        this.email = email;
+        this.phone = phone;
+        this.groeps = groeps;
+        this.jaar_leiding = jaarleiding;
+        this.leeftijd = age;
+        this.image = image
     }
 }

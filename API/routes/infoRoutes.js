@@ -9,7 +9,7 @@ router.get('/info', infoController.getAllInfo);
 router.get('/info/:id', infoController.getInfoById);
 
 // GET | Return info item by userId
-router.get('/infoUser/:userId', infoController.getInfoByUserId);
+router.get('/info/getUserId/:id', infoController.getInfoByUserId);
 
 // POST | Add new Info Item
 router.post('/info/postInfo', infoController.postInfo);

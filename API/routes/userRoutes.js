@@ -8,8 +8,10 @@ router.get('/users', userController.getAllUsers);
 // GET | return user by id
 router.get('/users/:id', userController.getUserById);
 
+
 // POST | Create new user
 router.post('/users/addUser', userController.postUsers);
+
 
 // PUT | Update User
 router.put('/users/editUser/:id', userController.putUser);

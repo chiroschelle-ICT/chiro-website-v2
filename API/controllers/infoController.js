@@ -32,7 +32,8 @@ exports.getInfoById = (req, res) => {
 }
 // GET | return Info By userId
 exports.getInfoByUserId = (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.params.id;
+    console.log(userId)
     const query = "SELECT * FROM info WHERE userId = ?";
 
     if(!userId) {
@@ -46,6 +47,7 @@ exports.getInfoByUserId = (req, res) => {
             return;
         }
         res.json(results);
+        console.log(results)
     });
 }
 

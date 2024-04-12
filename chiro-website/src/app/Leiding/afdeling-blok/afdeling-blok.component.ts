@@ -4,6 +4,7 @@ import { LeidingCardV2Component } from "../leiding-card-v2/leiding-card-v2.compo
 import { LeidingCardV3Component } from "../leiding-card-v3/leiding-card-v3.component";
 import { Users } from '../../Model/Users';
 import { LeidingService } from '../leiding.service';
+import { Info } from '../../Model/Info';
 
 @Component({
     selector: 'app-afdeling-blok',
@@ -14,7 +15,13 @@ import { LeidingService } from '../leiding.service';
 })
 export class AfdelingBlokComponent {
 
+    constructor(private LeidingServ : LeidingService) {}
+
     users: Users[] = []
+    info: Info[] = []
+    infoS!: Info
+
+    infoByUserId: { [userId: number]: Info[]} = {}
 
     RibbelJ: Users[] = []
     RibbelM: Users[] = []
@@ -50,24 +57,24 @@ export class AfdelingBlokComponent {
     // data Only Leiding from specific afdeling from parent (Leiding Page)
     @Input() usersPerAfdeling!: Users
 
-    // Data to send to child (Leiding Card)
-    parentVariable: string = "Hellow Sub-Comp"
-
-    constructor(private LeidingServ : LeidingService) {}
 
     ngOnInit() {
       this.loadData()
-      this.filterData();
     }
 
+
     loadData() {
-        this.LeidingServ.getUsers().subscribe((data: Users[]) => {
-            this.users = data;
-            console.log(this.users)
-            this.filterData()
-            console.log(this.RibbelJ)        
+        this.LeidingServ.getUsers().subscribe((dataUsers: Users[]) => {
+            this.users = dataUsers
+            this.filterData();
+            this.users.forEach(user => {
+            this.LeidingServ.getInfoPerUserId(user.id).subscribe((dataInfo: Info) => {
+                
+            }) 
+          })  
         })
     }
+
     filterData() {
         for(let i = 0; i < this.users.length; i++) {
             switch (this.users[i].AfdelingId) {
@@ -113,5 +120,6 @@ export class AfdelingBlokComponent {
             }
         }
     }
+
     
 }
