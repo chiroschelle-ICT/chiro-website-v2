@@ -13,6 +13,8 @@ export class LeidingService {
 
   private routeUsers = 'http://localhost:3000/api/users';
   private routeInfo = 'http://localhost:3000/api/info';
+  private routeInfoAllData = 'http://localhost:3000/api/users/getAllUsersInfo';
+
 
 
   // --- API CALLS ---
@@ -33,11 +35,15 @@ export class LeidingService {
   }
   // GET info of user
   getInfoById(Id: any): Observable<Info> {
-    return this.http.get<Info>(this.routeInfo+"/${Id}");
+    return this.http.get<Info>(this.routeInfo+"/${Id}");  
   }
   // GET Info per userID
   getInfoPerUserId(id: any): Observable<Info> {
     return this.http.get<Info>(`${this.routeInfo}/getUserId/${id}`);
+  }
+  // GET Info needed by User
+  getInfoNeededByUser(): Observable<Users[]> {
+    return this.http.get<Users[]>(this.routeInfoAllData);
   }
 
 

@@ -20,6 +20,7 @@ export class AfdelingBlokComponent {
     users: Users[] = []
     info: Info[] = []
     infoS!: Info
+    UserWithInfo: Users[] = []
 
     infoByUserId: { [userId: number]: Info[]} = {}
 
@@ -59,7 +60,8 @@ export class AfdelingBlokComponent {
 
 
     ngOnInit() {
-      this.loadData()
+        // this.loadData()
+        this.getAllInfo()
     }
 
 
@@ -72,6 +74,13 @@ export class AfdelingBlokComponent {
                 
             }) 
           })  
+        })
+    }
+    getAllInfo() {
+        this.LeidingServ.getInfoNeededByUser().subscribe((data: Users[]) => {
+          this.UserWithInfo = data
+          console.log(this.UserWithInfo)
+          this.filterData();
         })
     }
 

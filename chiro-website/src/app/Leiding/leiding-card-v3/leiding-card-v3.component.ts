@@ -14,33 +14,30 @@ export class LeidingCardV3Component implements OnInit{
   @Input() FilteredUsers!: Users[]
   copyUsers = this.FilteredUsers
 
-  infoUsers!: Info
+
+  infoUser!: Info
+  infos: Info[] = []
   users: Users[] = []
+  UserWithInfo: Users[] = []
 
   constructor(private LeidingServ : LeidingService) {}
 
   ngOnInit(): void {
-    this.getInfo()
   }
-  i :number = 1
+  i :number = 0
   getInfo() {
     this.LeidingServ.getUsers().subscribe((dataUsers: Users[]) => {
       this.users = dataUsers
       this.FilteredUsers.forEach(user => {
-        this.LeidingServ.getInfoPerUserId(1).subscribe((dataInfo: Info) => {
-            this.infoUsers = dataInfo
-            console.log("USER : ")
-            console.log(user)
-            console.log("INFO : ")
-            // Postman returns data but not here FIX THIS SHIT
-            console.log(this.infoUsers)
-            console.log("COUNTER : "+this.i)
-            console.log("------------------")
+        this.LeidingServ.getInfoPerUserId(user.id).subscribe((dataInfo: Info) => {
+            this.infoUser = dataInfo
+           console.log(this.infoUser)
             this.i += 1
         }) 
       })  
     })
   }
+
 
 
 }

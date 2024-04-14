@@ -7,7 +7,7 @@ export class Info
     groeps:boolean;
     jaar_leiding:number;
     leeftijd:number;
-    image:string
+    image:string;
     constructor(
         id:null,
         userid: number,
