@@ -2,6 +2,8 @@ const db = require('../databases/local_database');
 
 // GET | return all Info
 exports.getAllInfo = (req, res) => {
+    console.log("IN getAllInfo");
+
     db.query('SELECT * FROM Info', (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
@@ -47,9 +49,10 @@ exports.getInfoByUserId = (req, res) => {
             return;
         }
         res.json(results);
-        console.log(results)
     });
 }
+
+
 
 // POST | Add new Info
 exports.postInfo = (req, res) => {

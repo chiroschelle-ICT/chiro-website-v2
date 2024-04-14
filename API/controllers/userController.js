@@ -2,6 +2,7 @@ const db = require('../databases/local_database');
 
 // GET | return all users
 exports.getAllUsers = (req, res) => {
+    console.log("getAllUsers");
     db.query('SELECT * FROM users', (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
@@ -31,7 +32,22 @@ exports.getUserById = (req, res) => {
     }); 
 }
 
+// GET | info needed by User
+//TODO ADD INNER JOIN
+exports.getAllUsersInfo = (req, res) => {
+    console.log("getAllUsersInfo");
 
+    const query = "SELECT * FROM users u INNER JOIN info i ON u.id = i.userId"
+
+    db.query(query, (err, results) => {
+        if(err) {
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Error Querying Database');
+            return;
+        }
+        res.json(results);
+    })
+}
 
 
 // POST | Add new Blog post

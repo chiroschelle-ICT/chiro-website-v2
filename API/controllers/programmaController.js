@@ -89,3 +89,18 @@ exports. deleteProgramma = (req, res) => {
         res.json({ message: 'Programma Deleted successfully' });
     });
 }
+
+
+
+
+// test
+exports.getTest = (req, res) => {
+    db.query('SELECT * FROM programma', (err, results) => {
+        if(err) {
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Erro Querying Database');
+            return;
+        }
+        res.json(results);
+    })
+}
