@@ -64,67 +64,54 @@ export class AfdelingBlokComponent {
         this.getAllInfo()
     }
 
-
-    loadData() {
-        this.LeidingServ.getUsers().subscribe((dataUsers: Users[]) => {
-            this.users = dataUsers
-            this.filterData();
-            this.users.forEach(user => {
-            this.LeidingServ.getInfoPerUserId(user.id).subscribe((dataInfo: Info) => {
-                
-            }) 
-          })  
-        })
-    }
     getAllInfo() {
         this.LeidingServ.getInfoNeededByUser().subscribe((data: Users[]) => {
           this.UserWithInfo = data
-          console.log(this.UserWithInfo)
           this.filterData();
         })
     }
 
     filterData() {
-        for(let i = 0; i < this.users.length; i++) {
-            switch (this.users[i].AfdelingId) {
+        for(let i = 0; i < this.UserWithInfo.length; i++) {
+            switch (this.UserWithInfo[i].AfdelingId) {
                 case 1: // Ribbel J
-                    this.RibbelJ.push(this.users[i])
+                    this.RibbelJ.push(this.UserWithInfo[i])
                     break
                 case 2: // Ribbel M
-                    this.RibbelM.push(this.users[i])
+                    this.RibbelM.push(this.UserWithInfo[i])
                     break
                 case 3: // Speelclub J
-                    this.SpeelclubJ.push(this.users[i])
+                    this.SpeelclubJ.push(this.UserWithInfo[i])
                     break
                 case 4: // Speelclub M
-                    this.SpeelclubM.push(this.users[i])
+                    this.SpeelclubM.push(this.UserWithInfo[i])
                     break;
                 case 5: // Rakkers
-                    this.Rakkers.push(this.users[i])
+                    this.Rakkers.push(this.UserWithInfo[i])
                     break;
                 case 6: // Kwiks
-                    this.Kwiks.push(this.users[i])
+                    this.Kwiks.push(this.UserWithInfo[i])
                     break;
                 case 7: // Toppers
-                    this.Toppers.push(this.users[i])
+                    this.Toppers.push(this.UserWithInfo[i])
                     break;
                 case 8: // Tippers
-                    this.Tippers.push(this.users[i])
+                    this.Tippers.push(this.UserWithInfo[i])
                     break;
                 case 9: // Kerels
-                    this.Kerels.push(this.users[i])
+                    this.Kerels.push(this.UserWithInfo[i])
                     break;
                 case 10: // Tip10s
-                    this.Tip10.push(this.users[i])
+                    this.Tip10.push(this.UserWithInfo[i])
                     break;
                 case 11: // Aspi J
-                    this.AspiJ.push(this.users[i])
+                    this.AspiJ.push(this.UserWithInfo[i])
                     break;
                 case 12: // Aspi M
-                    this.AspiM.push(this.users[i])
+                    this.AspiM.push(this.UserWithInfo[i])
                     break;
                 case 13: // Leiding
-                    this.VeeBee.push(this.users[i])
+                    this.VeeBee.push(this.UserWithInfo[i])
                     break;
             }
         }

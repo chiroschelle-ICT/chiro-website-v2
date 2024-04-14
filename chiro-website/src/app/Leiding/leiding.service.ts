@@ -13,7 +13,7 @@ export class LeidingService {
 
   private routeUsers = 'http://localhost:3000/api/users';
   private routeInfo = 'http://localhost:3000/api/info';
-  private routeInfoAllData = 'http://localhost:3000/api/users/getAllUsersInfo';
+  private routeInfoAllData = 'http://localhost:3000/api/users/getInfo';
 
 
 

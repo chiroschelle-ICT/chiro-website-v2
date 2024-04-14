@@ -31,7 +31,6 @@ export class LeidingCardV3Component implements OnInit{
       this.FilteredUsers.forEach(user => {
         this.LeidingServ.getInfoPerUserId(user.id).subscribe((dataInfo: Info) => {
             this.infoUser = dataInfo
-           console.log(this.infoUser)
             this.i += 1
         }) 
       })  
