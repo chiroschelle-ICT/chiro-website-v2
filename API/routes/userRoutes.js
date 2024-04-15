@@ -2,14 +2,20 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
+// GET | info needed by User
+router.get('/users/getInfo', userController.getAllUsersInfo);
+
 // GET | Return all users
 router.get('/users', userController.getAllUsers);
 
 // GET | return user by id
 router.get('/users/:id', userController.getUserById);
 
+
+
 // POST | Create new user
-router.post('/users/addUser', userController.postUser);
+router.post('/users/addUser', userController.postUsers);
+
 
 // PUT | Update User
 router.put('/users/editUser/:id', userController.putUser);

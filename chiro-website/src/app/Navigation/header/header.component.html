@@ -8,7 +8,7 @@
     <div class="col-span-1 text-sm font-semibold flex items-center justify-center">
       <ul class="flex">
         <li routerLink="/afdelingen" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Home</a></li>
-        <li routerLink="/login" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Leidingsploeg</a></li>
+        <a  [routerLink]="['/leidingsPloeg']" routerLinkActive="router-link-active" class="text-white"><li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer">Leidingsploeg</li></a>
         <li routerLink="/logout" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Programma</a></li>
         <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Bouw</a></li>
       </ul>

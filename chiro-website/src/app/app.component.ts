@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
 // Component
 import { HeaderComponent } from './Navigation/header/header.component';
 import { FooterComponent } from './Navigation/footer/footer.component';
