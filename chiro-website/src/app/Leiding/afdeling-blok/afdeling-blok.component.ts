@@ -17,12 +17,7 @@ export class AfdelingBlokComponent {
 
     constructor(private LeidingServ : LeidingService) {}
 
-    users: Users[] = []
-    info: Info[] = []
-    infoS!: Info
     UserWithInfo: Users[] = []
-
-    infoByUserId: { [userId: number]: Info[]} = {}
 
     RibbelJ: Users[] = []
     RibbelM: Users[] = []
@@ -55,12 +50,7 @@ export class AfdelingBlokComponent {
     ];
 
 
-    // data Only Leiding from specific afdeling from parent (Leiding Page)
-    @Input() usersPerAfdeling!: Users
-
-
     ngOnInit() {
-        // this.loadData()
         this.getAllInfo()
     }
 

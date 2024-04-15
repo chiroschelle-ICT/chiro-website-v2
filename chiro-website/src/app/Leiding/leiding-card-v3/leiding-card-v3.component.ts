@@ -10,32 +10,12 @@ import { Info } from '../../Model/Info';
   templateUrl: './leiding-card-v3.component.html',
   styleUrl: './leiding-card-v3.component.css'
 })
-export class LeidingCardV3Component implements OnInit{
+export class LeidingCardV3Component{
   @Input() FilteredUsers!: Users[]
-  copyUsers = this.FilteredUsers
-
-
-  infoUser!: Info
-  infos: Info[] = []
-  users: Users[] = []
-  UserWithInfo: Users[] = []
 
   constructor(private LeidingServ : LeidingService) {}
 
-  ngOnInit(): void {
-  }
-  i :number = 0
-  getInfo() {
-    this.LeidingServ.getUsers().subscribe((dataUsers: Users[]) => {
-      this.users = dataUsers
-      this.FilteredUsers.forEach(user => {
-        this.LeidingServ.getInfoPerUserId(user.id).subscribe((dataInfo: Info) => {
-            this.infoUser = dataInfo
-            this.i += 1
-        }) 
-      })  
-    })
-  }
+
 
 
 
