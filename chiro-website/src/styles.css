@@ -5,6 +5,20 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Fonts */
+@font-face {
+    font-family: 'CabinSketch';
+    src: url('assets/Fonts/Cabin_Sketch/CabinSketch-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ShadowsIntoLight';
+    src: url('assets/Fonts/Shadows_Into_Light/ShadowsIntoLight-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*
 @tailwind base;
 @tailwind components;
