@@ -7,16 +7,64 @@
     </div>
     <div class="col-span-1 text-sm font-semibold flex items-center justify-center">
       <ul class="flex">
-        <li routerLink="/afdelingen" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Home</a></li>
-        <a  [routerLink]="['/leidingsPloeg']" routerLinkActive="router-link-active" class="text-white"><li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer">Leidingsploeg</li></a>
-        <li routerLink="/logout" class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Programma</a></li>
-        <li class="px-2 rounded-lg ease-in-out duration-400 hover:bg-red-800 cursor-pointer"><a class="text-white">Bouw</a></li>
+ 
+        <a [routerLink]="['']" routerLink="/afdelingen" 
+          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg 
+        ">
+          <li>
+            Home
+          </li>
+          <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/home.ico" />
+        </a>
+
+
+        <a  [routerLink]="['/leidingsPloeg']" routerLinkActive="router-link-active" 
+          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
+        ">
+          <li>
+            Leidingsploeg
+          </li>
+          <img class="h-8 w-8 mx-auto mt-1" src="assets/icons/whistle.ico" />
+        </a>
+        
+        <a [routerLink]="['/programma']"
+          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
+        ">          
+          <li>
+            Programma
+          <li>
+            <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/notebook.ico" />
+          </a>
+
+
+
+        <a [routerLink]="['goepie']"
+          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
+        ">
+          <li>
+            GOEPIE
+          </li>
+          <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/magazine.ico" />
+        </a>
+
+
+      <a [routerLink]=""
+        class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
+      ">
+      <li>
+        Bouw
+      </li>
+        <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/vehicle.ico" />
+      </a>
+
       </ul>
+      
       
     </div>
     <div class="col-span-1 flex items-center justify-end space-x-4 mr-6">
-      <a href="https://www.facebook.com/chiroschelle" class="text-white hover:text-facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/chiroschelle/" class="text-white hover:text-instagram-purple-violet"><i class="fab fa-instagram"></i></a>
+      <span class="rotate-12 text-xl" id="socialsText">Onze Socials <span class="text-3xl">&#8605;</span></span>
+      <a href="https://www.facebook.com/chiroschelle" class="text-white hover:text-facebook"><i class="fab text-2xl fa-facebook"></i></a>
+      <a href="https://www.instagram.com/chiroschelle/" class="text-white hover:text-instagram-purple-violet"><i class="fab text-2xl fa-instagram"></i></a>
     </div>
 </div>
 </header>

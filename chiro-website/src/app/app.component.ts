@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 // Component
 import { HeaderComponent } from './Navigation/header/header.component';
 import { FooterComponent } from './Navigation/footer/footer.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { FooterComponent } from './Navigation/footer/footer.component';
     CommonModule,
     RouterOutlet,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PdfViewerModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
