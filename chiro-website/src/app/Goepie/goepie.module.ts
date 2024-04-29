@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoepiePageComponent } from './goepie-page/goepie-page.component';
-
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {  NgxExtendedPdfViewerModule,NgxExtendedPdfViewerService, pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
-  declarations: [],
+  providers: [
+    NgxExtendedPdfViewerService
+  ],
+  declarations: [
+    
+  ],
   imports: [
     CommonModule,
     GoepiePageComponent,
-    PdfViewerModule,
+    NgxExtendedPdfViewerModule
   ]
 })
 export class GoepieModule { }
