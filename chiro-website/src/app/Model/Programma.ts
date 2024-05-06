@@ -1,18 +1,18 @@
 export class Programma 
 {
-    Id:null;
-    AfdelingId:number;
-    Programma:string;
-    Datum:Date;
+    id:null;
+    afdelingId:number;
+    programma:string;
+    datum:Date;
     constructor(
-        id:null,
-        afdelingid:number,
-        programma:string,
-        datum:Date
+        i:null,
+        a:number,
+        p:string,
+        d:Date
     ) {
-        this.Id = id;
-        this.AfdelingId = afdelingid;
-        this.Programma = programma;
-        this.Datum = datum;
+        this.id = i;
+        this.afdelingId = a;
+        this.programma = p;
+        this.datum = d;
     }
 }

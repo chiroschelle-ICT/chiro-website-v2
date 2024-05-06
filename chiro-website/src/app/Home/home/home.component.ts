@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // Components
 import { BlogpostComponent } from '../blogpost-v1/blogpost.component';
-import { Blogposts } from '../../Model/Blogposts';
-import { HomeService } from '../home.service';
 
 @Component({
     selector: 'app-home',
