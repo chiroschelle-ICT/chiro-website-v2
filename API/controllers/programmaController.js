@@ -31,6 +31,26 @@ exports.getProgrammaById = (req, res) => {
     }); 
 }
 
+// GET | Return all data per afdeling
+exports.getProgrammaPerAfdeling = (req, res) => {
+    const Id = req.params.id;
+
+    if(!Id) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const query = "SELECT * FROM programma WHERE afdelingId = ? ORDER BY ABS(DATEDIFF(datum, CURDATE())) ASC;";
+
+    db.query(query, [Id], (err, result) => {
+        if(err) {
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Error Querying Database');
+            return;
+        }
+        res.json(result);
+    }); 
+}
+
 // POST | Add new Blog post
 exports.postProgramma = (req, res) => {
     const { afdelingId, programma, datum } = req.body;

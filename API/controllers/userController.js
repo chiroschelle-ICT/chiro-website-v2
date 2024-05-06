@@ -2,7 +2,6 @@ const db = require('../databases/local_database');
 
 // GET | return all users
 exports.getAllUsers = (req, res) => {
-    console.log("getAllUsers");
     db.query('SELECT * FROM users', (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
