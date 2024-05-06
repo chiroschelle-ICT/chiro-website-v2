@@ -22,3 +22,4 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 export class AppComponent {
   title = 'chiro-website';
 }
+67
