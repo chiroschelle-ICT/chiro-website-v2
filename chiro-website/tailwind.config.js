@@ -18,6 +18,11 @@ module.exports = {
         'instagram-yellow': '#fccc63',
         'instagram-orange': '#fbad50',
       },
+      screens: {
+        'sm2': {'max': '639px'},   // Custom breakpoint for screens under 640px
+        'md2': {'min': '640px', 'max': '1399px'}, // Custom breakpoint for screens between 640px and 1400px
+        'lg2': {'min': '1400px'},  // Custom breakpoint for screens over 1400px
+      },
     },
   },
   plugins: [],
