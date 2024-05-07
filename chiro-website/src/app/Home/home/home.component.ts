@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // Components
 import { BlogpostComponent } from '../blogpost-v1/blogpost.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-home',
@@ -11,7 +12,8 @@ import { BlogpostComponent } from '../blogpost-v1/blogpost.component';
     styleUrl: './home.component.css',
     imports: [
         HttpClientModule,
-        BlogpostComponent
+        BlogpostComponent,
+        CommonModule
     ]
 })
 export class HomeComponent implements OnInit {

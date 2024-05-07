@@ -11,6 +11,9 @@ router.get('/programma/test', programmaController.getTest);
 // GET | Get all programmas by ID
 router.get('/programma/:id', programmaController.getProgrammaById);
 
+// GET | get per programma
+router.get('/programma/getAfdelingId/:id', programmaController.getProgrammaPerAfdeling)
+
 // POST | Add new Programma
 router.post('/programma/postProgramma', programmaController.postProgramma);
 

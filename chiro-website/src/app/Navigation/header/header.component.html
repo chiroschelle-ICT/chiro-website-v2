@@ -1,71 +1,77 @@
-<header class="bg-red-500 p-2">
-  <div class="grid grid-cols-3">
-    <div class="col-span-1">
-      <a href="#">  
-        <img src="assets/Logos/logoChiroSchelle.png" alt="" style="height: 60px;" />
-      </a>
-    </div>
-    <div class="col-span-1 text-sm font-semibold flex items-center justify-center">
-      <ul class="flex">
- 
-        <a [routerLink]="['']" routerLink="/afdelingen" 
-          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg 
-        ">
-          <li>
-            Home
-          </li>
-          <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/home.ico" />
-        </a>
+<header>
+  <nav class="bg-red-500 px-4 lg:px-6 py-2.5  ">
+      <div class="w-full flex flex-wrap justify-between items-center mx-auto lg:items-center ">
+          
+          <div class="flex justify-start">
+            <a href="#" class="flex items-center">
+                <img src="assets/Logos/logoChiroSchelle.png" class="mr-3 h-12 sm:h-9 lg:h-12" />
+            </a>
+          </div>
+
+          <div class="flex items-center lg:order-2">
+            <button (click)="toggleMenu()" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden focus:outline-none focus:ring-3 focus:ring-red-800" 
+            [attr.aria-expanded]="isMenuOpen ? 'true' : 'false'">
+            <span class="sr-only">Open main menu</span>
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div [ngClass]="{ 'hidden': !isMenuOpen }" class="justify-between items-center w-full lg:flex lg:w-auto lg:order-1  lg:mx-auto"  id="mobile-menu-2">
+            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                  <li class="">
+                      <a [routerLink]="['']" routerLinkActive="router-link-active"  href="#" class="block py-2 pr-4 pl-3 text-white border-gray-100 hover:bg-red-400 ease-in-out rounded lg:p-0">
+                        <div class="flex">
+                          <img src="assets/icons/home.ico" class="h-5" />
+                          <span class="text-left pl-3 ">Home </span>
+                        </div>
+                      </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['leidingsPloeg']" href="#" class="block py-2 pr-4 pl-3 text-white border-gray-100 hover:bg-red-400 ease-in-out rounded lg:p-0">
+                      <div class="flex">
+                        <img src="assets/icons/whistle.ico" class="h-5" />
+                        <span class="text-left pl-3 ">Leidingsploeg </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/programma']" routerLinkActive="router-link-active"  href="#" class="block py-2 pr-4 pl-3 text-white border-gray-100 hover:bg-red-400 ease-in-out rounded lg:p-0">
+                      <div class="flex">
+                        <img src="assets/icons/notebook.ico" class="h-5" />
+                        <span class="text-left pl-3 ">Programma </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/goepie']" routerLinkActive="router-link-active"  href="#" class="block py-2 pr-4 pl-3 text-white border-gray-100 hover:bg-red-400 ease-in-out rounded lg:p-0">
+                      <div class="flex">
+                        <img src="assets/icons/magazine.ico" class="h-5" />
+                        <span class="text-left pl-3 ">GOEPIE </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="block py-2 pr-4 pl-3 text-white border-gray-100 hover:bg-red-400 ease-in-out rounded lg:p-0">
+                      <div class="flex">
+                        <img src="assets/icons/vehicle.ico" class="h-5" />
+                        <span class="text-left pl-3 ">Bouw </span>
+                      </div>
+                    </a>
+                  </li>
+                
+              </ul>
+          </div>
 
 
-        <a  [routerLink]="['/leidingsPloeg']" routerLinkActive="router-link-active" 
-          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
-        ">
-          <li>
-            Leidingsploeg
-          </li>
-          <img class="h-8 w-8 mx-auto mt-1" src="assets/icons/whistle.ico" />
-        </a>
+        <div class="hidden lg:flex justify-between space-be lg:order-2">
+            <span class="rotate-12 text-xl" id="socialsText">Onze Socials <span class="text-3xl">&#8605;</span></span>
+            <a href="https://www.facebook.com/chiroschelle" class="text-white hover:text-facebook ml-2"><i class="fab text-2xl fa-facebook hover:text-facebook-blue"></i></a>
+            <a href="https://www.instagram.com/chiroschelle/" class="text-white  ml-2"><i class="fab text-2xl fa-instagram hover:text-instagram-purple-violet"></i></a>
+        </div>
         
-        <a [routerLink]="['/programma']"
-          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
-        ">          
-          <li>
-            Programma
-          <li>
-            <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/notebook.ico" />
-          </a>
 
-
-
-        <a [routerLink]="['goepie']"
-          class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
-        ">
-          <li>
-            GOEPIE
-          </li>
-          <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/magazine.ico" />
-        </a>
-
-
-      <a [routerLink]=""
-        class="text-white text-xl ease-in-out duration-400 hover:bg-red-800 cursor-pointer px-2 rounded-lg ml-5
-      ">
-      <li>
-        Bouw
-      </li>
-        <img class="h-7 w-7 mx-auto mt-1" src="assets/icons/vehicle.ico" />
-      </a>
-
-      </ul>
-      
-      
-    </div>
-    <div class="col-span-1 flex items-center justify-end space-x-4 mr-6">
-      <span class="rotate-12 text-xl" id="socialsText">Onze Socials <span class="text-3xl">&#8605;</span></span>
-      <a href="https://www.facebook.com/chiroschelle" class="text-white hover:text-facebook"><i class="fab text-2xl fa-facebook"></i></a>
-      <a href="https://www.instagram.com/chiroschelle/" class="text-white hover:text-instagram-purple-violet"><i class="fab text-2xl fa-instagram"></i></a>
-    </div>
-</div>
+      </div>
+  </nav>
 </header>
- 
