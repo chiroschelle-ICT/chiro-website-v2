@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
 
-  isMenuOpen: boolean = true;
+  isMenuOpen: boolean = false;
 
   toggleMenu() {    
   this.isMenuOpen = !this.isMenuOpen;
