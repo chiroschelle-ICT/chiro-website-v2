@@ -7,6 +7,7 @@ export class Blogposts
     Image: string;
     link: string;
     category: number;
+    timePosted: Date;
     constructor(
         id:null,
         userid:number,
@@ -14,7 +15,8 @@ export class Blogposts
         description:string,
         image:string,
         link:string,
-        category:number
+        category:number,
+        tp: Date
     ) {
         this.id = id;
         this.userId = userid;
@@ -23,5 +25,6 @@ export class Blogposts
         this.Image = image;
         this.link = link;
         this.category = category;
+        this.timePosted = tp;
     }
 }

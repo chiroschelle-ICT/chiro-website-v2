@@ -19,6 +19,7 @@ const infoRoutes = require('./routes/infoRoutes');
 const afdelingRoutes = require('./routes/afdelingRoutes');
 const verhuurRoutes = require('./routes/verhuurRoutes');
 const programmaRoutes = require('./routes/programmaRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 // Use Route Files
 app.use('/api', blogRoutes);
@@ -27,6 +28,7 @@ app.use('/api', infoRoutes);
 app.use('/api', afdelingRoutes);
 app.use('/api', verhuurRoutes);
 app.use('/api', programmaRoutes);
+app.use('/api', categoryRoutes);
 
 // Start the server
 app.listen(port, () => {
