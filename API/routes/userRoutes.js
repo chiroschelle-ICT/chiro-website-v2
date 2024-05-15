@@ -5,12 +5,14 @@ const userController = require('../controllers/userController');
 // GET | info needed by User
 router.get('/users/getInfo', userController.getAllUsersInfo);
 
+// GET | return by username
+router.get('/users/searchName/:name', userController.getUserByName);
+
 // GET | Return all users
 router.get('/users', userController.getAllUsers);
 
 // GET | return user by id
 router.get('/users/:id', userController.getUserById);
-
 
 
 // POST | Create new user
