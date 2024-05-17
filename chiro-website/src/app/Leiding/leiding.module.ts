@@ -10,7 +10,7 @@ import { LeidingPageComponent } from './leiding-page/leiding-page.component';
   imports: [
     CommonModule,
     LeidingPageComponent,
-    AfdelingBlokComponent
+    AfdelingBlokComponent,
   ]
 })
 export class LeidingModule { }

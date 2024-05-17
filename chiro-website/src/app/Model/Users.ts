@@ -13,7 +13,7 @@ export class Users
     password:string;
     constructor(
         id:number,
-        un:string,
+        username:string,
         name:string,
         afdelingid:number,
         image:string,
@@ -25,7 +25,7 @@ export class Users
         pw:string
     ) {
         this.id = id;
-        this.username = un;
+        this.username = username;
         this.Name = name;
         this.AfdelingId = afdelingid;
         this.email = email;

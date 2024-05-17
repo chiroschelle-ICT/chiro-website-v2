@@ -5,11 +5,11 @@
     <div class="broder-2 border-green-700 p-3">
         <form #loginForm="ngForm" (ngSubmit)="validateLogin(loginForm)">
             <div class="mb-4">
-                <label for="email" class="font-semibold text-lg">Login (Gebruikersnaam): </label>
-                <input type="email" name="email" placeholder="gebruikersnaam"
+                <label for="username" class="font-semibold text-lg">Login (Gebruikersnaam): </label>
+                <input type="text" name="username" placeholder="gebruikersnaam"
                     class="w-full px-3 py-2 rounded-lg focus:outline-none focus:border-blue-400 border-3 border-gray-400"                    
                     required
-                    [(ngModel)]="email"
+                    [(ngModel)]="username"
                 >
             </div>
             <div class="mb-4">
@@ -25,9 +25,13 @@
                     <span class="font-bold text-white">Login</span> 
                 </button>
             </div>
-            <div class="border-2 border-green-500 bg-green-300 rounded-lg py-2 text-center w-3/6 mx-auto">
-                <span class="text-xl font-bold"> {{ responseMsg }} Foute Gegevens! </span>
-            </div>
+            @if (showRespondMsg) 
+            {
+                <div [style.border]="borderColor" [style.background]="backgroundColor" class="rounded-lg py-2 text-center w-3/6 mx-auto">
+                    <span class="lg:text-xl text-lg font-bold"> {{ responseMsg }} </span>
+                </div>
+            }
+
         </form>
     </div>
 </div>
