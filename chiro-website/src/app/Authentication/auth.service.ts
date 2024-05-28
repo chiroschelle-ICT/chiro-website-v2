@@ -38,6 +38,14 @@ export class AuthService {
     this.isAuth.next(false)
   }
 
+  getLoggedUser() {
+    return localStorage.getItem('username')    
+  }
+
+  getUserWithLocalStorage() : Observable<Users>{
+    return this.http.get<Users>(this.baseUsersRoute+"/searchname/"+`${localStorage.getItem('username')}`);
+  }
+
   isLoggedIn(): boolean {
     return localStorage.getItem('isLoggedIn') === 'true'
   }

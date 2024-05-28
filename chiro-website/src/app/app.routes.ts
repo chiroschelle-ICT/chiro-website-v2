@@ -15,17 +15,12 @@ export const routes: Routes =
     { path: '', component: HomeComponent },
     { path: 'leiding', component: LeidingPageComponent},
 
-    // Use routing in comp
+    // Use routing in comp --> doocs are still angular 16?????????????????????????????????????????????????????????????????????????
     { path: 'programma', component: ProgrammaPageComponent},
     { path: 'afdProgramma/:afdId', component: ProgrammaAfdelingComponent},
 
     { path: 'goepie', component: GoepiePageComponent},
     { path: "login", component: LoginComponent},
     { path: 'logout', component: LogoutComponent},
-    { path: 'admin', loadComponent: () =>
-        import('./Admin/admin.module').then(
-            (m) => m.AdminModule
-        ),
-        canActivate: [adminGuard]
-    },
+    { path: 'admin', component: AdminPageComponent},
 ];
