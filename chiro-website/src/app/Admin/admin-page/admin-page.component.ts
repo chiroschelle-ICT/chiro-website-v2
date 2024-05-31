@@ -7,6 +7,8 @@ import { MainComponent } from '../Phone-components/main/main.component';
 // Tablet components
 import { MainTabletComponent } from '../Tablet-components/main-tablet/main-tablet.component';
 import { NavbarTabletComponent } from '../Tablet-components/navbar-tablet/navbar-tablet.component';
+// Desktop components
+import { MainDesktopComponent } from '../Desktop-components/main-desktop/main-desktop.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -15,7 +17,8 @@ import { NavbarTabletComponent } from '../Tablet-components/navbar-tablet/navbar
     NavbarComponent,
     MainComponent,
     MainTabletComponent,
-    NavbarTabletComponent
+    NavbarTabletComponent,
+    MainDesktopComponent
   ],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css'
