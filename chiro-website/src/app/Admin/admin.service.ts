@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Users } from '../Model/Users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Programma } from '../Model/Programma';
+import { Blogposts } from '../Model/Blogposts';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AdminService {
 
   private baseUsersRoute = 'http://localhost:3000/api/users';
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
+  private baseBlogpostsRoute = 'http://localhost:3000/api/blogPosts';
 
   getUser(id: number) : Observable<Users> {
     return this.http.get<Users>(this.baseUsersRoute+"/"+`${id}`)
@@ -47,7 +49,22 @@ export class AdminService {
 
   // --- Blogpost Actions ---
   // --- Blogpost Actions ---
-
-
-  
+  // GET | Get All Blogposts
+  getBlogposts() : Observable<Blogposts[]> {
+    return this.http.get<Blogposts[]>(this.baseBlogpostsRoute);
+  }
+  // POST | Add a new Blogpost
+  postBlogpost(title : string, description : string, userId : number, Image : string) : Observable<Blogposts> {
+    const body = { title, description, userId, Image };
+    return this.http.post<Blogposts>(this.baseBlogpostsRoute+"/addBlogpost", body);
+  }
+  // PUT | Edit blogpost
+  putBlogpost(title : string, description : string, userId : number, Image : string, id : number) : Observable<Blogposts> {
+    const body = { title, description, userId, Image };
+    return this.http.put<Blogposts>(this.baseBlogpostsRoute+"/editBlogPost/"+`${id}`, body);
+  }
+  // DELETE | deletes a blogpost
+  deleteBlogpost(id: string) : Observable<Blogposts> {
+    return this.http.delete<Blogposts>(this.baseBlogpostsRoute+"/deletePost/"+`${id}`);
+  }
 }

@@ -9,6 +9,9 @@ import { MainTabletComponent } from '../Tablet-components/main-tablet/main-table
 import { NavbarTabletComponent } from '../Tablet-components/navbar-tablet/navbar-tablet.component';
 // Desktop components
 import { MainDesktopComponent } from '../Desktop-components/main-desktop/main-desktop.component';
+// Form Components
+import { FormSelectorComponent } from '../Forms/!form-selector/form-selector.component';
+
 
 @Component({
   selector: 'app-admin-page',
@@ -18,7 +21,9 @@ import { MainDesktopComponent } from '../Desktop-components/main-desktop/main-de
     MainComponent,
     MainTabletComponent,
     NavbarTabletComponent,
-    MainDesktopComponent
+    MainDesktopComponent, 
+    FormSelectorComponent,
+
   ],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css'

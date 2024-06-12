@@ -1,0 +1,23 @@
+<div class="border-2 border-green-600 m-1 grid grid-cols-2 gap-4">
+    
+    <div class="border-2 border-black">
+        <label for="">Gebruiker</label><span class="text-red-600 font-bold text-lg">*</span>
+        <input type="text" formControlName="User" [(ngModel)]="user" /> <!-- Preset by using token -> Cannot be Changed -->
+    </div>
+    <div class="border-2 border-black">
+        <label for="">Titel Blogpost</label><span class="text-red-600 font-bold text-lg">*</span>
+        <input type="text" formControlName="Title" [(ngModel)]="title" /> 
+    </div>
+    <div class="border-2 border-black">
+        <label for="">Beschrijving Blogpost</label><span class="text-red-600 font-bold text-lg">*</span>
+        <input type="text" formControlName="Details" [(ngModel)]="details" /> <!-- TODO Change to Textbox-->
+    </div>
+    <div class="border-2 border-black">
+        <label for="">Foto</label><span class="text-red-600 font-bold text-lg">*</span>
+        <input type="file" formControlName="Image" [(ngModel)]="image" />
+    </div>
+    <div class="border-2 border-black">
+        <label for="">Link</label><span class="text-red-600 font-bold text-lg"></span>
+        <input type="url" formControlName="Link" [(ngModel)]="link" />
+    </div>
+</div>
