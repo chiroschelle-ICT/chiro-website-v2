@@ -11,18 +11,18 @@
                 <select name="form" id="form"
                 [(ngModel)]="selectedForm"
                 class="border-2 border-gray-400 my-2 px-3 py-1 rounded-lg font-semibold">
-                    <option value="add_blogpost" selected> Add Blogpost</option>
+                    <option value="add_blogpost" > Add Blogpost</option>
                     <option value="add_programma">Add Programma</option>
                     <option value="change_goepie">Change GOEPIE</option>
                 </select>
             </div>        
             <div class="border-2 border-blue-600">                
                 @if(selectedForm == 'add_blogpost') {
-                    <app-bp-form  (formDataEvent)="onDataRecieved($event)"> </app-bp-form>
+                    <app-bp-form (formDataEvent)="onDataRecieved($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
-                    <app-gp-form ></app-gp-form>
+                    <app-pr-form (formDataEvent)="onDataRecieved($event)"></app-pr-form>
                 } @else if(selectedForm == 'change_goepie') {
-                    <app-gp-form ></app-gp-form>
+                    <app-gp-form (formDataEvent)="onDataRecieved($event)"></app-gp-form>
                 }
             </div>  
             <div>

@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// Base
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 // Form Imports
-import { FormBuilder, FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // Parent Imports
 import { FormSelectorComponent } from '../!form-selector/form-selector.component';
+// Models
 import { Blogposts } from '../../../Model/Blogposts';
 
 @Component({
@@ -24,15 +26,15 @@ export class BPFormComponent implements OnInit{
 
   ngOnInit() {
     this.blogForm = this.fb.group({
-      id: [null],
-      userId: [''],
+      // id: [null],
+      // userId: [''],
       title: [''],
       description: [''],
       image: [''],
       Link: [''],
-      HasLink: [''],
+      // HasLink: [''],
       category: [null],
-      timePosted: [null]
+      // timePosted: [null]
     });
   }
 

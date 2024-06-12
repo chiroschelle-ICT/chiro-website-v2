@@ -1,1 +1,11 @@
-<p>gp-form works!</p>
+<form [formGroup]="goepieForm">
+    <div class="border-2 border-green-600 m-1 grid grid-cols-2 gap-4">
+        <div class="border-2 border-black col-span-2">
+            <label for="">BESTAND:</label><span class="text-red-600 font-bold text-lg">*</span>
+            <input class="border-2 border-black" type="text" formControlName="location" /> 
+        </div>
+        <div class="border-2 border-black">
+        TODO ADD PDF PREVIEW
+        </div>
+    </div>
+</form>
