@@ -6,7 +6,6 @@
             </span>
     </div>
     <div class="p-2">
-        <form action="">
             <div class="">
                 <p class=""> Selecteer het Formulier dat je wilt invullen: </p>
                 <select name="form" id="form"
@@ -19,7 +18,7 @@
             </div>        
             <div class="border-2 border-blue-600">                
                 @if(selectedForm == 'add_blogpost') {
-                    <app-bp-form > </app-bp-form>
+                    <app-bp-form  (formDataEvent)="onDataRecieved($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
                     <app-gp-form ></app-gp-form>
                 } @else if(selectedForm == 'change_goepie') {
@@ -28,10 +27,9 @@
             </div>  
             <div>
                 <div>
-                    <button (click)="onAdd(selectedForm)" class="border-2 border-red-500 bg-red-500">Submit</button>
+                    <button (click)="submitForm()" class="border-2 border-red-500 bg-red-500">Submit</button>
                 </div>
             </div>
-        </form>
     </div>
     <div>
         <!-- Here come the Forms -->        

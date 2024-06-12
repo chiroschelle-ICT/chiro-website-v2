@@ -30,7 +30,7 @@ export class FormSelectorComponent {
   selectedForm: string = 'add_blogpost';
 
   // Child Input
-  recievedData!: Blogposts;
+  recievedData: Blogposts | null = null;
 
   onDataRecieved(data: Blogposts) {
     this.recievedData = data;
@@ -38,8 +38,9 @@ export class FormSelectorComponent {
   }
 
   // On Submit
-  onAdd(value : string) {
-    
+  submitForm() {
+    this.BlogPostForm.sendFormData();
+    console.log(this.recievedData);
   }
 
 }

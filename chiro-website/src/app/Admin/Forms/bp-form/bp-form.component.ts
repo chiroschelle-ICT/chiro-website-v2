@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 // Form Imports
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // Parent Imports
 import { FormSelectorComponent } from '../!form-selector/form-selector.component';
@@ -18,34 +18,29 @@ import { Blogposts } from '../../../Model/Blogposts';
   styleUrl: './bp-form.component.css'
 })
 export class BPFormComponent implements OnInit{
+  blogForm!: FormGroup;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {}
-
-  id!: null;
-  user!: number;
-  title!: string;
-  details!: string;
-  image!: string;
-  link!: string;
-  category!: number;
-  timeposted!: Date;
+  ngOnInit() {
+    this.blogForm = this.fb.group({
+      id: [null],
+      userId: [''],
+      title: [''],
+      description: [''],
+      image: [''],
+      Link: [''],
+      HasLink: [''],
+      category: [null],
+      timePosted: [null]
+    });
+  }
 
 
   @Output() formDataEvent = new EventEmitter<Blogposts>();
 
   sendFormData() {
-    const data: Blogposts = new Blogposts(
-      this.id,
-      this.user,
-      this.title,
-      this.details,
-      this.image,
-      this.link,
-      this.category,
-      this.timeposted
-    );
+    const data: Blogposts = this.blogForm.value;
     this.formDataEvent.emit(data);
   }
 
