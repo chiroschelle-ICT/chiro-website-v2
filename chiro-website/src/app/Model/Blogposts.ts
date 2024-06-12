@@ -8,6 +8,7 @@ export class Blogposts
     link: string;
     category: number;
     timePosted: Date;
+    HasLink: number;
     constructor(
         id:null,
         userid:number,
@@ -16,7 +17,8 @@ export class Blogposts
         image:string,
         link:string,
         category:number,
-        tp: Date
+        tp: Date,
+        hs: number
     ) {
         this.id = id;
         this.userId = userid;
@@ -26,5 +28,6 @@ export class Blogposts
         this.link = link;
         this.category = category;
         this.timePosted = tp;
+        this.HasLink = hs;
     }
 }

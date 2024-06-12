@@ -5,12 +5,22 @@ import { LeidingPageComponent } from './Leiding/leiding-page/leiding-page.compon
 import { ProgrammaPageComponent } from './Programma/programma-page/programma-page.component';
 import { GoepiePageComponent } from './Goepie/goepie-page/goepie-page.component';
 import { ProgrammaAfdelingComponent } from './Programma/programma-afdeling/programma-afdeling.component';
+import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
+import { LoginComponent } from './Authentication/login/login.component';
+import { adminGuard } from './Guards/admin.guard';
+import { LogoutComponent } from './Authentication/logout/logout.component';
 
 export const routes: Routes = 
 [
     { path: '', component: HomeComponent },
-    { path: 'leidingsPloeg', component: LeidingPageComponent},
+    { path: 'leiding', component: LeidingPageComponent},
+
+    // Use routing in comp --> doocs are still angular 16?????????????????????????????????????????????????????????????????????????
     { path: 'programma', component: ProgrammaPageComponent},
+    { path: 'afdProgramma/:afdId', component: ProgrammaAfdelingComponent},
+
     { path: 'goepie', component: GoepiePageComponent},
-    { path: 'afdProgramma/:afdId', component: ProgrammaAfdelingComponent}
+    { path: "login", component: LoginComponent},
+    { path: 'logout', component: LogoutComponent},
+    { path: 'admin', component: AdminPageComponent},
 ];

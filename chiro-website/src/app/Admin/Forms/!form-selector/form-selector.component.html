@@ -1,0 +1,40 @@
+<div class="border-4 border-red-500 rounded-md w-7/12 mx-auto mt-6">
+    <div class="border-4 border-red-500 bg-red-500 text-center py-2">
+            <span class="text-4xl font-bold tracking-wide">Action Form</span><br>
+            <span class="text-lg font-semibold text-gray-700">
+                <p> Hier kan je kiezen welke acties je wilt uitvoeren </p>
+            </span>
+    </div>
+    <div class="p-2">
+            <div class="">
+                <p class=""> Selecteer het Formulier dat je wilt invullen: </p>
+                <select name="form" id="form"
+                [(ngModel)]="selectedForm"
+                class="border-2 border-gray-400 my-2 px-3 py-1 rounded-lg font-semibold">
+                    <option value="add_blogpost" > Add Blogpost</option>
+                    <option value="add_programma">Add Programma</option>
+                    <option value="change_goepie">Change GOEPIE</option>
+                </select>
+            </div>        
+            <div class="border-2 border-blue-600">                
+                @if(selectedForm == 'add_blogpost') {
+                    <app-bp-form (formDataEvent)="onDataRecieved($event)"> </app-bp-form>
+                } @else if(selectedForm == 'add_programma') {
+                    <app-pr-form (formDataEvent)="onDataRecieved($event)"></app-pr-form>
+                } @else if(selectedForm == 'change_goepie') {
+                    <app-gp-form (formDataEvent)="onDataRecieved($event)"></app-gp-form>
+                }
+            </div>  
+            <div>
+                <div>
+                    <button (click)="submitForm()" class="border-2 border-red-500 bg-red-500">Submit</button>
+                </div>
+            </div>
+    </div>
+    <div>
+        <!-- Here come the Forms -->        
+       <!--  <app-gp-form></app-gp-form>
+        <app-bp-form></app-bp-form>
+        <app-bp-form></app-bp-form> -->
+    </div>
+</div>

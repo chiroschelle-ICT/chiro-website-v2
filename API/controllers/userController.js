@@ -31,6 +31,26 @@ exports.getUserById = (req, res) => {
     }); 
 }
 
+// GET | return user by username
+exports.getUserByName = (req, res) => {
+    const Uname = req.params.name;
+    const query = "SELECT * FROM users WHERE username = ?";
+
+    if(!Uname) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    db.query(query, [Uname], (err, result) => {
+        if(err) {
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Erro Querying Database');
+            return;
+        }
+        res.json(result);
+        console.log(result);
+    }); 
+}
+
 // GET | info needed by User
 //TODO ADD INNER JOIN
 exports.getAllUsersInfo = (req, res) => {

@@ -1,6 +1,7 @@
 export class Users
 {
     id:number;
+    username:string;
     Name: string;
     AfdelingId: number;
     email:string;
@@ -9,8 +10,10 @@ export class Users
     jaar_leiding:number;
     leeftijd:number;
     image:string;
+    password:string;
     constructor(
         id:number,
+        username:string,
         name:string,
         afdelingid:number,
         image:string,
@@ -18,9 +21,11 @@ export class Users
         phone:string,
         groeps:boolean,
         jaarleiding:number,
-        age:number
+        age:number,
+        pw:string
     ) {
         this.id = id;
+        this.username = username;
         this.Name = name;
         this.AfdelingId = afdelingid;
         this.email = email;
@@ -29,5 +34,6 @@ export class Users
         this.jaar_leiding = jaarleiding;
         this.leeftijd = age;
         this.image = image
+        this.password = pw;
     }
 }
