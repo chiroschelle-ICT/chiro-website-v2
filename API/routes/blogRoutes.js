@@ -9,12 +9,12 @@ router.get('/blogPosts', blogPostsController.getAllBlogPosts);
 router.get('/blogPosts/:id', blogPostsController.getBlogPostById);
 
 // POST | Add new blogpost
-router.post('/blogPost/addBlogpost', blogPostsController.postBlogPost);
+router.post('/blogPosts/addBlogpost', blogPostsController.postBlogPost);
 
 // PUT | Update blogpost
-router.put('/blogPost/editBlogPost/:id', blogPostsController.putBlogPost);
+router.put('/blogPosts/editBlogPost/:id', blogPostsController.putBlogPost);
 
 // DELETE | Delete blogpost by id
-router.delete('/blogPost/deletePost/:id', blogPostsController.deleteBlogPost);
+router.delete('/blogPosts/deletePost/:id', blogPostsController.deleteBlogPost);
 
 module.exports = router;

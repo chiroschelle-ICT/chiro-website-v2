@@ -42,8 +42,8 @@ export class AuthService {
     return localStorage.getItem('username')    
   }
 
-  getUserWithLocalStorage() : Observable<Users>{
-    return this.http.get<Users>(this.baseUsersRoute+"/searchname/"+`${localStorage.getItem('username')}`);
+  getUserWithLocalStorage() : Observable<Users[]>{
+    return this.http.get<Users[]>(this.baseUsersRoute+"/searchname/"+`${localStorage.getItem('username')}`);
   }
 
   isLoggedIn(): boolean {

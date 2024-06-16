@@ -18,11 +18,11 @@
             </div>        
             <div class="border-2 border-blue-600">                
                 @if(selectedForm == 'add_blogpost') {
-                    <app-bp-form (formDataEvent)="onDataRecieved($event)"> </app-bp-form>
+                    <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
-                    <app-pr-form (formDataEvent)="onDataRecieved($event)"></app-pr-form>
+                    <app-pr-form (formDataEvent)="onProgrammaDataRecieved($event)"></app-pr-form>
                 } @else if(selectedForm == 'change_goepie') {
-                    <app-gp-form (formDataEvent)="onDataRecieved($event)"></app-gp-form>
+                    <app-gp-form (formDataEvent)="onGoepieDataRecieved($event)"></app-gp-form>
                 }
             </div>  
             <div>

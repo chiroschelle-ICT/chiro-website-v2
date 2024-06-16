@@ -26,15 +26,14 @@ export class BPFormComponent implements OnInit{
 
   ngOnInit() {
     this.blogForm = this.fb.group({
-      // id: [null],
-      // userId: [''],
+      userId: [''],
       title: [''],
       description: [''],
-      image: [''],
+      Image: [''],
       Link: [''],
-      // HasLink: [''],
-      category: [null],
-      // timePosted: [null]
+      HasLink: [''],
+      category: [''],
+      timePosted: ['']
     });
   }
 

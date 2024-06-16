@@ -5,7 +5,7 @@ export class Blogposts
     title: string;
     description: string;
     Image: string;
-    link: string;
+    Link: string;
     category: number;
     timePosted: Date;
     HasLink: number;
@@ -25,7 +25,7 @@ export class Blogposts
         this.title = title;
         this.description = description;
         this.Image = image;
-        this.link = link;
+        this.Link = link;
         this.category = category;
         this.timePosted = tp;
         this.HasLink = hs;

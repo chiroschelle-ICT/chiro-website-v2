@@ -1,5 +1,5 @@
 // Base
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // Forms Components
 import { BPFormComponent } from '../bp-form/bp-form.component';
 import { PrFormComponent } from '../pr-form/pr-form.component';
@@ -11,6 +11,10 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Blogposts } from '../../../Model/Blogposts';
 import { Programma } from '../../../Model/Programma';
 import { Goepie } from '../../../Model/Goepie';
+import { FormService } from '../form.service';
+import { AuthService } from '../../../Authentication/auth.service';
+import { Users } from '../../../Model/Users';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-selector',
@@ -25,7 +29,7 @@ import { Goepie } from '../../../Model/Goepie';
   templateUrl: './form-selector.component.html',
   styleUrl: './form-selector.component.css'
 })
-export class FormSelectorComponent {
+export class FormSelectorComponent implements OnInit{
   @ViewChild(BPFormComponent) BlogPostForm!: BPFormComponent;
   @ViewChild(GpFormComponent) GoepieForm!: GpFormComponent;
   @ViewChild(PrFormComponent) ProgrammaForm!: PrFormComponent;
@@ -35,11 +39,34 @@ export class FormSelectorComponent {
 
   // Child Input
   recievedData!: Blogposts | Goepie | Programma;
+  blogpostData!: Blogposts
+  goepieData!: Goepie
+  programmaData!: Programma
+  
+  // Blogpost variables
+  activeUser: Users[] = [];
+
+  constructor(private formservice : FormService, private authservice : AuthService) {}
+
+  ngOnInit(): void {
+    this.authservice.getUserWithLocalStorage().subscribe((data : Users[]) => {
+      this.activeUser = data;
+    });
+  }
+
 
   // Recieved Data From the Child
-  onDataRecieved(data:  Blogposts | Goepie | Programma) {
-    this.recievedData = data;
-    console.log('Data Recieved From Child:', data)
+  onBlogPostDataRecieved(data: Blogposts ) {
+    this.blogpostData = data;
+    console.log('Bogpost Data Recieved From Child:', data)
+  }
+  onGoepieDataRecieved(data: Goepie ) {
+    this.goepieData = data;
+    console.log('Goepie Data Recieved From Child:', data)
+  }
+  onProgrammaDataRecieved(data: Programma) {
+    this.programmaData = data;
+    console.log('Programma Data Recieved From Child:', data)
   }
 
   // Check what form is active to then ask for the data
@@ -47,6 +74,18 @@ export class FormSelectorComponent {
     switch(this.selectedForm) {
       case "add_blogpost":
         this.BlogPostForm.sendFormData();
+        this.addBlogpostData()
+        console.log(this.blogpostData.userId)
+        this.formservice.addBlogpost(
+          this.blogpostData.userId,
+          this.blogpostData.title,
+          this.blogpostData.description,
+          this.blogpostData.Image,
+          this.blogpostData.Link,
+          this.blogpostData.category,
+          this.blogpostData.timePosted,
+          this.blogpostData.HasLink
+        ).subscribe();
         break;
       case "change_goepie":
         this.GoepieForm.sendFormData();
@@ -59,7 +98,17 @@ export class FormSelectorComponent {
         console.error("ERROR SUBMITING SELECTED FORM")
         break;
     }  
-    console.log(this.recievedData);
+  }
+
+  // Add the data that is not gathered by the form
+  addBlogpostData() {
+    this.blogpostData.userId = this.activeUser[0].id
+    this.blogpostData.timePosted = new Date()
+    if(this.blogpostData.Link == "") {
+      this.blogpostData.HasLink = 0
+    } else {
+      this.blogpostData.HasLink = 1
+    }
   }
 
 }
