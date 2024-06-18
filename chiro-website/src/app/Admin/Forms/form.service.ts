@@ -20,7 +20,6 @@ export class FormService {
   // Add new Blogpost
   addBlogpost(userId:number, title:string, description:string, Image:string, link:string, category:number, timePosted:Date, HasLink:number) :Observable<Blogposts> 
   {
-    console.log("RATTE");
     const body = { userId, title, description, Image, link, category, timePosted, HasLink };
     return this.http.post<Blogposts>(this.routeBlogposts+"/addBlogpost", body)
   } 
