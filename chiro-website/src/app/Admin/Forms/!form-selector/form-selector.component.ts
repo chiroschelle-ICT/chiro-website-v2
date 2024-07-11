@@ -55,7 +55,7 @@ export class FormSelectorComponent implements OnInit{
   }
 
 
-  // Recieved Data From the Child
+  // Recieved Data From the Child 
   onBlogPostDataRecieved(data: Blogposts ) {
     this.blogpostData = data;
     console.log('Bogpost Data Recieved From Child:', data)
