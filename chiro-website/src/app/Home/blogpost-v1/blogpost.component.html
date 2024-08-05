@@ -1,19 +1,18 @@
-<div class="
+s<div class="
 w-10/12 mx-auto p-2 rounded-md grid lg:grid-cols-4 lg:gap-4 md:grid-cols-2 md:gap-4 grid-cols-1S gap-3
 " style="overflow: auto;">
 
-   @for (blogpost of blogposts; track blogpost.category) {
+   @for (blogpost of blogposts; track blogpost.id) {
       <div class="group col-span-1 border-4 border-red-300 bg-red-200 rounded-lg">
-
          <div class="flex w-full flex-col gap-2">
  
              <div class="rounded-xl w-fit">
                  <img class="rounded-sm" src="assets\{{blogpost.Image}}" alt="" style="max-width: 100%; max-height: 100%;" loading="lazy">
              </div>
  
-             <div [ngStyle]="{'border': '2px solid ' + categories[$index].color, 'background-color': categories[$index].bgColor}"
+             <div [ngStyle]="{'border': '2px solid ' + categories[(blogpost.category)-1].color, 'background-color': categories[(blogpost.category)-1].bgColor}"
                 class="border-2 px-4 text-xs rounded-xl font-semibold w-fit mx-auto ">
-                 {{ categories[$index].name }}
+                 {{ categories[(blogpost.category)-1].name }}
              </div>
  
              <div class="">
@@ -27,9 +26,9 @@ w-10/12 mx-auto p-2 rounded-md grid lg:grid-cols-4 lg:gap-4 md:grid-cols-2 md:ga
              <div class="flex justify-between items-center p-2 m-2">
                  <div class="flex items-center">
                      <div class="rounded-full h-7 w-7 overflow-hidden mr-2 ">
-                         <img class="h-full w-full object-cover" src="assets\Leiding_Foto's\{{infos[$index].image}}"  alt="User Profile Image">
+                         <img class="h-full w-full object-cover" src="assets\Leiding_Foto's\{{infos[(blogpost.userId-1)].image}}"  alt="User Profile Image">
                      </div>
-                     <span class="text-sm font-semibold "> {{ users[$index].Name }}</span>
+                     <span class="text-sm font-semibold "> {{ users[(blogpost.userId)-1].Name }}</span>
                  </div>
                  <div>
                      <span class="text-sm opacity-45 ">  </span>

@@ -47,14 +47,12 @@ exports.getUserByName = (req, res) => {
             return;
         }
         res.json(result);
-        console.log(result);
     }); 
 }
 
 // GET | info needed by User
 //TODO ADD INNER JOIN
 exports.getAllUsersInfo = (req, res) => {
-    console.log("getAllUsersInfo");
 
     const query = "SELECT * FROM users u INNER JOIN info i ON u.id = i.userId"
 
