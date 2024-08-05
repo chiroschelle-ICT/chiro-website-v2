@@ -92,6 +92,13 @@ export class FormSelectorComponent implements OnInit{
         break;
       case "add_programma":
         this.ProgrammaForm.sendFormData();
+        this.programmaData.afdelingId = this.activeUser[0].AfdelingId
+        this.formservice.addProgramma(
+          this.programmaData.afdelingId,
+          this.programmaData.programma,
+          this.programmaData.datum
+        ).subscribe();
+        
         break;
       default:
         // ERROR
@@ -110,5 +117,6 @@ export class FormSelectorComponent implements OnInit{
       this.blogpostData.HasLink = 1
     }
   }
+
 
 }
