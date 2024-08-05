@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Blogposts } from '../../Model/Blogposts';
 import { HttpClient } from '@angular/common/http';
 import { Programma } from '../../Model/Programma';
+import { Goepie } from '../../Model/Goepie';
 
 
 @Injectable({
@@ -15,6 +16,7 @@ export class FormService {
   // TODO make deticated file for the routes
   private routeBlogposts = 'http://localhost:3000/api/blogPosts';
   private routeProgramma= 'http://localhost:3000/api/programma';
+  private routeGoepie= 'http://localhost:3000/api/goepie';
 
   // --- BLOGPOST Functions
   // Add new Blogpost
@@ -31,4 +33,12 @@ export class FormService {
     return this.http.post<Programma>(this.routeProgramma+"/postProgramma", body);
   }
 
+  // --- GOEPIE Functions
+  // Add new Goepie
+  addGoepie(location:string) : Observable<Goepie> {
+    const body = {location};
+    return this.http.post<Goepie>(this.routeGoepie+"/addGoepie", body);
+  }
+
 }
+

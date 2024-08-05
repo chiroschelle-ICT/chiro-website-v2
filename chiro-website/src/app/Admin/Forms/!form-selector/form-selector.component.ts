@@ -89,6 +89,9 @@ export class FormSelectorComponent implements OnInit{
         break;
       case "change_goepie":
         this.GoepieForm.sendFormData();
+        this.formservice.addGoepie(
+          this.goepieData.location
+        ).subscribe();
         break;
       case "add_programma":
         this.ProgrammaForm.sendFormData();
@@ -98,7 +101,6 @@ export class FormSelectorComponent implements OnInit{
           this.programmaData.programma,
           this.programmaData.datum
         ).subscribe();
-        
         break;
       default:
         // ERROR
