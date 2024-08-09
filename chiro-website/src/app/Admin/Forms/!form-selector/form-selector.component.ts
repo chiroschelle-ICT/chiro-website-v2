@@ -43,6 +43,13 @@ export class FormSelectorComponent implements OnInit{
   goepieData!: Goepie
   programmaData!: Programma
   
+  // Color Variables response message
+  showResponse: boolean = false
+  validForm: boolean = false
+  bgColor!: string
+  bColor!: string
+  rpsMessage!: string
+
   // Blogpost variables
   activeUser: Users[] = [];
 
@@ -56,7 +63,7 @@ export class FormSelectorComponent implements OnInit{
 
 
   // Recieved Data From the Child 
-  onBlogPostDataRecieved(data: Blogposts ) {
+  onBlogPostDataRecieved(data: Blogposts) {
     this.blogpostData = data;
     console.log('Bogpost Data Recieved From Child:', data)
   }
@@ -75,19 +82,21 @@ export class FormSelectorComponent implements OnInit{
       case "add_blogpost":
         this.BlogPostForm.sendFormData();
         this.addBlogpostData()
-        console.log(this.blogpostData.userId)
-        this.formservice.addBlogpost(
-          this.blogpostData.userId,
-          this.blogpostData.title,
-          this.blogpostData.description,
-          this.blogpostData.Image,
-          this.blogpostData.Link,
-          this.blogpostData.category,
-          this.blogpostData.timePosted,
-          this.blogpostData.HasLink
-        ).subscribe();
+        if(this.validForm) {
+          this.formservice.addBlogpost(
+            this.blogpostData.userId,
+            this.blogpostData.title,
+            this.blogpostData.description,
+            this.blogpostData.Image,
+            this.blogpostData.Link,
+            this.blogpostData.category,
+            this.blogpostData.timePosted,
+            this.blogpostData.HasLink
+          ).subscribe();
+        }
         break;
       case "change_goepie":
+
         this.GoepieForm.sendFormData();
         this.formservice.addGoepie(
           this.goepieData.location
@@ -103,10 +112,9 @@ export class FormSelectorComponent implements OnInit{
         ).subscribe();
         break;
       default:
-        // ERROR
         console.error("ERROR SUBMITING SELECTED FORM")
         break;
-    }  
+    }     
   }
 
   // Add the data that is not gathered by the form
@@ -120,5 +128,38 @@ export class FormSelectorComponent implements OnInit{
     }
   }
 
-
+  // Validation
+  onResponseMessage(m : string) {
+    this.rpsMessage = m
+  }
+  onResponseType(t : boolean) {
+    switch(t) {
+      case true:
+        // Succes
+        this.bgColor = "#86efac";
+        this.bColor = "3px solid #10b981";
+        setTimeout(() => {
+          this.showResponse = true
+        }, 5000)
+        this.showResponse = false
+        this.validForm = true
+        break;
+      case false:
+        // Error
+        this.bgColor = "#fca5a5";
+        this.bColor = "3px solid #ef4444";
+        setTimeout(() => {         
+          this.showResponse = true
+        }, 5000)
+        this.showResponse = false
+        this.validForm = false
+        break;
+      default:
+        // somethign wrong with emiting
+        break;
+    }
+    this.BlogPostForm.clearForm();
+    this.GoepieForm.clearForm();
+    this.ProgrammaForm.clearForm();
+  }
 }

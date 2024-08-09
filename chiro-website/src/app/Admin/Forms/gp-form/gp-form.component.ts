@@ -36,5 +36,10 @@ export class GpFormComponent implements OnInit{
   sendFormData() {
     const data: Goepie = this.goepieForm.value;
     this.formDataEvent.emit(data);
+
+  }
+
+  clearForm() {
+    this.goepieForm.reset(); 
   }
 }

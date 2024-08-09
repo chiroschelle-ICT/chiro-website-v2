@@ -37,4 +37,7 @@ export class PrFormComponent implements OnInit{
     const data : Programma = this.programmaForm.value;
     this.formDataEvent.emit(data)
   }
+  clearForm() {
+    this.programmaForm.reset(); 
+  }
 }

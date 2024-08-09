@@ -18,7 +18,7 @@
             </div>        
             <div class="border-2 border-blue-600">                
                 @if(selectedForm == 'add_blogpost') {
-                    <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)"> </app-bp-form>
+                    <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)" (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
                     <app-pr-form (formDataEvent)="onProgrammaDataRecieved($event)"></app-pr-form>
                 } @else if(selectedForm == 'change_goepie') {
@@ -29,12 +29,15 @@
                 <div>
                     <button (click)="submitForm()" class="border-2 border-red-500 bg-red-500">Submit</button>
                 </div>
+                @if (!showResponse) 
+                {
+                    <div class="w-2/6 px-1 py-2 text-center font-semibold text-lg rounded-lg mt-2 mx-auto border-3"
+                    [style.background]="bgColor" [style.border]="bColor"
+                    >
+                        {{rpsMessage}}
+                    </div>
+                }
             </div>
-    </div>
-    <div>
-        <!-- Here come the Forms -->        
-       <!--  <app-gp-form></app-gp-form>
-        <app-bp-form></app-bp-form>
-        <app-bp-form></app-bp-form> -->
+
     </div>
 </div>
