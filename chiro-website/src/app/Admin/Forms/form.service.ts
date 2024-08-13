@@ -35,8 +35,8 @@ export class FormService {
 
   // --- GOEPIE Functions
   // Add new Goepie
-  addGoepie(location:string) : Observable<Goepie> {
-    const body = {location};
+  addGoepie(location:string, active:boolean) : Observable<Goepie> {
+    const body = {location, active};
     return this.http.post<Goepie>(this.routeGoepie+"/addGoepie", body);
   }
 

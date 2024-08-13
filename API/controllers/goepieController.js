@@ -13,10 +13,10 @@ exports.getGoepie = (req, res) => {
 
 // Add new Goepie
 exports.postGoepie = (req, res) => {
-    const { location } = req.body;
-    const query = 'INSERT INTO goepie (id, location) VALUES (NULL, ?)';
+    const { location, active } = req.body;
+    const query = 'INSERT INTO goepie (id, location, active) VALUES (NULL, ?, ?)';
 
-    db.query(query, [location], (err, result) => {
+    db.query(query, [location, active], (err, result) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
             res.status(500).send('ERROR Querying Database');

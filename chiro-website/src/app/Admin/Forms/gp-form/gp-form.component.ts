@@ -1,7 +1,7 @@
 // Base
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 // Form Imports
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // Parent Imports
 import { FormSelectorComponent } from '../!form-selector/form-selector.component';
@@ -27,14 +27,34 @@ export class GpFormComponent implements OnInit{
   ngOnInit() {
     this.goepieForm = this.fg.group({
       id: [null],
-      location: ['']
+      location: ['', Validators.required],
+      active: [false]
     });
   }
 
   @Output() formDataEvent = new EventEmitter<Goepie>();
+  @Output() responseMessage = new EventEmitter<string>();     // The error message
+  @Output() responseType = new EventEmitter<boolean>();  
 
   sendFormData() {
-    const data: Goepie = this.goepieForm.value;
-    this.formDataEvent.emit(data);
+    if(this.isFormValid()) {
+      const data: Goepie = this.goepieForm.value
+      this.formDataEvent.emit(data)
+      // Send SUCCES Message
+      this.responseMessage.emit("Nieuwe Goepie Toegevoegd!");
+      this.responseType.emit(true);
+    } else {
+        // Send ERROR Message
+        this.responseMessage.emit("Niet Alle Velden zijn ingevuld!");
+        this.responseType.emit(false);
+    }
+  }
+
+  isFormValid() {
+    console.log(this.goepieForm.valid)
+    return this.goepieForm.valid;
+  }
+  clearForm() {
+    this.goepieForm.reset(); 
   }
 }
