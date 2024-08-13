@@ -47,7 +47,7 @@ export class BPFormComponent implements OnInit{
       const data: Blogposts = this.blogForm.value;
       this.formDataEvent.emit(data);
       // Send SUCCES message
-      this.responseMessage.emit("Nieuwe Blogpost is Toegevoegd!");
+      this.responseMessage.emit("Nieuw Programma is Toegevoegd!");
       this.responseType.emit(true);
     } else {
       // Communicate with Parent Comp and use UI response

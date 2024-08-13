@@ -103,11 +103,13 @@ export class FormSelectorComponent implements OnInit{
         // Gather DAta
         this.GoepieForm.sendFormData();
         // Check if valid
-        if(this.validForm) {        
-          this.formservice.addGoepie(
-            this.goepieData.location,
-            this.goepieData.active       
-          ).subscribe();
+        if(this.validForm) {
+          if(this.validForm) {        
+            this.formservice.addGoepie(
+              this.goepieData.location,
+              this.goepieData.active       
+            ).subscribe();
+          }
         }
         this.GoepieForm.clearForm()
         break;
@@ -117,11 +119,13 @@ export class FormSelectorComponent implements OnInit{
         this.ProgrammaForm.sendFormData();
         this.programmaData.afdelingId = this.activeUser[0].AfdelingId
         // Check if Valid
-        this.formservice.addProgramma(
-          this.programmaData.afdelingId,
-          this.programmaData.programma,
-          this.programmaData.datum
-        ).subscribe();
+        if(this.validForm) {
+          this.formservice.addProgramma(
+            this.programmaData.afdelingId,
+            this.programmaData.programma,
+            this.programmaData.datum
+          ).subscribe();
+        }
         this.ProgrammaForm.clearForm()
         break;
       default:
