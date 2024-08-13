@@ -32,7 +32,9 @@ export class PrFormComponent implements OnInit{
   }
 
   @Output() formDataEvent = new EventEmitter<Programma>();
-
+  @Output() responseMessage = new EventEmitter<string>();     // The error message
+  @Output() responseType = new EventEmitter<boolean>();  
+  
   sendFormData() {
     const data : Programma = this.programmaForm.value;
     this.formDataEvent.emit(data)

@@ -80,8 +80,10 @@ export class FormSelectorComponent implements OnInit{
   submitForm() {
     switch(this.selectedForm) {
       case "add_blogpost":
+        // Gather Data
         this.BlogPostForm.sendFormData();
         this.addBlogpostData()
+        // Check if Valid
         if(this.validForm) {
           this.formservice.addBlogpost(
             this.blogpostData.userId,
@@ -94,22 +96,33 @@ export class FormSelectorComponent implements OnInit{
             this.blogpostData.HasLink
           ).subscribe();
         }
+        this.BlogPostForm.clearForm()
         break;
+      
       case "change_goepie":
-
+        // Gather DAta
         this.GoepieForm.sendFormData();
-        this.formservice.addGoepie(
-          this.goepieData.location
-        ).subscribe();
+        // Check if valid
+        if(this.validForm) {        
+          this.formservice.addGoepie(
+            this.goepieData.location,
+            this.goepieData.active       
+          ).subscribe();
+        }
+        this.GoepieForm.clearForm()
         break;
+        
       case "add_programma":
+        // Gather Data
         this.ProgrammaForm.sendFormData();
         this.programmaData.afdelingId = this.activeUser[0].AfdelingId
+        // Check if Valid
         this.formservice.addProgramma(
           this.programmaData.afdelingId,
           this.programmaData.programma,
           this.programmaData.datum
         ).subscribe();
+        this.ProgrammaForm.clearForm()
         break;
       default:
         console.error("ERROR SUBMITING SELECTED FORM")
@@ -158,8 +171,5 @@ export class FormSelectorComponent implements OnInit{
         // somethign wrong with emiting
         break;
     }
-    this.BlogPostForm.clearForm();
-    this.GoepieForm.clearForm();
-    this.ProgrammaForm.clearForm();
   }
 }

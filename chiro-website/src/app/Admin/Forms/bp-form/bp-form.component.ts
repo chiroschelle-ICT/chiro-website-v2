@@ -60,8 +60,8 @@ export class BPFormComponent implements OnInit{
   isFormValid() {
     return this.blogForm.valid;
   }
-
   clearForm() {
     this.blogForm.reset(); 
   }
+  
 }

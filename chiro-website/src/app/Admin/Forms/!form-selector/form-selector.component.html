@@ -20,9 +20,9 @@
                 @if(selectedForm == 'add_blogpost') {
                     <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)" (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
-                    <app-pr-form (formDataEvent)="onProgrammaDataRecieved($event)"></app-pr-form>
+                    <app-pr-form (formDataEvent)="onProgrammaDataRecieved($event)"  (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"></app-pr-form>
                 } @else if(selectedForm == 'change_goepie') {
-                    <app-gp-form (formDataEvent)="onGoepieDataRecieved($event)"></app-gp-form>
+                    <app-gp-form (formDataEvent)="onGoepieDataRecieved($event)"  (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"></app-gp-form>
                 }
             </div>  
             <div>
