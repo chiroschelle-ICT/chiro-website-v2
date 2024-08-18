@@ -17,6 +17,7 @@ module.exports = {
         'instagram-red-violet': '#bc2a8d',
         'instagram-yellow': '#fccc63',
         'instagram-orange': '#fbad50',
+        'cream' : '#E4D096'
       },
       screens: {
         'sm2': {'max': '639px'},   // Custom breakpoint for screens under 640px

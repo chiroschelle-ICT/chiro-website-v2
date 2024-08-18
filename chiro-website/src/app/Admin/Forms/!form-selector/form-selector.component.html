@@ -1,13 +1,13 @@
 <div class="border-4 border-red-500 rounded-md w-7/12 mx-auto mt-6">
     <div class="border-4 border-red-500 bg-red-500 text-center py-2">
-            <span class="text-4xl font-bold tracking-wide">Action Form</span><br>
-            <span class="text-lg font-semibold text-gray-700">
+            <span class="text-4xl font-bold tracking-wide text-white">Action Form</span><br>
+            <span class="text-lg font-semibold text-white">
                 <p> Hier kan je kiezen welke acties je wilt uitvoeren </p>
             </span>
     </div>
     <div class="p-2">
-            <div class="">
-                <p class=""> Selecteer het Formulier dat je wilt invullen: </p>
+            <div class="border-2 border-gray-200 rounded-lg p-2 mb-2">
+                <span class="font-semibold text-lg">Selecteer het Formulier dat je wilt invullen: </span> 
                 <select name="form" id="form"
                 [(ngModel)]="selectedForm"
                 class="border-2 border-gray-400 my-2 px-3 py-1 rounded-lg font-semibold">
@@ -16,7 +16,7 @@
                     <option value="change_goepie">Change GOEPIE</option>
                 </select>
             </div>        
-            <div class="border-2 border-blue-600">                
+            <div class="border-2 border-gray-200 rounded-lg p-2">                
                 @if(selectedForm == 'add_blogpost') {
                     <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)" (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"> </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
@@ -26,12 +26,12 @@
                 }
             </div>  
             <div>
-                <div>
-                    <button (click)="submitForm()" class="border-2 border-red-500 bg-red-500">Submit</button>
+                <div class="mx-auto w-1/4 my-2">
+                    <button (click)="submitForm()" class="border-3 border-red-500 bg-red-500 w-full py-2 text-xl font-semibold rounded-lg hover:bg-red-400 hover:ease-in-out ">Toevoegen</button>
                 </div>
                 @if (!showResponse) 
                 {
-                    <div class="w-2/6 px-1 py-2 text-center font-semibold text-lg rounded-lg mt-2 mx-auto border-3"
+                    <div class="w-2/6 px-1 py-2 text-center font-semibold text-lg rounded-lg mt-2 mx-auto"
                     [style.background]="bgColor" [style.border]="bColor"
                     >
                         {{rpsMessage}}
