@@ -1,5 +1,5 @@
 // Base
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 // Form Imports
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,22 +7,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormSelectorComponent } from '../!form-selector/form-selector.component';
 // Models
 import { Goepie } from '../../../Model/Goepie';
+// PDF Viewer
+import {  NgxExtendedPdfViewerModule,NgxExtendedPdfViewerService, pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
+
 
 @Component({
   selector: 'app-gp-form',
   standalone: true,
+  providers: [NgxExtendedPdfViewerService],
   imports: [
     ReactiveFormsModule,
     FormsModule,
     FormSelectorComponent,
+    NgxExtendedPdfViewerModule
   ],
   templateUrl: './gp-form.component.html',
   styleUrl: './gp-form.component.css'
 })
 export class GpFormComponent implements OnInit{
   goepieForm!: FormGroup;
+  zoom = 20
 
-  constructor(private fg : FormBuilder){}
+  constructor(private fg : FormBuilder, private pdfService: NgxExtendedPdfViewerService, private renderer: Renderer2){
+    pdfDefaultOptions.assetsFolder = 'bleeding-edge';  
+  }
 
   ngOnInit() {
     this.goepieForm = this.fg.group({
@@ -57,4 +65,6 @@ export class GpFormComponent implements OnInit{
   clearForm() {
     this.goepieForm.reset(); 
   }
+
+
 }

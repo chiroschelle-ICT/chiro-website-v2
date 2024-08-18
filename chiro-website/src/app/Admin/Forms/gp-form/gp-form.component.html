@@ -1,11 +1,46 @@
 <form [formGroup]="goepieForm">
-    <div class="border-2 border-green-600 m-1 grid grid-cols-2 gap-4">
-        <div class="border-2 border-black col-span-2">
-            <label for="">BESTAND:</label><span class="text-red-600 font-bold text-lg">*</span>
-            <input class="border-2 border-black" type="text" formControlName="location" /> 
+    <div class="m-1 grid grid-cols-1 ">
+        <div class="py-2 grid grid-cols-4">
+            <div class="text-lg font-semibold ">
+                <label for="">BESTAND:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-3">
+                <input class="" type="file" formControlName="location" accept=".pdf" /> 
+            </div>
         </div>
-        <div class="border-2 border-black">
-        TODO ADD PDF PREVIEW && and use file selector
+        <div>
+            <div class="w-12/12 my-2 mx-auto border-gray-300 rounded-lg">
+                <ngx-extended-pdf-viewer
+                [zoom]="zoom" 
+                [height]="'28rem'"
+                [textLayer]="false"
+                [src]="'/assets/GOEPIES/Goepie_4.pdf'"
+                [showToolbar]="true"
+                [showSidebarButton]="false"
+                [showFindButton]="true"
+                [showPagingButtons]="true"
+                [showDrawEditor]="true"
+                [showStampEditor]="false"
+                [showTextEditor]="false"
+                [showZoomButtons]="true"
+                [showPresentationModeButton]="false"
+                [showOpenFileButton]="false"
+                [showPrintButton]="false"
+                [showDownloadButton]="false"
+                [showSecondaryToolbarButton]="false"
+                [showRotateCwButton]="false"
+                [showRotateCcwButton]="false"
+                [showHandToolButton]="false"
+                [showScrollingButton]="false"
+                [showSpreadButton]="false"
+                [showPropertiesButton]="false">
+            >
+                </ngx-extended-pdf-viewer>     
+            </div>
+            
         </div>
+        
     </div>
 </form>
