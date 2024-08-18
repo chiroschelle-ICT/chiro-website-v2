@@ -1,12 +1,24 @@
 <form [formGroup]="programmaForm">
-    <div class="border-2 border-green-600 m-1 grid grid-cols-2 gap-4">
-        <div class="border-2 border-black col-span-2">
-            <label for="">Programma:</label><span class="text-red-600 font-bold text-lg">*</span>
-            <input class="border-2 border-black" type="text" formControlName="programma" /> 
+    <div class="m-1 grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-3">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Programma:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="text" formControlName="programma" /> 
+            </div>
         </div>
-        <div class="border-2 border-black col-span-2">
-            <label for="">Datum:</label><span class="text-red-600 font-bold text-lg">*</span>
-            <input class="border-2 border-black" type="text" formControlName="datum" /> 
+        <div class="grid grid-cols-3">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Datum:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="date" formControlName="datum" /> 
+            </div>
         </div>
     </div>
 </form>
