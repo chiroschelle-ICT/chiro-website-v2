@@ -1,11 +1,14 @@
 export class Blogposts 
 {
-    Id: null;
-    UserId: number;
-    Title: string;
-    Description: string;
+    id: null;
+    userId: number;
+    title: string;
+    description: string;
     Image: string;
     Link: string;
+    category: number;
+    timePosted: Date;
+    HasLink: number;
     constructor(
         id:null,
         userid:number,
@@ -13,12 +16,18 @@ export class Blogposts
         description:string,
         image:string,
         link:string,
+        category:number,
+        tp: Date,
+        hs: number
     ) {
-        this.Id = id;
-        this.UserId = userid;
-        this.Title = title;
-        this.Description = description;
+        this.id = id;
+        this.userId = userid;
+        this.title = title;
+        this.description = description;
         this.Image = image;
         this.Link = link;
+        this.category = category;
+        this.timePosted = tp;
+        this.HasLink = hs;
     }
 }

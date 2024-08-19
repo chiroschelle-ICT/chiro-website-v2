@@ -34,14 +34,16 @@ exports.getBlogPostById =  (req, res) => {
 
 // POST Add new Blog Post
 exports.postBlogPost = (req, res) => {
-    const { title, description, userId, Image } = req.body;
-
-    if (!title || !description || !userId || !Image) {
+    console.log("Hello")
+    console.log(req.body)
+    const { title, description, userId, Image, category, Link, HasLink, timePosted } = req.body;
+/*     if (!title  || !description  || !userId || !Image || !category) {
         return res.status(400).json({ error: 'All fields are required' });
-    }
+    } */
+    console.log(req.body)
 
-    const query = 'INSERT INTO blogposts (id, title, description, userId, Image) VALUES (NULL, ?, ?, ?, ?)';
-    db.query(query, [title, description, userId, Image], (err, results) => { 
+    const query = 'INSERT INTO blogposts (id, title, description, userId, Image, category, Link, HasLink, timePosted) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [title, description, userId, Image, category, Link, HasLink, timePosted], (err, results) => { 
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
             res.status(500).send('ERROR Querying Database');

@@ -31,25 +31,72 @@ exports.getUserById = (req, res) => {
     }); 
 }
 
-// POST | Add new Blog post
-exports.postUser = (req, res) => {
-    const { Name, AfdelingId } = req.body;
-    if(!Name || !AfdelingId) {
+// GET | return user by username
+exports.getUserByName = (req, res) => {
+    const Uname = req.params.name;
+    const query = "SELECT * FROM users WHERE username = ?";
+
+    if(!Uname) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = 'INSERT INTO users (id, Name, AfdelingId) VALUES (NULL, ?, ?)';
-
-    db.query(query, [Name, AfdelingId], (err, result) => {
+    db.query(query, [Uname], (err, result) => {
         if(err) {
-            console.error('ERROR querying database: ' + err.stack);
-            res.status(500).send('ERROR Querying Database');
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Erro Querying Database');
             return;
         }
-        res.json({ message: 'User Added Succesfully' });
-    });
+        res.json(result);
+    }); 
 }
 
+// GET | info needed by User
+//TODO ADD INNER JOIN
+exports.getAllUsersInfo = (req, res) => {
+
+    const query = "SELECT * FROM users u INNER JOIN info i ON u.id = i.userId"
+
+    db.query(query, (err, results) => {
+        if(err) {
+            console.error('Error Querying Database: ' + err.stack);
+            res.status(500).send('Error Querying Database');
+            return;
+        }
+        res.json(results);
+    })
+}
+
+
+// POST | Add new Blog post
+exports.postUsers = (req, res) => {
+    const users = req.body; // Assuming req.body is the array of users
+    if (!Array.isArray(users) || users.length === 0) {
+        return res.status(400).json({ error: 'No users provided' });
+    }
+
+    // Iterate over the array of users
+    users.forEach(user => {
+        const { Name, AfdelingId } = user;
+        if (!Name || !AfdelingId) {
+            console.error('Skipping user: Missing required fields');
+            return; // Skip this user and continue with the next one
+        }
+
+        const query = 'INSERT INTO users (id, Name, AfdelingId) VALUES (NULL, ?, ?)';
+        db.query(query, [Name, AfdelingId], (err, result) => {
+            if (err) {
+                console.error('ERROR querying database: ' + err.stack);
+                // Continue with the next user even if an error occurs
+                return;
+            }
+        });
+    });
+
+    res.json({ message: 'Users added successfully' });
+};
+
+
+// PUT | Add new user
 exports.putUser = (req, res) => {
     const UId = req.params.id
     const {Name, AfdelingId } = req.body;
@@ -69,7 +116,7 @@ exports.putUser = (req, res) => {
 
 }
 
-// DELETE | delete a pogbost
+// DELETE | delete a user
 exports.deleteUser = (req, res) => {
     const uId = req.params.id;
     if(!uId) {

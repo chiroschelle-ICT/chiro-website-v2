@@ -1,7 +1,4 @@
-#ul-tag {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
+#socialsText {
+    font-family: ShadowsIntoLight;
+    color: white;
 }
-  

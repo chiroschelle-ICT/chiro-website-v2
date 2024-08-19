@@ -1,0 +1,54 @@
+<form [formGroup]="blogForm">
+    <div class="m-1 grid grid-cols-2 gap-4">
+        <div class="py-2 grid grid-cols-3 ">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Titel Blogpost:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="text" formControlName="title" /> 
+            </div>
+        </div>
+        <div class="py-2 grid grid-cols-3">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Category:
+                    <span class="text-red-600 font-bold text-lg"></span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <input type="number" class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" formControlName="category" />
+            </div>
+        </div>        
+        <div class="py-2 grid grid-cols-3">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Foto:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="text" formControlName="Image" />
+            </div>
+        </div>
+        <div class="py-2 grid grid-cols-3">
+            <div>
+                <label for="" class="font-semibold text-lg px-2">Link:</label>
+            </div>
+            <div class="col-span-2">
+                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="url" formControlName="Link" />                
+            </div>
+        </div>
+        <div class="py-2 col-span-2">
+            <div >
+                <label for="" class="font-semibold text-lg px-2">Beschrijving Blogpost:
+                    <span class="text-red-600 font-bold text-lg">*</span>
+                </label>
+            </div>
+            <div class="col-span-2">
+                <textarea class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-36 mx-auto" formControlName="description" >
+
+                </textarea>
+            </div>    
+        </div>
+    </div>
+</form>

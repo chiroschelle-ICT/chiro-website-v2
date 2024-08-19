@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-// Components
+// Component
 import { HeaderComponent } from './Navigation/header/header.component';
 import { FooterComponent } from './Navigation/footer/footer.component';
-import { HomeComponent } from './Home/home/home.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ import { HomeComponent } from './Home/home/home.component';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
+    PdfViewerModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -22,3 +22,4 @@ import { HomeComponent } from './Home/home/home.component';
 export class AppComponent {
   title = 'chiro-website';
 }
+67

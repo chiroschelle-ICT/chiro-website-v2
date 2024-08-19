@@ -1,15 +1,39 @@
 export class Users
 {
-    Id:null;
-    UserName: string;
+    id:number;
+    username:string;
+    Name: string;
     AfdelingId: number;
+    email:string;
+    phone:string;
+    groeps:boolean;
+    jaar_leiding:number;
+    leeftijd:number;
+    image:string;
+    password:string;
     constructor(
-        id:null,
+        id:number,
         username:string,
-        afdelingid:number
+        name:string,
+        afdelingid:number,
+        image:string,
+        email:string,
+        phone:string,
+        groeps:boolean,
+        jaarleiding:number,
+        age:number,
+        pw:string
     ) {
-        this.Id = id;
-        this.UserName = username;
+        this.id = id;
+        this.username = username;
+        this.Name = name;
         this.AfdelingId = afdelingid;
+        this.email = email;
+        this.phone = phone;
+        this.groeps = groeps;
+        this.jaar_leiding = jaarleiding;
+        this.leeftijd = age;
+        this.image = image
+        this.password = pw;
     }
 }
