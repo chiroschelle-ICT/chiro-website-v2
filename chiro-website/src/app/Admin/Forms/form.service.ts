@@ -4,6 +4,7 @@ import { Blogposts } from '../../Model/Blogposts';
 import { HttpClient } from '@angular/common/http';
 import { Programma } from '../../Model/Programma';
 import { Goepie } from '../../Model/Goepie';
+import { Category } from '../../Model/Category';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class FormService {
   private routeBlogposts = 'http://localhost:3000/api/blogPosts';
   private routeProgramma= 'http://localhost:3000/api/programma';
   private routeGoepie= 'http://localhost:3000/api/goepie';
+  private routeCategory= 'http://localhost:3000/api/category';
 
   // --- BLOGPOST Functions
   // Add new Blogpost
@@ -38,6 +40,11 @@ export class FormService {
   addGoepie(location:string, active:boolean) : Observable<Goepie> {
     const body = {location, active};
     return this.http.post<Goepie>(this.routeGoepie+"/addGoepie", body);
+  }
+
+  // Get all Categories
+  getCategories() : Observable<Category[]> {
+    return this.http.get<Category[]>(this.routeCategory);
   }
 
 }

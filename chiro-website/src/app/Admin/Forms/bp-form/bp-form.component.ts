@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormSelectorComponent } from '../!form-selector/form-selector.component';
 // Models
 import { Blogposts } from '../../../Model/Blogposts';
+import { FormService } from '../form.service';
+import { Category } from '../../../Model/Category';
 
 @Component({
   selector: 'app-bp-form',
@@ -22,7 +24,16 @@ import { Blogposts } from '../../../Model/Blogposts';
 export class BPFormComponent implements OnInit{
   blogForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  categories: Category[] = []
+  defaultCat: number = 1;
+  allCategories = [
+    { id: 1, name: 'Zondag' },
+    { id: 2, name: 'Info' },
+    { id: 3, name: 'Bouw' },
+    { id: 4, name: 'Activiteit' },
+  ];
+
+  constructor(private fb: FormBuilder, private fs : FormService) {}
 
   ngOnInit() {
     this.blogForm = this.fb.group({
@@ -35,6 +46,9 @@ export class BPFormComponent implements OnInit{
       category: ['', Validators.required],
       timePosted: ['']
     });
+    this.fs.getCategories().subscribe((data : Category[]) => {
+      this.categories = data
+    })
   }
 
 
@@ -63,5 +77,6 @@ export class BPFormComponent implements OnInit{
   clearForm() {
     this.blogForm.reset(); 
   }
+  
   
 }

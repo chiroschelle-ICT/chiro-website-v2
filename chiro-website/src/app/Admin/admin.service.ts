@@ -15,15 +15,9 @@ export class AdminService {
   private baseUsersRoute = 'http://localhost:3000/api/users';
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
   private baseBlogpostsRoute = 'http://localhost:3000/api/blogPosts';
-
-  getUser(id: number) : Observable<Users> {
-    return this.http.get<Users>(this.baseUsersRoute+"/"+`${id}`)
-  }
   
   // API call to retrieve data
-  getUserByName(un:string) : Observable<Users[]> {
-    return this.http.get<Users[]>(this.baseUsersRoute+"/searchName/"+`${un}`);
-  }
+
 
   // --- Programma Actions  ---
   // --- Programma Actions  ---
@@ -66,5 +60,50 @@ export class AdminService {
   // DELETE | deletes a blogpost
   deleteBlogpost(id: string) : Observable<Blogposts> {
     return this.http.delete<Blogposts>(this.baseBlogpostsRoute+"/deletePost/"+`${id}`);
+  }
+
+  // --- User Actions
+  // --- User Actions
+  getUsers() : Observable<Users[]> {
+    return this.http.get<Users[]>(this.baseBlogpostsRoute)
+  }
+  getUser(id: number) : Observable<Users[]> {
+    return this.http.get<Users[]>(this.baseUsersRoute+"/"+`${id}`)
+  }
+  getUserByName(un:string) : Observable<Users[]> {
+    return this.http.get<Users[]>(this.baseUsersRoute+"/searchName/"+`${un}`);
+  }
+  getLoggedUser() {
+    return localStorage.getItem('username')    
+  }
+
+  // --- MISC Actions
+  // --- MISC Actions
+  // Returns the color belonging to the users's afgdeling
+  checkAfdelingColor(usr : Users) {
+    switch(usr.AfdelingId) {
+      case 1:
+      case 2:
+        return "#a855f7";
+      case 3:
+      case 4:
+        return "#eab308";
+      case 5:
+      case 6:
+        return "#16a34a";
+      case 7:
+      case 8:
+        return "#ef4444";
+      case 9:
+      case 10:
+        return "#3b82f6";
+      case 11:
+      case 12:  // Changed from 10 to 11 to correct the overlap
+        return "#d97706";
+      case 13:
+        return "#475569";
+      default:
+        return "#000000"; // Optional default case
+    }
   }
 }

@@ -1,4 +1,6 @@
 const db = require('../databases/local_database');
+const bcrypt = require('bcrypt');
+
 
 // GET | return all users
 exports.getAllUsers = (req, res) => {
