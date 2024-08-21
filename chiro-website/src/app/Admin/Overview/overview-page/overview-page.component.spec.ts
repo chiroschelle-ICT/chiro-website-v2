@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarTabletComponent } from './navbar-tablet.component';
+import { OverviewPageComponent } from './overview-page.component';
 
-describe('NavbarTabletComponent', () => {
-  let component: NavbarTabletComponent;
-  let fixture: ComponentFixture<NavbarTabletComponent>;
+describe('OverviewPageComponent', () => {
+  let component: OverviewPageComponent;
+  let fixture: ComponentFixture<OverviewPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarTabletComponent]
+      imports: [OverviewPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NavbarTabletComponent);
+    fixture = TestBed.createComponent(OverviewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

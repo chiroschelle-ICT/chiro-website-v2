@@ -1,0 +1,7 @@
+#sidebarHover {
+    transition: background 0.3s ease; /* Smooth transition */
+}
+
+#sidebarHover:hover {
+    background: var(--hover-bg-color);
+}
