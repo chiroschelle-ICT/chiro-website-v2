@@ -21,8 +21,8 @@ export class AuthService {
   }
 
   // --  LocalStorage  --
-
-  login(username: string, password: string, user : Users[]):boolean {
+  /*
+   login(username: string, password: string, user : Users[]):boolean {
     if(username == user[0].username && password == user[0].password) {
       localStorage.setItem('isLoggedin', 'true')
       localStorage.setItem('username', username)
@@ -45,11 +45,10 @@ export class AuthService {
   getUserWithLocalStorage() : Observable<Users[]>{
     return this.http.get<Users[]>(this.baseUsersRoute+"/searchname/"+`${localStorage.getItem('username')}`);
   }
-
   isLoggedIn(): boolean {
     return localStorage.getItem('isLoggedIn') === 'true'
   }
-
+ */
 
 }
 

@@ -73,9 +73,6 @@ export class AdminService {
   getUserByName(un:string) : Observable<Users[]> {
     return this.http.get<Users[]>(this.baseUsersRoute+"/searchName/"+`${un}`);
   }
-  getLoggedUser() {
-    return localStorage.getItem('username')    
-  }
 
   // --- MISC Actions
   // --- MISC Actions
