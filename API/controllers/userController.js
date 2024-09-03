@@ -112,6 +112,21 @@ exports.postUsers = (req, res) => {
 
 
 // PUT | Update user
+exports.putUser = (req, res) => {
+    const UId = req.params.id
+    const {Name, AfdelingId } = req.body;
+    if(!UId || !Name || !AfdelingId) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    const query = 'UPDATE users SET Name = ?, AfdelingId = ? WHERE id = ?';
+    db.query(query, [Name, AfdelingId, UId], (err, result) => {
+        console.error('ERROR querying database: ' + err.stack);
+        res.status(200).send('ERROR Querying database');
+        return;
+    })
+    res.json({message: 'User Update Succesfully'})
+}
+
 // POST | Add new users
 exports.postUsers = (req, res) => {
     const users = req.body; // Assuming req.body is an array of user objects
