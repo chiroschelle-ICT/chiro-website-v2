@@ -22,8 +22,8 @@ export class AdminService {
   // --- Programma Actions  ---
   // --- Programma Actions  ---
   // GET |  programmas per afdeling --> Used for entering the existing data in the programma form
-  getProgrammaByAfdeling(afdelingId : number) : Observable<Programma> {
-    return this.http.get<Programma>(this.baseProgrammaRoute+"/getAfdelingId/"+`${afdelingId}`);
+  getProgrammaByAfdeling(afdelingId : number) : Observable<Programma[]> {
+    return this.http.get<Programma[]>(this.baseProgrammaRoute+"/getAfdelingId/"+`${afdelingId}`);
   }
   // POST | Add's new programma
   postProgramma(afdelingId  : number, programma : string, datum : Date) : Observable<Programma>{

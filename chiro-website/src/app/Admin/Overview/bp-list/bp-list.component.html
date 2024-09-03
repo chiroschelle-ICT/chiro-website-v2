@@ -1,0 +1,54 @@
+<div class="border-2 border-black grid-rows-2">
+    <!-- Index -->
+    <div class="border-2 grid grid-cols-7">
+        <div class=""> Id  
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> Titel
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class="col-span-2"> Beschrijving
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> Gebruiker gepost
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+<!--         <div class=""> Foto
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div> -->
+        <div class=""> Category
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> datum gepost
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+    </div>
+    <div class="">
+        @for (bp of blogposts; track $index) {
+            <div class="grid grid-cols-7">
+                <div>
+                    <span> {{bp.id}} </span>
+                </div>
+                <div>
+                    <span> {{bp.title}} </span>
+                </div>
+                <div class="col-span-2">
+                    <span> {{bp.description}} </span>
+                </div>
+                <div>
+                    <span> {{bp.userId}} </span>
+                </div>
+          <!--       <div class="py-2 border-2 border-black overflow-hidden">
+                    <span class="block truncate">{{bp.Image}}</span>
+                </div> -->
+                
+                <div>
+                    <span> {{bp.category}} </span>
+                </div>
+                <div>
+                    <span> {{bp.timePosted}} </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>

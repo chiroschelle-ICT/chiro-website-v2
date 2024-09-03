@@ -1,20 +1,31 @@
-<div class="border-2 border-black grid grid-cols-3 p-2">
-
-    <div class="text-center">
-        <span class="font-semibold text-xl ">
-            Selecteer welke lijst je wilt tonen:
-        </span>
+<div class="">
+    <div class="border-gray-400 bg-grayIsh border-2 grid grid-row-2 px-2 py-3 rounded-md mb-2">
+        <div>
+            <span class="text-3xl font-bold">Blogposts</span><br>
+            <span>Hier vind je de lijst van alle ACTIEVE blogposts.<br>Je kan ze aanpassen verwijderen en bekijken!</span>
+        </div>
+        <div class="grid grid-cols-10 gap-3 text-center mt-4">
+            <div class=" hover:font-bold hover:bg-gray-300 cursor-pointer transition ease-in-out hover:transition-all hover:rounded-md hover:rounded-r-none">
+                <span class="text-md font-semibold">Blogposts</span>
+            </div>        
+            <div class=" hover:font-bold hover:bg-gray-300 cursor-pointer transition ease-in-out hover:transition-all hover:rounded-md hover:rounded-r-none">
+                <span class="text-md font-semibold">Programma</span>
+            </div>
+            <div class=" hover:font-bold hover:bg-gray-300 cursor-pointer transition ease-in-out hover:transition-all hover:rounded-md hover:rounded-r-none">
+                <span class="text-md font-semibold">GOEPIE</span>
+            </div>
+            <div class=" hover:font-bold hover:bg-gray-300 cursor-pointer transition ease-in-out hover:transition-all hover:rounded-md hover:rounded-r-none">
+                <span class="text-md font-semibold">Foto's</span>
+            </div>
+            <div class=" hover:font-bold hover:bg-gray-300 cursor-pointer transition ease-in-out hover:transition-all hover:rounded-md hover:rounded-r-none">
+                <span class="text-md font-semibold">Gebruikers</span>
+            </div>
+        </div>
+       
     </div>
-    <div class="col-span-2 text-center">
-        <select class="border-2 border-black rounded-lg w-8/12 font-semibold text-center">
-            <option value="Blogposts">Blogposts</option>
-            <option value="Goepie">Goepie</option>
-            <option value="Programma">Programma</option>
-            <option value="Fotos">Fotos</option>
-        </select>
-    </div>
 
-    <div class="col-span-3">
+    <div class="bg-slate-300 border-3 border-gray-400 rounded-md p-2">
+      <app-pg-list></app-pg-list>
     </div>
 
 </div>

@@ -1,6 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors');
 const req = require('express/lib/request');
 const res = require('express/lib/response');

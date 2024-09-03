@@ -32,39 +32,31 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {}
 
-
-  //https://stackblitz.com/edit/angular-14-registration-login-example?file=src%2Fapp%2F_services%2Faccount.service.ts
-  validateLogin(input : NgForm) {
-    console.log("Pres")
-    if(!input.value.username || !input.value.username.trim()) {
+  validateLogin(input: NgForm) {
+    if (!input.value.username || !input.value.username.trim()) {
       this.inValidLogin = true;
-      this.invalidLogin("Vul je gebruikersnaam in");
-      console.log("No Name")
+      this.invalidLogin("Vul je gebruikersnaam in"); // "Enter your username"
     } else if (!input.value.password || !input.value.password.trim()) {
       this.inValidLogin = true;
-      this.invalidLogin("Vul je wachtwoord in");
-      console.log("No pw")
+      this.invalidLogin("Vul je wachtwoord in"); // "Enter your password"
     } else {
-        console.log("Valid")
-        console.log(this.username)
-        this.inValidLogin = false;
-        this.getUserData(input.value.username);
-    } 
-
+      this.inValidLogin = false;
+      this.getUserData(input);  // Pass the input to fetch user data
+    }
   }
+  
 
   loginUser() {
     if (this.authservice.login(this.username, this.password, this.users)) {
-      // Navigate to admin page
-      this.validLogin("Ingelogd!");
+      this.validLogin("Ingelogd!"); // "Logged in!"
       setTimeout(() => {
-        this.router.navigate(['admin'])
-      }, 1500)
-
+        this.router.navigate(['admin']);
+      }, 1500);
     } else {
-      this.invalidLogin("Foute gegevens")
+      this.invalidLogin("Foute gegevens"); // "Incorrect details"
     }
   }
+  
 
   getUserData(input : NgForm) {
     this.authservice.getUserByName(this.username).subscribe((data : Users[]) => {
