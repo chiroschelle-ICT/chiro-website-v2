@@ -42,5 +42,4 @@ testem.log
 Thumbs.db
 
 # Environment variables
-.env
-.env.*  # Ignores all files starting with .env (like .env.production, .env.development)
+/environment
