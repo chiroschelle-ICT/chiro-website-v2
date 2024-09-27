@@ -16,9 +16,25 @@
     </div>
     <div class="">
         @for (pg of programmas; track $index) {
+<<<<<<< Updated upstream
             <div class="grid grid-cols-7">
                 <div>
                 </div>
+=======
+            <div class="grid grid-cols-5">
+                <div>
+                   <span> {{pg.id}} </span>
+                </div>
+                <div>
+                    <span> {{pg.afdelingId}} </span>
+                 </div>
+                 <div class="col-span-2">
+                    <span> {{pg.programma}} </span>
+                 </div>
+                 <div>
+                    <span> {{pg.datum}} </span>
+                 </div>
+>>>>>>> Stashed changes
             </div>
         }
     </div>

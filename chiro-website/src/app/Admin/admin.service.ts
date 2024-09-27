@@ -4,13 +4,14 @@ import { Users } from '../Model/Users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Programma } from '../Model/Programma';
 import { Blogposts } from '../Model/Blogposts';
+import { LocalstorageService } from '../Services/localstorage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private localstorageservice : LocalstorageService) { }
 
   private baseUsersRoute = 'http://localhost:3000/api/users';
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
@@ -70,8 +71,12 @@ export class AdminService {
   getUser(id: number) : Observable<Users[]> {
     return this.http.get<Users[]>(this.baseUsersRoute+"/"+`${id}`)
   }
-  getUserByName(un:string) : Observable<Users[]> {
-    return this.http.get<Users[]>(this.baseUsersRoute+"/searchName/"+`${un}`);
+  getUserByName(un:string) : Observable<Users> {
+    return this.http.get<Users>(this.baseUsersRoute+"/searchName/"+`${un}`);
+  }
+  getActiveUser() {
+    const aUser = this.localstorageservice.getData("usr");
+    return this.getUserByName(aUser)
   }
 
   // --- MISC Actions
@@ -103,4 +108,5 @@ export class AdminService {
         return "#000000"; // Optional default case
     }
   }
+  
 }

@@ -1,0 +1,14 @@
+@angular/core
+@angular/cli
+@angular/animations
+@angular/common
+@angular/compiler
+@angular/compiler-cli
+@angular/forms
+@angular/platform-browser
+@angular/platform-browser-dynamic
+@angular/router
+@fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
+zone.js
+rxjs
+tslib
