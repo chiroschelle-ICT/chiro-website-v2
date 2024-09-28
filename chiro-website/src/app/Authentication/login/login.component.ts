@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit{
   }
 
   clearResponse() {
-    
+
     this.backgroundColor = ""
     this.borderColor = ""
     this.responseMsg = "";

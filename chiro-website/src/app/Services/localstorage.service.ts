@@ -23,7 +23,7 @@ export class LocalstorageService {
     localStorage.setItem(key, this.encrypt(value))
   }
 
-  public getData(key:string) {
+  public getData(key : string) {
     let data = localStorage.getItem(key) || ""
     return this.decrypt(data)
   }
