@@ -7,11 +7,11 @@
     </h1>
     <div class="flex items-center px-2 py-1 rounded-3xl "  [style.background]="sideBarColor">
       <div class="rounded-full h-5 w-5 overflow-hidden mr-2 ">
-        <img class="h-full w-full object-cover" src="assets\Resized_Leiding_Fotos\{{infos[(user[0].id-1)].image}}" alt="User Profile Image">
+        <img class="h-full w-full object-cover" src="assets\Resized_Leiding_Fotos\{{infos[(user.id-1)].image}}" alt="User Profile Image">
       </div>
-      <span class="text-sm font-bold  text-gray-100">{{user[0].Name}}</span>
+      <span class="text-sm font-bold  text-gray-100">{{user.Name}}</span>
       <span class="text-sm font-extrabold mx-2"> - </span>
-      <span class="text-sm font-bold mr-1 text-gray-100"> {{user[0].username}} </span>
+      <span class="text-sm font-bold mr-1 text-gray-100"> {{user.username}} </span>
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
   <!-- Depending on Users's afdeling color sidebar -->
   <div class="w-64 text-gray-100 h-screen p-4 fixed top-0 left-0 z-20" [style.background]="sideBarColor">
     <ul>      
-      <li><a class="block py-2 px-4 hover:bg-gray-400 rounded cursor-pointer"> <i class="fa-solid fa-gauge text-white text-lg mr-2"></i> Dashboard</a></li>
+      <li><a class="block py-2 px-4 hover:bg-gray-400 rounded cursor-pointer"><i class="fa-solid fa-gauge text-white text-lg mr-2"></i> Dashboard</a></li>
       <li><a class="block py-2 px-4 hover:bg-gray-400 rounded cursor-pointer"> <i class="fa-solid fa-plus text-white text-lg mr-2"></i> Toevoegen</a></li>
       <li><a class="block py-2 px-4 hover:bg-gray-400 rounded cursor-pointer"> <i class="fa-solid fa-list text-white text-lg mr-2"></i> Overzicht</a></li>
       <li><a class="block py-2 px-4 hover:bg-gray-400 rounded cursor-pointer"> <i class="fa-solid fa-image text-white text-lg mr-2"></i> Foto's</a></li>

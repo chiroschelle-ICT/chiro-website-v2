@@ -29,10 +29,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.navserv.hideHeader();
-    /* this.auth.getUserWithLocalStorage().subscribe((data : Users) => {
-      this.user = data;        
-      console.log(this.user)
-    }) */
   }
 
   ngOnDestroy() {

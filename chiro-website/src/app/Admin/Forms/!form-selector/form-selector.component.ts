@@ -15,6 +15,7 @@ import { FormService } from '../form.service';
 import { AuthService } from '../../../Authentication/auth.service';
 import { Users } from '../../../Model/Users';
 import { Observable } from 'rxjs';
+import { LocalstorageService } from '../../../Services/localstorage.service';
 
 @Component({
   selector: 'app-form-selector',
@@ -53,12 +54,13 @@ export class FormSelectorComponent implements OnInit{
   // Blogpost variables
   activeUser: Users[] = [];
 
-  constructor(private formservice : FormService, private authservice : AuthService) {}
+  constructor(private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
   ngOnInit(): void {
-    this.authservice.getUserWithLocalStorage().subscribe((data : Users[]) => {
+  
+   /*  this.authservice.getUserWithLocalStorage().subscribe((data : Users[]) => {
       this.activeUser = data;
-    });
+    }); */
   }
 
 
