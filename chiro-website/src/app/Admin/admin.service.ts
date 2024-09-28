@@ -4,13 +4,14 @@ import { Users } from '../Model/Users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Programma } from '../Model/Programma';
 import { Blogposts } from '../Model/Blogposts';
+import { LocalstorageService } from '../Services/localstorage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private localstorageservice : LocalstorageService) { }
 
   private baseUsersRoute = 'http://localhost:3000/api/users';
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
@@ -22,8 +23,8 @@ export class AdminService {
   // --- Programma Actions  ---
   // --- Programma Actions  ---
   // GET |  programmas per afdeling --> Used for entering the existing data in the programma form
-  getProgrammaByAfdeling(afdelingId : number) : Observable<Programma> {
-    return this.http.get<Programma>(this.baseProgrammaRoute+"/getAfdelingId/"+`${afdelingId}`);
+  getProgrammaByAfdeling(afdelingId : number) : Observable<Programma[]> {
+    return this.http.get<Programma[]>(this.baseProgrammaRoute+"/getAfdelingId/"+`${afdelingId}`);
   }
   // POST | Add's new programma
   postProgramma(afdelingId  : number, programma : string, datum : Date) : Observable<Programma>{
@@ -70,11 +71,12 @@ export class AdminService {
   getUser(id: number) : Observable<Users[]> {
     return this.http.get<Users[]>(this.baseUsersRoute+"/"+`${id}`)
   }
-  getUserByName(un:string) : Observable<Users[]> {
-    return this.http.get<Users[]>(this.baseUsersRoute+"/searchName/"+`${un}`);
+  getUserByName(un:string) : Observable<Users> {
+    return this.http.get<Users>(this.baseUsersRoute+"/searchName/"+`${un}`);
   }
-  getLoggedUser() {
-    return localStorage.getItem('username')    
+  getActiveUser() {
+    const aUser = this.localstorageservice.getData("usr");
+    return this.getUserByName(aUser)
   }
 
   // --- MISC Actions
@@ -106,4 +108,5 @@ export class AdminService {
         return "#000000"; // Optional default case
     }
   }
+  
 }

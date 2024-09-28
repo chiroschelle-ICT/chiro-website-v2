@@ -15,6 +15,51 @@
     </div>
 
     <div class="col-span-3">
+<div class="">
+    <div class="border-gray-400 bg-grayIsh border-2 grid grid-row-2 px-2 py-3 rounded-md mb-2">
+        <div>
+            <span class="text-3xl font-bold">Blogposts</span><br>
+            <span>Hier vind je de lijst van alle ACTIEVE blogposts.<br>Je kan ze aanpassen verwijderen en bekijken!</span>
+        </div>
+        <div class="grid grid-cols-10 gap-3 text-center mt-4">
+            <div class="hover:font-bold  cursor-pointer">
+                <div (click)="updateActiveList(1)" class="text-md font-semibold border-2 rounded-lg hover:bg-gray-300 transition ease-in-out hover:transition-all">Blogposts</div>
+            </div>        
+            <div class="hover:font-bold  cursor-pointer">
+                <div (click)="updateActiveList(2)" class="text-md font-semibold border-2 rounded-lg hover:bg-gray-300 transition ease-in-out hover:transition-all">Programma</div>
+            </div>
+            <div class="hover:font-bold  cursor-pointer">
+                <div (click)="updateActiveList(3)" class="text-md font-semibold border-2 rounded-lg hover:bg-gray-300 transition ease-in-out hover:transition-all">GOEPIE</div>
+            </div>
+            <div class="hover:font-bold  cursor-pointer">
+                <div (click)="updateActiveList(4)" class="text-md font-semibold border-2 rounded-lg hover:bg-gray-300 transition ease-in-out hover:transition-all">Foto's</div>
+            </div>
+            <div class="hover:font-bold  cursor-pointer">
+                <div (click)="updateActiveList(5)" class="text-md font-semibold border-2 rounded-lg hover:bg-gray-300 transition ease-in-out hover:transition-all">Gebruikers</div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="bg-slate-300 border-3 border-gray-400 rounded-md p-2">
+        @switch (this.activeList) {
+            @case (1) {
+                <app-bp-list></app-bp-list>
+            }
+            @case (2) {
+                <app-pg-list></app-pg-list>
+            }
+            @case (3) {
+                
+            }
+            @case (4) {
+                
+            }
+            @case (5) {
+                
+            }
+        }
+
     </div>
 
 </div>

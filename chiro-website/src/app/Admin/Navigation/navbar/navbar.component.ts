@@ -5,6 +5,7 @@ import { AdminService } from '../../admin.service';
 import { Users } from '../../../Model/Users';
 import { HomeService } from '../../../Home/home.service';
 import { Info } from '../../../Model/Info';
+import { LocalstorageService } from '../../../Services/localstorage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,22 +24,22 @@ export class NavbarComponent implements OnInit{
   
   sideBarColor!: string
   
-  user!: Users[];
+  user!: Users;
   users: Users[] = []
   infos: Info[] = []
   loggedUN!: any
   
 
-  constructor(private as : AdminService, private hs : HomeService) {}
+  constructor(private as : AdminService, private hs : HomeService, private lss : LocalstorageService) {}
 
   ngOnInit(): void {
     this.hs.getInfo().subscribe((data : Info[]) => {
       this.infos = data
     })
-    this.loggedUN = this.as.getLoggedUser()
-    this.as.getUserByName(this.loggedUN).subscribe((data : Users[]) => {
+    this.loggedUN = this.lss.getData("usr");
+    this.as.getUserByName(this.loggedUN).subscribe((data : Users) => {
       this.user = data
-      this.sideBarColor = this.as.checkAfdelingColor(this.user[0]);
+      this.sideBarColor = this.as.checkAfdelingColor(this.user);
     }) 
   }
 
