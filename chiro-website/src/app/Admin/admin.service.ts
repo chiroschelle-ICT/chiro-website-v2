@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Programma } from '../Model/Programma';
 import { Blogposts } from '../Model/Blogposts';
 import { LocalstorageService } from '../Services/localstorage.service';
+import { Goepie } from '../Model/Goepie';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AdminService {
   private baseUsersRoute = 'http://localhost:3000/api/users';
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
   private baseBlogpostsRoute = 'http://localhost:3000/api/blogPosts';
+  private baseGoepieRoute = 'http://localhost:3000/api/goepie';
   
   // API call to retrieve data
 
@@ -77,6 +79,13 @@ export class AdminService {
   getActiveUser() {
     const aUser = this.localstorageservice.getData("usr");
     return this.getUserByName(aUser)
+  }
+
+  // --- GOEPIE Actions
+  // --- GOEPIE Actions
+  // GET | Return all goepies
+  getGoepies() : Observable<Goepie[]> {
+    return this.http.get<Goepie[]>(this.baseGoepieRoute)
   }
 
   // --- MISC Actions

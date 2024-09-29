@@ -1,0 +1,30 @@
+<div class="border-2 border-black grid-rows-2">
+    <!-- Index -->
+    <div class="border-2 grid grid-cols-3">
+        <div class=""> Id  
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> User
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> Actions
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+     
+    </div>
+    <div class="">
+        @for (gb of gebruikers; track $index) {
+            <div class="grid grid-cols-3">
+                <div>
+                    <span> {{gb.id}} </span>
+                </div>
+                <div class="">
+                    <span> </span>
+                </div>
+                <div class="">
+                    <span>  </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
