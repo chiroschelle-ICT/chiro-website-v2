@@ -6,7 +6,8 @@ import { PgListComponent } from "../pg-list/pg-list.component";
 import { AdminService } from '../../admin.service';
 import { Programma } from '../../../Model/Programma';
 import { LocalstorageService } from '../../../Services/localstorage.service';
-import { Users } from '../../../Model/Users';
+import { GpListComponent } from "../gp-list/gp-list.component";
+import { GbListComponent } from "../gb-list/gb-list.component";
 
 @Component({
   selector: 'app-overview-page',
@@ -14,7 +15,9 @@ import { Users } from '../../../Model/Users';
   imports: [
     BpListComponent,
     BPFormComponent,
-    PgListComponent
+    PgListComponent,
+    GpListComponent,
+    GbListComponent
 ],
   templateUrl: './overview-page.component.html',
   styleUrl: './overview-page.component.css'
@@ -22,7 +25,7 @@ import { Users } from '../../../Model/Users';
 export class OverviewPageComponent implements OnInit{
 
   // 1 = BP, 2 = PG, 3 = GP, 4 = FT, 5 = GB
-  activeList: number = 2
+  activeList: number = 4
   activeUsr!: any // Fix bug with using Users as Type
   programmas: Programma[] = []
 
