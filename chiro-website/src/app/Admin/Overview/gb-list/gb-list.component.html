@@ -20,14 +20,14 @@
     
     <div class="h-[calc(100vh-260px)] overflow-y-scroll" id="scrollContainer">
         @for (gb of gebruikers; track $index) {
-            <div class="grid grid-cols-5">
+            <div class="grid grid-cols-5 mt-1">
                 <div>
                     <span> {{gb.id}} </span>
                 </div>
                 <div>
                     <span> {{gb.username}} </span>
                 </div>
-                <div>
+                <div [style.background]="afdelingColor(gb)" class="w-32 text-center rounded-lg">
                     <span> {{gb.AfdelingId}} </span>
                 </div>
                 <div>

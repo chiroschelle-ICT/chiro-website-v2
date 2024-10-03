@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './Navigation/header/header.component';
 import { FooterComponent } from './Navigation/footer/footer.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { AfdelingColorDirective } from './Directives/afdeling-color.directive';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    PdfViewerModule
-  ],
+    PdfViewerModule,
+    AfdelingColorDirective
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
