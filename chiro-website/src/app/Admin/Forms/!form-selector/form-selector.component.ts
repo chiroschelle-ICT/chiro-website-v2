@@ -56,12 +56,7 @@ export class FormSelectorComponent implements OnInit{
 
   constructor(private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
-  ngOnInit(): void {
-  
-   /*  this.authservice.getUserWithLocalStorage().subscribe((data : Users[]) => {
-      this.activeUser = data;
-    }); */
-  }
+  ngOnInit(): void { }
 
 
   // Recieved Data From the Child 
