@@ -6,13 +6,15 @@ import { Users } from '../../../Model/Users';
 import { HomeService } from '../../../Home/home.service';
 import { Info } from '../../../Model/Info';
 import { LocalstorageService } from '../../../Services/localstorage.service';
+import { FormSelectorComponent } from "../../Forms/!form-selector/form-selector.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,
-  OverviewPageComponent
-
+  imports: [
+    RouterLink,
+    OverviewPageComponent,
+    FormSelectorComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -23,7 +25,8 @@ export class NavbarComponent implements OnInit{
 
   
   sideBarColor!: string
-  
+  activePanel: number = 1
+
   user!: Users;
   users: Users[] = []
   infos: Info[] = []
@@ -41,6 +44,10 @@ export class NavbarComponent implements OnInit{
       this.user = data
       this.sideBarColor = this.as.checkAfdelingColor(this.user);
     }) 
+  }
+
+  changeAdminPanel(num: number) {
+    this.activePanel = num
   }
 
 }
