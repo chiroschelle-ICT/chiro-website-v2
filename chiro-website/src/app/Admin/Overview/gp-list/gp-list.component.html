@@ -1,0 +1,24 @@
+<div class="border-2 border-black grid-rows-2  h-600px">
+    <!-- Index -->
+    <div class="border-2 grid grid-cols-7">
+        <div class=""> Id  
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div class=""> Location
+            <span class=""> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+
+    </div>
+    <div class="">
+        @for (gp of goepies; track $index) {
+            <div class="grid grid-cols-7">
+                <div>
+                    <span> {{gp.id}} </span>
+                </div>
+                <div>
+                    <span> {{gp.location}} </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
