@@ -1,6 +1,18 @@
 <div class="grid grid-cols-3 grid-rows-2 border-2 border-black h-[calc(100vh-85px)]">
-    <div class="grid col-span-1 row-span-1 border-4 border-red-600 m-1 p-1">Most Recent Blogpost</div>
-    <div class="grid col-span-1 row-span-1 border-4 border-red-600 m-1 p-1">Your Account?</div>
-    <div class="grid col-span-1 row-span-2 border-4 border-red-600 m-1 p-1">Todays' Programma's</div>
-    <div class="grid col-span-2 row-span-1 border-4 border-red-600 m-1 p-1">Active Goepie</div>
+    <div class="col-span-1 row-span-1 border-4 border-red-600 m-1 p-1">
+        <span class="font-semibold text-xl ml-2 mt-1 h-fit">Most Recent Blogpost</span>
+        <app-blogpost-panel></app-blogpost-panel> 
+    </div>
+    <div class="col-span-1 row-span-1 border-4 border-red-600 m-1 p-1">
+          <span class="font-semibold text-xl ml-2 mt-1 h-fit">Your Account?</span>
+          <app-account-panel></app-account-panel>
+    </div>
+    <div class="col-span-1 row-span-2 border-4 border-red-600 m-1 p-1">
+          <span class="font-semibold text-xl ml-2 mt-1 h-fit">Todays' Programma's</span>
+          <app-programma-panel></app-programma-panel>
+    </div>
+    <div class="col-span-2 row-span-1 border-4 border-red-600 m-1 p-1">
+          <span class="font-semibold text-xl ml-2 mt-1 h-fit">Active Goepie</span>
+          <app-goepie-panel></app-goepie-panel>
+    </div>
 </div> 
