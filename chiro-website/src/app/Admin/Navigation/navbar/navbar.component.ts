@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit{
 
   
   sideBarColor!: string
-  activePanel: number = 1
+  activePanel: number = 0
 
   user!: Users;
   users: Users[] = []
