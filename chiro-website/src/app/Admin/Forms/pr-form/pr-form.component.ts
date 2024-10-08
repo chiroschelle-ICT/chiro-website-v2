@@ -14,7 +14,6 @@ import { Programma } from '../../../Model/Programma';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    FormSelectorComponent,
   ],
   templateUrl: './pr-form.component.html',
   styleUrl: './pr-form.component.css'
