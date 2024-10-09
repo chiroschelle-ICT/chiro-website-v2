@@ -18,7 +18,12 @@
             </div>        
             <div class="border-2 border-gray-200 rounded-lg p-2">                
                 @if(selectedForm == 'add_blogpost') {
-                    <app-bp-form (formDataEvent)="onBlogPostDataRecieved($event)" (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"> </app-bp-form>
+                    <app-bp-form 
+                        (formDataEvent)="onBlogPostDataRecieved($event)" 
+                        (responseMessage)="onResponseMessage($event)" 
+                        (responseType)="onResponseType($event)"
+                    > 
+                    </app-bp-form>
                 } @else if(selectedForm == 'add_programma') {
                     <app-pr-form (formDataEvent)="onProgrammaDataRecieved($event)"  (responseMessage)="onResponseMessage($event)" (responseType)="onResponseType($event)"></app-pr-form>
                 } @else if(selectedForm == 'change_goepie') {

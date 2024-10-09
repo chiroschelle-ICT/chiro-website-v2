@@ -7,6 +7,11 @@ import { HomeService } from '../../../Home/home.service';
 import { Info } from '../../../Model/Info';
 import { LocalstorageService } from '../../../Services/localstorage.service';
 import { FormSelectorComponent } from "../../Forms/!form-selector/form-selector.component";
+import { BPFormComponent } from '../../Forms/bp-form/bp-form.component';
+import { GpFormComponent } from '../../Forms/gp-form/gp-form.component';
+import { PrFormComponent } from '../../Forms/pr-form/pr-form.component';
+import { UiFormComponent } from '../../Forms/ui-form/ui-form.component';
+import { DashboardComponent } from '../../Dashboard/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +19,13 @@ import { FormSelectorComponent } from "../../Forms/!form-selector/form-selector.
   imports: [
     RouterLink,
     OverviewPageComponent,
-    FormSelectorComponent
+    FormSelectorComponent,
+    FormSelectorComponent,
+    BPFormComponent,
+    GpFormComponent,
+    PrFormComponent,
+    UiFormComponent,
+    DashboardComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -25,7 +36,7 @@ export class NavbarComponent implements OnInit{
 
   
   sideBarColor!: string
-  activePanel: number = 1
+  activePanel: number = 0
 
   user!: Users;
   users: Users[] = []
