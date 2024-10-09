@@ -8,11 +8,16 @@ router.get('/programma', programmaController.getAllProgramma);
 // GET | Test
 router.get('/programma/test', programmaController.getTest);
 
+
+// GET | Get closest programma (all Afdelingen 1 programma)
+router.get('/programma/getClosest', programmaController.getClosestAfdeling);
+
 // GET | Get all programmas by ID
 router.get('/programma/:id', programmaController.getProgrammaById);
 
 // GET | get per programma
-router.get('/programma/getAfdelingId/:id', programmaController.getProgrammaPerAfdeling)
+router.get('/programma/getAfdelingId/:id', programmaController.getProgrammaPerAfdeling);
+
 
 // POST | Add new Programma
 router.post('/programma/postProgramma', programmaController.postProgramma);

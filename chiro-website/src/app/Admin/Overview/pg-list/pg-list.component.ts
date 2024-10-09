@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Programma } from '../../../Model/Programma';
 import { Afdeling } from '../../../Model/Afdeling';
 import { AdminService } from '../../admin.service';
 import { Users } from '../../../Model/Users';
+import { LocalstorageService } from '../../../Services/localstorage.service';
 
 @Component({
   selector: 'app-pg-list',
@@ -11,22 +12,22 @@ import { Users } from '../../../Model/Users';
   templateUrl: './pg-list.component.html',
   styleUrl: './pg-list.component.css'
 })
-export class PgListComponent {
+export class PgListComponent implements OnInit{
 
   programmas: Programma[] = []
   afdelingen: Afdeling[] = []
-  user: Users[] = []
   loggedUN!: any
 
-  constructor(private as : AdminService) {
-    this.loggedUN = this.as.getLoggedUser();
-    this.as.getUserByName(this.loggedUN).subscribe((data : Users[]) => {
-      this.user = data;
-    })    
-    this.as.getProgrammaByAfdeling(this.user[0].AfdelingId).subscribe((data : Programma[]) =>{
-      this.programmas = data
-      console.log(this.programmas)
-    }) 
+  constructor(private as : AdminService, private lss : LocalstorageService) {}
+
+  ngOnInit(): void {
+    this.loggedUN = this.lss.getData("usr");
+    this.as.getUserByName(this.loggedUN).subscribe((data : Users) => {
+      this.as.getProgrammaByAfdeling(data.AfdelingId).subscribe((data : Programma[]) => {
+        this.programmas = data
+      })
+    })
+    
   }
 
 }

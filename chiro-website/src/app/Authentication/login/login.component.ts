@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   
   constructor(private authservice : AuthService, private router : Router) {}
 
-  users: Users[] = [];
+  users!: Users;
   user!: Users;
 
   username!: string;
@@ -59,13 +59,14 @@ export class LoginComponent implements OnInit{
   
 
   getUserData(input : NgForm) {
-    this.authservice.getUserByName(this.username).subscribe((data : Users[]) => {
+    console.log(this.username)
+    this.authservice.getUserByName(this.username).subscribe((data : Users) => {
       this.users = data;
-      console.log(this.users[0].username)
+      console.log(data )
       this.loginUser();
     })
   }
-
+ 
 
 
   validLogin(succesMsg : string) {
@@ -85,7 +86,7 @@ export class LoginComponent implements OnInit{
   }
 
   clearResponse() {
-    
+
     this.backgroundColor = ""
     this.borderColor = ""
     this.responseMsg = "";

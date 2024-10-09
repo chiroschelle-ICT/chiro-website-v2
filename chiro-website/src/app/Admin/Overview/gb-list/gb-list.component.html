@@ -1,0 +1,42 @@
+<div class="border-2 border-black grid-rows-2 h-[calc(100vh-230px)]">
+    <!-- Index -->
+    <div class="border-2 grid grid-cols-5">
+        <div> Id  
+            <span> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div> Username
+            <span> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div> Afdeling
+            <span> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div> Email
+            <span> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+        <div> Groeps
+            <span> <i class="fa-solid fa-sort-down"></i> </span>
+        </div>
+    </div>
+    
+    <div class="h-[calc(100vh-260px)] overflow-y-scroll" id="scrollContainer">
+        @for (gb of gebruikers; track $index) {
+            <div class="grid grid-cols-5 mt-1">
+                <div>
+                    <span> {{gb.id}} </span>
+                </div>
+                <div>
+                    <span> {{gb.username}} </span>
+                </div>
+                <div [style.background]="afdelingColor(gb)" class="w-32 text-center rounded-lg">
+                    <span> {{gb.AfdelingId}} </span>
+                </div>
+                <div>
+                    EMAIL
+                </div>
+                <div>
+                    GROEPS
+                </div>
+            </div>
+        }
+    </div>
+</div>

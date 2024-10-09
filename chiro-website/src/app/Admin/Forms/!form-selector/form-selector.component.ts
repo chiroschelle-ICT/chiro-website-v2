@@ -21,12 +21,12 @@ import { LocalstorageService } from '../../../Services/localstorage.service';
   selector: 'app-form-selector',
   standalone: true,
   imports: [
-    BPFormComponent,
+    BPFormComponent,  // triggers error: TS-992012 Component imports must be standalone components, directives, pipes, or must be NgModules
     GpFormComponent,
     PrFormComponent,
     UiFormComponent,
     FormsModule,
-],
+  ],
   templateUrl: './form-selector.component.html',
   styleUrl: './form-selector.component.css'
 })
@@ -56,12 +56,7 @@ export class FormSelectorComponent implements OnInit{
 
   constructor(private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
-  ngOnInit(): void {
-  
-   /*  this.authservice.getUserWithLocalStorage().subscribe((data : Users[]) => {
-      this.activeUser = data;
-    }); */
-  }
+  ngOnInit(): void { }
 
 
   // Recieved Data From the Child 

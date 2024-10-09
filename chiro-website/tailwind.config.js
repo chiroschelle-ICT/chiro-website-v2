@@ -10,6 +10,7 @@ module.exports = {
         '600px': '600px',
         '180px': '180px',
         '350px': '350px',
+        '600px': '600px',
       },
       colors: {
         'facebook-blue': '#316FF6',

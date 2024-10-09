@@ -16,7 +16,6 @@ import { Category } from '../../../Model/Category';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    FormSelectorComponent,
   ],
   templateUrl: './bp-form.component.html',
   styleUrl: './bp-form.component.css'
