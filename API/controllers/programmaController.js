@@ -39,7 +39,7 @@ exports.getProgrammaPerAfdeling = (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = "SELECT p.* FROM programma p INNER JOIN ( SELECT afdelingId, MIN(ABS(DATEDIFF(datum, CURDATE()))) AS min_diff FROM programma GROUP BY afdelingId ASC) AS closest ON p.afdelingId = closest.afdelingId AND ABS(DATEDIFF(p.datum, CURDATE())) = closest.min_diff ORDER BY p.afdelingId ASC;";
+    const query = "SELECT * FROM programma WHERE afdelingId = ? ORDER BY ABS(DATEDIFF(datum, CURDATE())) ASC;";
 
     db.query(query, [Id], (err, result) => {
         if(err) {
@@ -53,7 +53,7 @@ exports.getProgrammaPerAfdeling = (req, res) => {
 
 // GET | Nearest programmas
 exports.getClosestAfdeling = (req, res) => {
-    const query = "SELECT * FROM programma ORDER BY ABS(DATEDIFF(CURRENT_DATE, datum)) LIMIT 12"
+    const query = "SELECT p.* FROM programma p INNER JOIN ( SELECT afdelingId, MIN(ABS(DATEDIFF(datum, CURDATE()))) AS min_diff FROM programma GROUP BY afdelingId ASC) AS closest ON p.afdelingId = closest.afdelingId AND ABS(DATEDIFF(p.datum, CURDATE())) = closest.min_diff ORDER BY p.afdelingId ASC;"
     db.query(query, (err, result) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);

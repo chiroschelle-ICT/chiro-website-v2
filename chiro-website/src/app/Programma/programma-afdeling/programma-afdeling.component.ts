@@ -27,6 +27,7 @@ export class ProgrammaAfdelingComponent implements OnInit{
     });
   }
 
+  
   loadData(param:number) {
     this.ps.getProgrammaPerAfdeling(param).subscribe((data : Programma[]) => {
       this.programmas = data;   
