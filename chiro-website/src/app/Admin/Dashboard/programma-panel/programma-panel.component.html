@@ -5,7 +5,9 @@
             [style.border]="getAfdelingBgBrColors(p.afdelingId)[1]"
         >        
             <span>{{p.programma}}</span><br>
-            <span>{{p.datum}}</span>
+            <span>{{p.datum}}</span> <br>
+            <span>{{p.afdelingId}}</span> <br>
+            <span class="font-extrabold"> {{p.id}} </span>
         </div>
         @if ($index%2 == 0) {
             <div class="my-2"></div>

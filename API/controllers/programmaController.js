@@ -39,7 +39,7 @@ exports.getProgrammaPerAfdeling = (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const query = "SELECT * FROM programma WHERE afdelingId = ? ORDER BY ABS(DATEDIFF(datum, CURDATE())) ASC;";
+    const query = "SELECT p.* FROM programma p INNER JOIN ( SELECT afdelingId, MIN(ABS(DATEDIFF(datum, CURDATE()))) AS min_diff FROM programma GROUP BY afdelingId ASC) AS closest ON p.afdelingId = closest.afdelingId AND ABS(DATEDIFF(p.datum, CURDATE())) = closest.min_diff ORDER BY p.afdelingId ASC;";
 
     db.query(query, [Id], (err, result) => {
         if(err) {
