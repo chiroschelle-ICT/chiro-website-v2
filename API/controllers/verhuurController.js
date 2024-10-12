@@ -1,4 +1,5 @@
-const db = require('../databases/local_database');
+// const db = require('../databases/local_database');
+const db = require('../databases/docker_database');
 
 // GET all verhuur items
 exports.getAllVerhuur = (req, res) => {
