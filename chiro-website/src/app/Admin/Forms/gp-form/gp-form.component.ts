@@ -18,7 +18,6 @@ import {  NgxExtendedPdfViewerModule,NgxExtendedPdfViewerService, pdfDefaultOpti
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    FormSelectorComponent,
     NgxExtendedPdfViewerModule
   ],
   templateUrl: './gp-form.component.html',

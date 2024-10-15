@@ -52,6 +52,19 @@ exports.getProgrammaPerAfdeling = (req, res) => {
     }); 
 }
 
+// GET | Nearest programmas
+exports.getClosestAfdeling = (req, res) => {
+    const query = "SELECT * FROM programma ORDER BY ABS(DATEDIFF(CURRENT_DATE, datum)) LIMIT 12"
+    db.query(query, (err, result) => {
+        if(err) {
+            console.error('ERROR querying database: ' + err.stack);
+            res.status(500).send('ERROR Querying Database');
+            return;
+        }
+        res.json(result)
+    });
+}
+
 // POST | Add new Blog post
 exports.postProgramma = (req, res) => {
     const { afdelingId, programma, datum } = req.body;
