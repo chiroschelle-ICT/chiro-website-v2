@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql  # Persisting the data to a volume
+
+  api:
+    build: .
+    container_name: node-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db  # Hostname of MySQL container
+      DATABASE_USER: user
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: your_database_name
+    volumes:
+      - .:/app
+    command: "node server.js"  # Adjust if your start script is different
+
+angular-app:
+    build:
+      context: .  # This is where your Dockerfile for Angular is located
+      dockerfile: Dockerfile  # Ensure the filename matches your actual Dockerfile name
+    container_name: angular-app
+    ports:
+      - "90:90"  # Expose the port specified in your Dockerfile
+    depends_on:
+      - db  
+      - api
+
+volumes:
+  db_data:
