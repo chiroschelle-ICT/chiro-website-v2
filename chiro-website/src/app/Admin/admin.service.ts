@@ -68,7 +68,7 @@ export class AdminService {
   // --- User Actions
   // --- User Actions
   getUsers() : Observable<Users[]> {
-    return this.http.get<Users[]>(this.baseBlogpostsRoute)
+    return this.http.get<Users[]>(this.baseUsersRoute)
   }
   getUser(id: number) : Observable<Users[]> {
     return this.http.get<Users[]>(this.baseUsersRoute+"/"+`${id}`)
@@ -81,11 +81,15 @@ export class AdminService {
     return this.getUserByName(aUser)
   }
 
-  // --- GOEPIE Actions
-  // --- GOEPIE Actions
-  // GET | Return all goepies
-  getGoepies() : Observable<Goepie[]> {
-    return this.http.get<Goepie[]>(this.baseGoepieRoute)
+  // --- GOEPIE Actions ---
+  // --- GOEPIE Actions ---
+  // GET all goepies
+  getGoepies(): Observable<Goepie[]> {
+    return this.http.get<Goepie[]>(this.baseGoepieRoute);
+  }
+  // GET Goepie by ID 
+  getGoepie(id : number): Observable<Goepie> {
+    return this.http.get<Goepie>(this.baseGoepieRoute+"/"+`${id}`);
   }
 
   // --- MISC Actions
