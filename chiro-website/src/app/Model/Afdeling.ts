@@ -1,7 +1,7 @@
 export class Afdeling 
 {
     Id:null;
-    Afdeling:string;
+    afdeling:string;
     Next:number;
     constructor(
         id:null,
@@ -9,7 +9,7 @@ export class Afdeling
         next:number
     ) {
         this.Id = id;
-        this.Afdeling = afdeling;
+        this.afdeling = afdeling;
         this.Next = next;
     }
 }
