@@ -1,11 +1,13 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2'); // Make sure you're using the correct library
 
-// Create a connection pool
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
+const db = mysql.createPool({
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
 // Check for connection pool errors

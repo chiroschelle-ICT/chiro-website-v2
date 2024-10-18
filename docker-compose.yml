@@ -1,49 +1,33 @@
 services:
-  db:
-    image: mysql:5.7
-    container_name: mysql-db
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: your_database_name
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql  # Persisting the data to a volume
-
   api:
-    build: 
-      context: .
-      dockerfile: ./API/dockerfile
+    build:
+      context: ./API  # Context is the API directory
+      dockerfile: Dockerfile  # Ensure this matches the Dockerfile name
     container_name: node-api
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container
     depends_on:
-      - db
+      - db  # Assuming you will define a database service below
     environment:
-      DATABASE_HOST: db  # Hostname of MySQL container
+      DATABASE_HOST: db
       DATABASE_USER: user
       DATABASE_PASSWORD: password
       DATABASE_NAME: your_database_name
     volumes:
-      - .:/app
-    command: "node server.js"  # Adjust if your start script is different
+      - ./API:/app  # Bind mount the API directory to /app in the container
 
-  angular-app:
-    build:
-      context: .
-      dockerfile: ./chiro-website/dockerfile
-    container_name: angular-app
-    ports:
-      - '4200:4200'
-    volumes:
-      - ./:/angular-app
+  db:
+    image: mysql:5.7  # Use the MySQL image
+    container_name: mysql-db
     environment:
-      - STYLE=css
-    depends_on:
-      - db  
-      - api
+      MYSQL_ROOT_PASSWORD: root_password  # Set your root password
+      MYSQL_DATABASE: your_database_name  # Your initial database name
+      MYSQL_USER: user  # The user defined for your application
+      MYSQL_PASSWORD: password  # Password for your application user
+    ports:
+      - "3306:3306"  # Map MySQL port
+    volumes:
+      - db_data:/var/lib/mysql  # Persist data
 
 volumes:
-  db_data:
+  db_data:  # Named volume for MySQL data persistence
