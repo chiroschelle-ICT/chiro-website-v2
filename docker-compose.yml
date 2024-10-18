@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   db:
     image: mysql:5.7
@@ -14,7 +13,9 @@ services:
       - db_data:/var/lib/mysql  # Persisting the data to a volume
 
   api:
-    build: .
+    build: 
+      context: .
+      dockerfile: ./API/dockerfile
     container_name: node-api
     ports:
       - "3000:3000"
@@ -29,13 +30,17 @@ services:
       - .:/app
     command: "node server.js"  # Adjust if your start script is different
 
-angular-app:
+  angular-app:
     build:
-      context: .  # This is where your Dockerfile for Angular is located
-      dockerfile: Dockerfile  # Ensure the filename matches your actual Dockerfile name
+      context: .
+      dockerfile: ./chiro-website/dockerfile
     container_name: angular-app
     ports:
-      - "90:90"  # Expose the port specified in your Dockerfile
+      - '4200:4200'
+    volumes:
+      - ./:/angular-app
+    environment:
+      - STYLE=css
     depends_on:
       - db  
       - api

@@ -1,20 +1,16 @@
-FROM node:18.13.0 as build
+FROM node:21
 
-WORKDIR /app
+RUN npm install -g @angular/cli
 
-COPY package*.json ./
+WORKDIR /
+RUN mkdir angular-app
+WORKDIR /angular-app
 
-RUN npm install
+ENV APP_NAME 'chiro-website'
 
-RUN npm instal -g @angular/cli
+CMD ng new $APP_NAME --routing=$ROUTING --standalone=$STANDALONE --strict=$STRICT --style=$STYLE \
+    && mv $APP_NAME/* . \
+    && rm -rf $APP_NAME \
+    && ng serve --host 0.0.0.0 --port 4200
 
-COPY . .
-
-RUN ng build --configuration
-
-FROM nginx:latest
-COPY --from=build app/dist/aftas-angular /usr/share/nginx/html
-
-EXPOSE 90
-
-CMD ["ng", "serve"]
+EXPOSE 4200 
