@@ -4,8 +4,20 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+const helmet = require('helmet');
 const app = express();
 const port = 3000;
+
+
+// Configure Helmet to set CSP policies
+app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "http://localhost:3000"], // Adjust as needed
+      }
+    }
+  }));
 
 // Configure body-parser to handle JSON and URL-encoded data
 app.use(bodyParser.json());
