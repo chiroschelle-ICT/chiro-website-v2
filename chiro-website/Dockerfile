@@ -1,16 +1,32 @@
-FROM node:21
+# Use the official Node.js image to build the Angular app
+FROM node:18 AS build
 
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install Angular CLI globally
 RUN npm install -g @angular/cli
 
-WORKDIR /
-RUN mkdir angular-app
-WORKDIR /angular-app
+# Install dependencies
+RUN npm install
 
-ENV APP_NAME 'chiro-website'
+# Copy the rest of the application code
+COPY . .
 
-CMD ng new $APP_NAME --routing=$ROUTING --standalone=$STANDALONE --strict=$STRICT --style=$STYLE \
-    && mv $APP_NAME/* . \
-    && rm -rf $APP_NAME \
-    && ng serve --host 0.0.0.0 --port 4200
+# Build the Angular app
+RUN ng build --configuration production
 
-EXPOSE 4200 
+# Stage 2 - Serve the application with Nginx
+FROM nginx:alpine
+
+# Copy the built Angular app to the Nginx server
+COPY --from=build /app/dist/your-angular-app-name /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Command to run Nginx
+CMD ["nginx", "-g", "daemon off;"]

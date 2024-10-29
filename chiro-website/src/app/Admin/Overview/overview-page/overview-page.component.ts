@@ -7,8 +7,7 @@ import { GbListComponent } from '../gb-list/gb-list.component';
 import { AdminService } from '../../admin.service';
 import { Programma } from '../../../Model/Programma';
 import { LocalstorageService } from '../../../Services/localstorage.service';
-import { GpListComponent } from "../gp-list/gp-list.component";
-import { GbListComponent } from "../gb-list/gb-list.component";
+
 
 @Component({
   selector: 'app-overview-page',
@@ -18,6 +17,7 @@ import { GbListComponent } from "../gb-list/gb-list.component";
     BPFormComponent,
     PgListComponent,
     GpListComponent,
+    GbListComponent
 ],
   templateUrl: './overview-page.component.html',
   styleUrl: './overview-page.component.css'

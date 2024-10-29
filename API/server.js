@@ -14,10 +14,17 @@ app.use(helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        imgSrc: ["'self'", "http://localhost:3000"], // Adjust as needed
-      }
-    }
-  }));
+        imgSrc: ["'self'", "http://localhost:3000"], // Allow images from localhost
+        scriptSrc: ["'self'"],                       // Allow scripts from self
+        styleSrc: ["'self'", "'unsafe-inline'"],     // Allow inline styles (needed for many apps)
+        connectSrc: ["'self'"],                      // Allow connections from self
+        fontSrc: ["'self'", "http://localhost:3000"],// Allow fonts from localhost
+        objectSrc: ["'none'"],                       // Disallow plugins
+        upgradeInsecureRequests: [],                 // Enforce HTTPS
+      },
+    },
+}));
+  
 
 // Configure body-parser to handle JSON and URL-encoded data
 app.use(bodyParser.json());
