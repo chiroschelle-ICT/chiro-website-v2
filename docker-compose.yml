@@ -1,2 +1,8 @@
 services:
-  
+  chiro-app:
+    build:
+      context: ./chiro-website
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: always

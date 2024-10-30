@@ -1,4 +1,4 @@
-FROM node:18.20.4 as build
+FROM node:18.20.4 AS build
 
 WORKDIR /app
 
@@ -14,6 +14,6 @@ RUN ng build --configuration=production
 
 FROM nginx:latest
 
-COPY --from=build app/dist/aftas-angular /usr/share/nginx/html
+COPY --from=build /app/dist/chiro-website /usr/share/nginx/html
 
 EXPOSE 80
