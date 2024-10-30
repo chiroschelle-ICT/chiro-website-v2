@@ -1,19 +1,11 @@
-FROM node:18.20.4 AS build
+FROM node:alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package*.json ./
-
-RUN npm install
+COPY . /usr/src/app
 
 RUN npm install -g @angular/cli
 
-COPY . .
+RUN npm install
 
-RUN ng build --configuration=production
-
-FROM nginx:latest
-
-COPY --from=build /app/dist/chiro-website /usr/share/nginx/html
-
-EXPOSE 80
+CMD ["ng", "serve", "--host", "0.0.0.0"]
