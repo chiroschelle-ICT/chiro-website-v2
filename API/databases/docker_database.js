@@ -1,23 +1,32 @@
-const mysql = require('mysql2'); // Make sure you're using the correct library
+const mysql = require('mysql2');
 
 const db = mysql.createPool({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    host: 'chiro-db-v1', // Use the service name defined in docker-compose
+    user: 'root',
+    password: 'password',
+    database: 'chiroDb',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-// Check for connection pool errors
-db.getConnection((err, connection) => {
-    if (err) {
-        console.error('Error connecting to the database: ' + err.stack);
-        return;
-    }
-    console.log('Connected to the database as ID ' + connection.threadId);
-    connection.release();  // Release the connection back to the pool
-});
+// Function to connect with retry
+const connectWithRetry = (retries = 5) => {
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error connecting to the DOCKER database: ' + err.stack);
+            if (retries > 0) {
+                console.log(`Retrying... (${5 - retries + 1})`);
+                setTimeout(() => connectWithRetry(retries - 1), 2000); // Wait 2 seconds before retry
+            }
+            return;
+        }
+        console.log('Connected to the LDOCKER database as ID ' + connection.threadId);
+        connection.release();
+    });
+};
+
+// Start the connection
+connectWithRetry();
 
 module.exports = db;
