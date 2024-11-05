@@ -15,7 +15,8 @@ db.getConnection((err, connection) => {
         console.error('Error connecting to the LOCAL database: ' + err.stack);
         return;
     }
-    console.log('Connected to the LOCAL database as ID ' + connection.threadId);
+    console.log('Connected to the LOCAL database as ID ' + connection.threadId + ' '+connection.port)
+    ;
     connection.release();  // Release the connection back to the pool
 });
 
