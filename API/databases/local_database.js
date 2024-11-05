@@ -12,10 +12,10 @@ const db = mysql.createPool({
 // Check for connection pool errors
 db.getConnection((err, connection) => {
     if (err) {
-        console.error('Error connecting to the database: ' + err.stack);
+        console.error('Error connecting to the LOCAL database: ' + err.stack);
         return;
     }
-    console.log('Connected to the database as ID ' + connection.threadId);
+    console.log('Connected to the LOCAL database as ID ' + connection.threadId);
     connection.release();  // Release the connection back to the pool
 });
 

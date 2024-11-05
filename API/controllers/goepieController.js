@@ -1,4 +1,5 @@
-const db = require("../databases/local_database");
+// const db = require('../databases/local_database');
+const db = require('../databases/docker_database');
 
 exports.getGoepie = (req, res) => {
     db.query("SELECT * FROM goepie", (err, result) => {

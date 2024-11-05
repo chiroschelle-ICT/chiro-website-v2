@@ -1,9 +1,10 @@
-const db = require('../databases/local_database');
+// const db = require('../databases/local_database');
+const db = require('../databases/docker_database');
 
 // GET | return all Info
 exports.getAllInfo = (req, res) => {
 
-    db.query('SELECT * FROM Info', (err, results) => {
+    db.query('SELECT * FROM info', (err, results) => {
         if(err) {
             console.error('Error Querying Database: ' + err.stack);
             res.status(500).send('Erro Querying Database');
