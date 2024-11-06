@@ -54,6 +54,7 @@ export class FormSelectorComponent implements OnInit{
 
   // Blogpost variables
   activeUser: Users[] = [];
+  userByName!: Users
 
   constructor(private as : AdminService,private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
@@ -132,20 +133,21 @@ export class FormSelectorComponent implements OnInit{
     }     
   }
 
+
   // Add the data that is not gathered by the form
   addBlogpostData() {
     const user = this.localservice.getData('usr');
     console.log(user)
-    const activeUsr = this.as.getUserByName(user);
-    console.log(activeUsr)
-    // API Problems --> No reuest works in postman maybe docker issue??
-    this.blogpostData.userId = this.activeUser[0].id
-    this.blogpostData.timePosted = new Date()
-    if(this.blogpostData.Link == "") {
-      this.blogpostData.HasLink = 0
-    } else {
-      this.blogpostData.HasLink = 1
-    }
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      this.userByName = data
+      this.blogpostData.userId = this.userByName.id
+      this.blogpostData.timePosted = new Date()
+      if(this.blogpostData.Link == "") {
+        this.blogpostData.HasLink = 0
+      } else {
+        this.blogpostData.HasLink = 1
+      }
+    })   
   }
 
   // Validation
