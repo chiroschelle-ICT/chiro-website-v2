@@ -12,6 +12,7 @@ import { GpFormComponent } from '../../Forms/gp-form/gp-form.component';
 import { PrFormComponent } from '../../Forms/pr-form/pr-form.component';
 import { UiFormComponent } from '../../Forms/ui-form/ui-form.component';
 import { DashboardComponent } from '../../Dashboard/dashboard/dashboard.component';
+import { SignupComponent } from '../../../Authentication/signup/signup.component';
 
 @Component({
   selector: 'app-navbar',
@@ -26,6 +27,7 @@ import { DashboardComponent } from '../../Dashboard/dashboard/dashboard.componen
     PrFormComponent,
     UiFormComponent,
     DashboardComponent,
+    SignupComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -36,7 +38,7 @@ export class NavbarComponent implements OnInit{
 
   
   sideBarColor!: string
-  activePanel: number = 0
+  activePanel: number = 4
 
   user!: Users;
   users: Users[] = []

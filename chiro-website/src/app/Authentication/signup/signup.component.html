@@ -1,0 +1,64 @@
+<div class="border-gray-400 border-4 rounded-md w-8/12 mx-auto pb-4">
+    <div class="text-center py-4" [style.background]="sideBarColor">
+        <span class="text-white font-bold rounded-t-md text-5xl">Create New User</span>
+    </div>
+    <form (submit)="onSignUp()" [formGroup]="signupForm">
+        <div class="grid grid-cols-2">
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Gebruikers Naam</label>
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+            </div>
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Email</label>
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+            </div>
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Afdeling: </label>
+            <select>
+                @for (afd of afdelingen; track $index) {
+                    <option value="{{afd.Id}}">{{afd.afdeling}} </option>
+                }
+            </select>   
+            </div>
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Groeps</label>
+                <select name="" id="">
+                    <option value="true">Ja</option>
+                    <option value="false">Neen</option>
+                </select>
+            </div>
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Telefoon nummber</label>
+                <input type="number" class="border-gray-400 border-2 rounded-lg py-1">
+            </div>
+
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Aantal Jaar Leiding</label>
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+            </div>
+            <div class="border-2 col-span-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <div class=" w-3/5 mx-auto">
+                    <label for="" class="font-semibold text-lg">
+                        Leeftijd: 
+                    </label>
+                </div>
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1 w-3/5 mx-auto">
+            </div>
+
+            <div class="col-span-2 text-center">
+                <button type="submit" [disabled]="!isFormVlaid" class="border-2 border-red-600 bg-red-400 px-20 py-2 rounded-lg mt-3">
+                   <span class="text-xl font-semibold">
+                    Maak Gebruiker Aan
+                   </span>
+                </button>
+            </div>
+
+            <div class="col-span-2">
+                <div class="border-2 border-green-500 bg-green-300 w-fit px-32 py-2 mt-4 rounded-lg mx-auto">
+                    <span class="font-bold text-2xl">Succes!</span>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

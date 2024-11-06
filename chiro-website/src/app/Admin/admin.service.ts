@@ -6,6 +6,7 @@ import { Programma } from '../Model/Programma';
 import { Blogposts } from '../Model/Blogposts';
 import { LocalstorageService } from '../Services/localstorage.service';
 import { Goepie } from '../Model/Goepie';
+import { Afdeling } from '../Model/Afdeling';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AdminService {
   private baseProgrammaRoute = 'http://localhost:3000/api/programma';
   private baseBlogpostsRoute = 'http://localhost:3000/api/blogPosts';
   private baseGoepieRoute = 'http://localhost:3000/api/goepie';
+  private baseAfdelingRoute = 'http://localhost:3000/api/afdeling'
   
   // API call to retrieve data
 
@@ -90,6 +92,13 @@ export class AdminService {
   // GET Goepie by ID 
   getGoepie(id : number): Observable<Goepie> {
     return this.http.get<Goepie>(this.baseGoepieRoute+"/"+`${id}`);
+  }
+
+  // -- PROGRAMMA Acctions --
+  // -- PROGRAMMA Acctions --
+  // GET | get Afdelingen
+  getAfdelingen() : Observable<Afdeling[]> {
+    return this.http.get<Afdeling[]>(this.baseAfdelingRoute);
   }
 
   // --- MISC Actions
