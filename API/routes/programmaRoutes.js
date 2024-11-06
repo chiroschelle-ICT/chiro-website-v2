@@ -8,7 +8,6 @@ router.get('/programma', programmaController.getAllProgramma);
 // GET | Test
 router.get('/programma/test', programmaController.getTest);
 
-
 // GET | Get closest programma (all Afdelingen 1 programma)
 router.get('/programma/getClosest', programmaController.getClosestAfdeling);
 

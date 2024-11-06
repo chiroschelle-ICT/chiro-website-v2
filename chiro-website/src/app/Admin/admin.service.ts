@@ -121,5 +121,10 @@ export class AdminService {
         return "#000000"; // Optional default case
     }
   }
+
+  getAfdelingName(afId:number) {
+    // API call or switch search
+    
+  }
   
 }

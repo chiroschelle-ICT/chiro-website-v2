@@ -54,7 +54,7 @@ exports.getProgrammaPerAfdeling = (req, res) => {
 
 // GET | Nearest programmas
 exports.getClosestAfdeling = (req, res) => {
-    const query = "SELECT * FROM programma ORDER BY ABS(DATEDIFF(CURRENT_DATE, datum)) LIMIT 12"
+    const query = "SELECT p.* FROM programma p INNER JOIN ( SELECT afdelingId, MIN(ABS(DATEDIFF(datum, CURDATE()))) AS min_diff FROM programma GROUP BY afdelingId ASC) AS closest ON p.afdelingId = closest.afdelingId AND ABS(DATEDIFF(p.datum, CURDATE())) = closest.min_diff ORDER BY p.afdelingId ASC;"
     db.query(query, (err, result) => {
         if(err) {
             console.error('ERROR querying database: ' + err.stack);
