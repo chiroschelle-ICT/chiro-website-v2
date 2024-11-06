@@ -1,0 +1,43 @@
+services:
+  chiro-app:
+    container_name: chiro-app
+    build:
+      context: ./chiro-website
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: always
+    volumes:
+      -  ./chiro-website:/usr/src/app
+
+  chiro-api:
+    container_name: chiro-api
+    build:
+      context: ./API
+      dockerfile: Dockerfile.api  
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./API:/usr/src/app  # Adjust path if needed
+
+  chiro-db-v1:
+    image: mysql:5.7
+    restart: always
+    container_name: chiro-db-v1
+    environment:
+      MYSQL_DATABASE: 'chiro-website-v1'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+# Define volumes
+volumes:
+  my-db:

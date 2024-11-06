@@ -16,6 +16,7 @@ import { AuthService } from '../../../Authentication/auth.service';
 import { Users } from '../../../Model/Users';
 import { Observable } from 'rxjs';
 import { LocalstorageService } from '../../../Services/localstorage.service';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-form-selector',
@@ -54,7 +55,7 @@ export class FormSelectorComponent implements OnInit{
   // Blogpost variables
   activeUser: Users[] = [];
 
-  constructor(private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
+  constructor(private as : AdminService,private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
   ngOnInit(): void { }
 
@@ -133,6 +134,11 @@ export class FormSelectorComponent implements OnInit{
 
   // Add the data that is not gathered by the form
   addBlogpostData() {
+    const user = this.localservice.getData('usr');
+    console.log(user)
+    const activeUsr = this.as.getUserByName(user);
+    console.log(activeUsr)
+    // API Problems --> No reuest works in postman maybe docker issue??
     this.blogpostData.userId = this.activeUser[0].id
     this.blogpostData.timePosted = new Date()
     if(this.blogpostData.Link == "") {
