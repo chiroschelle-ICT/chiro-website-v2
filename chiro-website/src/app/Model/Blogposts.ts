@@ -7,7 +7,8 @@ export class Blogposts
     Image: string;
     Link: string;
     category: number;
-    timePosted: Date;
+    // timePosted: Date;
+    timePosted: any;
     HasLink: number;
     constructor(
         id:null,
@@ -17,7 +18,8 @@ export class Blogposts
         image:string,
         link:string,
         category:number,
-        tp: Date,
+        // tp: Date,
+        tp: any,
         hs: number
     ) {
         this.id = id;

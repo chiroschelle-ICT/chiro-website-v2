@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { LocalstorageService } from '../../../Services/localstorage.service';
 import { AdminService } from '../../admin.service';
 
+
 @Component({
   selector: 'app-form-selector',
   standalone: true,
@@ -56,6 +57,8 @@ export class FormSelectorComponent implements OnInit{
   activeUser: Users[] = [];
   userByName!: Users
 
+
+
   constructor(private as : AdminService,private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
   ngOnInit(): void { }
@@ -83,18 +86,6 @@ export class FormSelectorComponent implements OnInit{
         this.BlogPostForm.sendFormData();
         this.addBlogpostData()
         // Check if Valid
-        if(this.validForm) {
-          this.formservice.addBlogpost(
-            this.blogpostData.userId,
-            this.blogpostData.title,
-            this.blogpostData.description,
-            this.blogpostData.Image,
-            this.blogpostData.Link,
-            this.blogpostData.category,
-            this.blogpostData.timePosted,
-            this.blogpostData.HasLink
-          ).subscribe();
-        }
         this.BlogPostForm.clearForm()
         break;
       
@@ -139,13 +130,26 @@ export class FormSelectorComponent implements OnInit{
     const user = this.localservice.getData('usr');
     console.log(user)
     this.as.getUserByName(user).subscribe((data : Users) => {
+      console.log("In addBlogpostData")
       this.userByName = data
       this.blogpostData.userId = this.userByName.id
-      this.blogpostData.timePosted = new Date()
+      this.blogpostData.timePosted =  '2024-05-07 18:59:40';
       if(this.blogpostData.Link == "") {
         this.blogpostData.HasLink = 0
       } else {
         this.blogpostData.HasLink = 1
+      }
+      if(this.validForm) {
+        this.formservice.addBlogpost(
+          this.blogpostData.userId,
+          this.blogpostData.title,
+          this.blogpostData.description,
+          this.blogpostData.Image,
+          this.blogpostData.Link,
+          this.blogpostData.category,
+          this.blogpostData.timePosted,
+          this.blogpostData.HasLink,
+        ).subscribe();
       }
     })   
   }
