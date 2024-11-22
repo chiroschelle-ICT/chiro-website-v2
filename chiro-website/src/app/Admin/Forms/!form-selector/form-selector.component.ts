@@ -38,7 +38,7 @@ export class FormSelectorComponent implements OnInit{
   @ViewChild(PrFormComponent) ProgrammaForm!: PrFormComponent;
 
   // Form Selection
-  selectedForm: string = 'add_blogpost';
+  selectedForm: string = 'add_programma';
 
   // Child Input
   recievedData!: Blogposts | Goepie | Programma;
@@ -56,12 +56,16 @@ export class FormSelectorComponent implements OnInit{
   // Blogpost variables
   activeUser: Users[] = [];
   userByName!: Users
-
+  activeUserId!: number
+  activeUserAfdelingId!: number
 
 
   constructor(private as : AdminService,private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.activeUserId = this.getCurrentLoggedInUserId()
+    this.activeUserAfdelingId = this.getCurrentLoggedInUserAfdelingId()
+  }
 
 
   // Recieved Data From the Child 
@@ -107,7 +111,7 @@ export class FormSelectorComponent implements OnInit{
       case "add_programma":
         // Gather Data
         this.ProgrammaForm.sendFormData();
-        this.programmaData.afdelingId = this.activeUser[0].AfdelingId
+        this.programmaData.afdelingId = this.activeUserAfdelingId
         // Check if Valid
         if(this.validForm) {
           this.formservice.addProgramma(
@@ -184,5 +188,27 @@ export class FormSelectorComponent implements OnInit{
         // somethign wrong with emiting
         break;
     }
+  }
+
+  getCurrentLoggedInUserId():number {
+    const user = this.localservice.getData('usr');
+    var usrId = 0
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      usrId = data.id
+      console.log(usrId)
+      return data.id;      
+    })
+    return usrId;          
+  }
+
+  getCurrentLoggedInUserAfdelingId():number {
+    const user = this.localservice.getData('usr');
+    var usrId = 0
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      usrId = data.AfdelingId
+      console.log(usrId)
+      return data.AfdelingId;      
+    })
+    return usrId;      
   }
 }
