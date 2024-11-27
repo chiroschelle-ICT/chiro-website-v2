@@ -32,6 +32,7 @@ export class FormService {
   // Add new programma
   addProgramma(afdelingId:number, programma:string, datum:Date) : Observable<Programma>{
     const body = { afdelingId, programma, datum  };
+    console.log(body)
     return this.http.post<Programma>(this.routeProgramma+"/postProgramma", body);
   }
 

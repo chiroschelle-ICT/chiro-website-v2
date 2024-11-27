@@ -67,7 +67,8 @@ exports.getClosestAfdeling = (req, res) => {
 
 // POST | Add new Blog post
 exports.postProgramma = (req, res) => {
-    const { afdelingId, programma, datum } = req.body;
+    var { afdelingId, programma, datum } = req.body;
+
     if(!afdelingId || !programma || !datum ) {
         return res.status(400).json({ error: 'All fields are required' });
     }

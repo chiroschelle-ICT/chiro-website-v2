@@ -86,10 +86,8 @@ export class FormSelectorComponent implements OnInit{
   submitForm() {
     switch(this.selectedForm) {
       case "add_blogpost":
-        // Gather Data
         this.BlogPostForm.sendFormData();
         this.addBlogpostData()
-        // Check if Valid
         this.BlogPostForm.clearForm()
         break;
       
@@ -109,17 +107,8 @@ export class FormSelectorComponent implements OnInit{
         break;
         
       case "add_programma":
-        // Gather Data
-        this.ProgrammaForm.sendFormData();
-        this.programmaData.afdelingId = this.activeUserAfdelingId
-        // Check if Valid
-        if(this.validForm) {
-          this.formservice.addProgramma(
-            this.programmaData.afdelingId,
-            this.programmaData.programma,
-            this.programmaData.datum
-          ).subscribe();
-        }
+        this.ProgrammaForm.sendFormData();      
+        this.addProgrammaData();
         this.ProgrammaForm.clearForm()
         break;
       default:
@@ -128,6 +117,23 @@ export class FormSelectorComponent implements OnInit{
     }     
   }
 
+  addProgrammaData() {
+    const user = this.localservice.getData('usr');
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      this.as.getUserByName(user).subscribe((data : Users) => {
+        this.programmaData.afdelingId = data.AfdelingId
+        console.log("PorgrammaID: ",this.programmaData.afdelingId)
+      
+        if(this.validForm) {
+          this.formservice.addProgramma(
+            this.programmaData.afdelingId,
+            this.programmaData.programma,
+            this.programmaData.datum
+          ).subscribe();
+        }
+      })
+    })
+  }
 
   // Add the data that is not gathered by the form
   addBlogpostData() {
@@ -203,12 +209,12 @@ export class FormSelectorComponent implements OnInit{
 
   getCurrentLoggedInUserAfdelingId():number {
     const user = this.localservice.getData('usr');
-    var usrId = 0
+    var afdId = 0
     this.as.getUserByName(user).subscribe((data : Users) => {
-      usrId = data.AfdelingId
-      console.log(usrId)
+      afdId = data.AfdelingId
+      console.log(afdId)
       return data.AfdelingId;      
     })
-    return usrId;      
+    return afdId;      
   }
 }
