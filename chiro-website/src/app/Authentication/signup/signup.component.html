@@ -2,19 +2,23 @@
     <div class="text-center py-4" [style.background]="sideBarColor">
         <span class="text-white font-bold rounded-t-md text-5xl">Create New User</span>
     </div>
-    <form (submit)="onSignUp()" [formGroup]="signupForm">
+    <form  [formGroup]="signupForm" (submit)="onSignUp(signupForm)">
         <div class="grid grid-cols-2">
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Gebruikers Naam</label>
-                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1" formControlName="username" name="username">
+            </div>
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+                <label for="" class="font-semibold text-lg">Voornaam + Naam</label>
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1" formControlName="name" name="name">
             </div>
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Email</label>
-                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1" formControlName="email" name="email">
             </div>
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Afdeling: </label>
-            <select>
+            <select formControlName="afdelingId" name="afdelingId">
                 @for (afd of afdelingen; track $index) {
                     <option value="{{afd.Id}}">{{afd.afdeling}} </option>
                 }
@@ -22,31 +26,31 @@
             </div>
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Groeps</label>
-                <select name="" id="">
-                    <option value="true">Ja</option>
-                    <option value="false">Neen</option>
+                <select name="isGroeps" id="" formControlName="isGroeps" >
+                    <option value=1>Ja</option>
+                    <option value=0>Neen</option>
                 </select>
             </div>
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Telefoon nummber</label>
-                <input type="number" class="border-gray-400 border-2 rounded-lg py-1">
+                <input type="number" class="border-gray-400 border-2 rounded-lg py-1" formControlName="phone" name="phone">
             </div>
 
             <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <label for="" class="font-semibold text-lg">Aantal Jaar Leiding</label>
-                <input type="text" class="border-gray-400 border-2 rounded-lg py-1">
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1" formControlName="jaarLeiding" name="jaarLeiding">
             </div>
-            <div class="border-2 col-span-2 border-black m-1 px-2 py-4 grid grid-cols-1">
+            <div class="border-2 border-black m-1 px-2 py-4 grid grid-cols-1">
                 <div class=" w-3/5 mx-auto">
                     <label for="" class="font-semibold text-lg">
                         Leeftijd: 
                     </label>
                 </div>
-                <input type="text" class="border-gray-400 border-2 rounded-lg py-1 w-3/5 mx-auto">
+                <input type="text" class="border-gray-400 border-2 rounded-lg py-1 w-3/5 mx-auto" formControlName="leeftijd" name="leeftijd">
             </div>
 
             <div class="col-span-2 text-center">
-                <button type="submit" [disabled]="!isFormVlaid" class="border-2 border-red-600 bg-red-400 px-20 py-2 rounded-lg mt-3">
+                <button type="submit" [disabled]="signupForm.invalid" class="border-2 border-red-600 bg-red-400 px-20 py-2 rounded-lg mt-3">
                    <span class="text-xl font-semibold">
                     Maak Gebruiker Aan
                    </span>

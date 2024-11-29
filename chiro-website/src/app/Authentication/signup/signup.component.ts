@@ -3,7 +3,7 @@ import { AuthService } from '../auth.service';
 import { AdminService } from '../../Admin/admin.service';
 import { LocalstorageService } from '../../Services/localstorage.service';
 import { Users } from '../../Model/Users';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Afdeling } from '../../Model/Afdeling';
 
 @Component({
@@ -17,23 +17,24 @@ import { Afdeling } from '../../Model/Afdeling';
 })
 export class SignupComponent implements OnInit{
 
-  signupForm = new FormGroup({
-    username: new FormControl('', Validators.required),       // Users Table
-    afdelingId: new FormControl('', Validators.required),     // Users Table
-    email: new FormControl('', [Validators.required, Validators.email]),  // Info Table
-    phone: new FormControl('', Validators.required),  // Info Table
-    isGroeps: new FormControl('', Validators.required),  // Info Table
-    jaarLeiding: new FormControl('', Validators.required),  // Info Table
-    leeftijd: new FormControl('', Validators.required),  // Info Table
-  });
-
+  signupForm: FormGroup;
 
   afdelingen: Afdeling[] = []
   sideBarColor!: string;
   loggedUN!: string;
-  isFormVlaid: boolean = false
 
-  constructor(private as : AuthService, private ads : AdminService, private lss : LocalstorageService) {}
+  constructor(private as : AuthService, private ads : AdminService, private lss : LocalstorageService, private fb: FormBuilder) {
+    this.signupForm = this.fb.group({
+      username: ['', Validators.required],       // Users Table
+      name: ['', Validators.required],       // Users Table
+      afdelingId: ['', Validators.required],     // Users Table
+      email: ['', Validators.required],  // Info Table
+      phone: ['', Validators.required],  // Info Table
+      isGroeps: ['', Validators.required],  // Info Table
+      jaarLeiding: ['', Validators.required],  // Info Table
+      leeftijd: ['', Validators.required],  // Info Table
+    });
+  }
 
   ngOnInit() {
     this.loggedUN = this.lss.getData("usr");
@@ -46,8 +47,8 @@ export class SignupComponent implements OnInit{
     })
   }
 
-  onSignUp() {
-
+  onSignUp(data: FormGroup) {
+    console.log(data)
   }
 
 }

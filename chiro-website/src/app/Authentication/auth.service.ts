@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.get<Users>(this.baseUsersRoute+"/searchName/"+`${un}`);
   }
 
-  // --  LocalStorage  --
+  // --  User Login --
   login(username: string, password: string, user : Users) {
     if(username == user.username && password == user.password) {
       this.localstorageservice.saveData('usr',  username)
@@ -31,4 +31,10 @@ export class AuthService {
     }
     return false
   }
+
+  // -- User Creation
+  litData() {
+
+  }
+
 }
