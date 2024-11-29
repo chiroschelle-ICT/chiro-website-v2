@@ -28,10 +28,11 @@ export class SignupComponent implements OnInit{
       username: ['', Validators.required],       // Users Table
       name: ['', Validators.required],       // Users Table
       afdelingId: ['', Validators.required],     // Users Table
+      password: ['', Validators.required], // Users Table
       email: ['', Validators.required],  // Info Table
       phone: ['', Validators.required],  // Info Table
-      isGroeps: ['', Validators.required],  // Info Table
       jaarLeiding: ['', Validators.required],  // Info Table
+      isGroeps: ['', Validators.required],  // Info Table
       leeftijd: ['', Validators.required],  // Info Table
     });
   }
@@ -48,7 +49,26 @@ export class SignupComponent implements OnInit{
   }
 
   onSignUp(data: FormGroup) {
-    console.log(data)
+    console.log(data.value.password)
+    data.value.password = this.lss.encrypt(data.value.password);
+    console.log(data.value.password)
+    const usersData = [
+      data.value.username,
+      data.value.name,
+      data.value.afdelingId,
+      data.value.password,
+    ]
+    const infoData = [
+      data.value.email,
+      data.value.phone,
+      data.value.isGroeps,
+      data.value.jaarLeiding,
+      data.value.leeftijd,
+    ]
+    this.as.addUser(usersData)
+  
+
+
   }
 
 }

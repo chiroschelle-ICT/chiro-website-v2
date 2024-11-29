@@ -111,6 +111,20 @@ exports.postUsers = (req, res) => {
     res.json({ message: 'Users added successfully' });
 };
 
+exports.postUser = (req, res) => {
+    const {username, name, afdelingID, password} = req.body
+
+    const query = 'INSERT INTO users (id, username, Name, AfdelingId, password) VALUES (NULL, ?, ?, ?, ?)';
+    db.query(query, [username, name, afdelingID, password], (err, res) => {
+        console.error('ERROR querying database: ' + err.stack);
+        res.status(200).send('ERROR Querying database');
+        return res;
+    })
+    res.json({message: 'User Added Succesfully'})
+
+    
+}
+
 
 // PUT | Update user
 exports.putUser = (req, res) => {

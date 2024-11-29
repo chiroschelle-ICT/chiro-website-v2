@@ -11,11 +11,11 @@ export class LocalstorageService {
 
   key = environment.ENCRYPTION_KEY
 
-  private encrypt(txt: string): string {
+  public encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }
 
-  private decrypt(txtToDecrypt: string) {
+  public decrypt(txtToDecrypt: string) {
     return CryptoJS.AES.decrypt(txtToDecrypt, this.key).toString(CryptoJS.enc.Utf8);
   }
 

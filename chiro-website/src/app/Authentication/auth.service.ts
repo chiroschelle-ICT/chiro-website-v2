@@ -4,6 +4,7 @@ import { Users } from '../Model/Users';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { LocalstorageService } from '../Services/localstorage.service';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class AuthService {
   }
 
   // -- User Creation
-  litData() {
-
+  addUser(usr:any) {
+    return this.http.post(this.baseUsersRoute+"/addUser",usr);
   }
 
 }
