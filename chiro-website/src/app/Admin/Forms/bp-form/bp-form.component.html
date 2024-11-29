@@ -27,12 +27,19 @@
         </div>        
         <div class="py-2 grid grid-cols-3">
             <div>
-                <label for="" class="font-semibold text-lg px-2">Foto:
-                    <span class="text-red-600 font-bold text-lg">*</span>
-                </label>
+                <label for="" class="font-semibold text-lg px-2">Foto:</label>
             </div>
+
+            
             <div class="col-span-2">
-                <input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="text" formControlName="Image" />
+                <select formControlName="Image">
+                    @for (img of allImages; track $index) {
+                        <option value="{{img.imageUrl}}">{{img.label}}</option>
+                    }
+                </select>
+                <span class="text-red-600 font-bold text-lg">*</span>
+
+                <!--<input class="border-2 border-gray-400 bg-gray-50 rounded-md w-full h-10" type="text" formControlName="Image" />-->
             </div>
         </div>
         <div class="py-2 grid grid-cols-3">
