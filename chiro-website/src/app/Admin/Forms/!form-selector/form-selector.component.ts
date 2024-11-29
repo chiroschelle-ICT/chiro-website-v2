@@ -38,7 +38,7 @@ export class FormSelectorComponent implements OnInit{
   @ViewChild(PrFormComponent) ProgrammaForm!: PrFormComponent;
 
   // Form Selection
-  selectedForm: string = 'add_programma';
+  selectedForm: string = 'add_blogpost';
 
   // Child Input
   recievedData!: Blogposts | Goepie | Programma;
