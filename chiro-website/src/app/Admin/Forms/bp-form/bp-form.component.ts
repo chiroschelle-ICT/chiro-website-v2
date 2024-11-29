@@ -32,6 +32,13 @@ export class BPFormComponent implements OnInit{
     { id: 4, name: 'Activiteit' },
   ];
 
+  allImages = [
+    { value: 'DE_BOYSSS', label: 'Kerels', imageUrl: 'Blogposts_images/Back_images/DE_BOYSSS.png' },
+    { value: 'nieemer', label: 'Nieemer', imageUrl: 'Blogposts_images/Back_images/nieemer.jpg' },
+    { value: 'modder', label: 'Modder', imageUrl: 'Blogposts_images/Back_images/modder.png' },
+    { value: 'planningsweekend', label: 'Leiding', imageUrl: 'Blogposts_images/Back_images/planningsweekend.jpg' },
+  ]
+
   constructor(private fb: FormBuilder, private fs : FormService) {}
 
   ngOnInit() {
@@ -58,9 +65,11 @@ export class BPFormComponent implements OnInit{
   sendFormData() {
     if(this.isFormValid()) {
       const data: Blogposts = this.blogForm.value;
+      console.log(data)
+      console.log("Elo")
       this.formDataEvent.emit(data);
       // Send SUCCES message
-      this.responseMessage.emit("Nieuw Programma is Toegevoegd!");
+      this.responseMessage.emit("Nieuwe Blogpost is Toegevoegd!");
       this.responseType.emit(true);
     } else {
       // Communicate with Parent Comp and use UI response

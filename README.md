@@ -5,10 +5,3 @@
 
 ## Website
 - written using Angular framework
-
-## List of imported Packages
-### chiro-website
-- tailwind
-- angular/cli
-- ngx-extended-pdf-viewer
-- ng2-pdf-viewer

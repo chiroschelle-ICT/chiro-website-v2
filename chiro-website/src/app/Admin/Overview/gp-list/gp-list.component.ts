@@ -20,6 +20,4 @@ export class GpListComponent implements OnInit {
       this.goepies = data
     })
   }
-
-
 }

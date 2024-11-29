@@ -1,4 +1,6 @@
-const db = require('../databases/local_database');
+// const db = require('../databases/local_database');
+const db = require('../databases/docker_database');
+
 const bcrypt = require('bcrypt');
 
 
@@ -41,7 +43,6 @@ exports.getUserByName = (req, res) => {
     if (!Uname) {
         return res.status(400).json({ error: 'Username is required' });
     }
-
     // Example validation for username (length and basic format)
     if (Uname.length > 100) {
         return res.status(400).json({ error: 'Username is too long' });

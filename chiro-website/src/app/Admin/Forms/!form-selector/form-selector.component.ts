@@ -16,6 +16,8 @@ import { AuthService } from '../../../Authentication/auth.service';
 import { Users } from '../../../Model/Users';
 import { Observable } from 'rxjs';
 import { LocalstorageService } from '../../../Services/localstorage.service';
+import { AdminService } from '../../admin.service';
+
 
 @Component({
   selector: 'app-form-selector',
@@ -53,10 +55,17 @@ export class FormSelectorComponent implements OnInit{
 
   // Blogpost variables
   activeUser: Users[] = [];
+  userByName!: Users
+  activeUserId!: number
+  activeUserAfdelingId!: number
 
-  constructor(private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
 
-  ngOnInit(): void { }
+  constructor(private as : AdminService,private formservice : FormService, private authservice : AuthService, private localservice : LocalstorageService) {}
+
+  ngOnInit(): void { 
+    this.activeUserId = this.getCurrentLoggedInUserId()
+    this.activeUserAfdelingId = this.getCurrentLoggedInUserAfdelingId()
+  }
 
 
   // Recieved Data From the Child 
@@ -77,22 +86,8 @@ export class FormSelectorComponent implements OnInit{
   submitForm() {
     switch(this.selectedForm) {
       case "add_blogpost":
-        // Gather Data
         this.BlogPostForm.sendFormData();
         this.addBlogpostData()
-        // Check if Valid
-        if(this.validForm) {
-          this.formservice.addBlogpost(
-            this.blogpostData.userId,
-            this.blogpostData.title,
-            this.blogpostData.description,
-            this.blogpostData.Image,
-            this.blogpostData.Link,
-            this.blogpostData.category,
-            this.blogpostData.timePosted,
-            this.blogpostData.HasLink
-          ).subscribe();
-        }
         this.BlogPostForm.clearForm()
         break;
       
@@ -112,17 +107,8 @@ export class FormSelectorComponent implements OnInit{
         break;
         
       case "add_programma":
-        // Gather Data
-        this.ProgrammaForm.sendFormData();
-        this.programmaData.afdelingId = this.activeUser[0].AfdelingId
-        // Check if Valid
-        if(this.validForm) {
-          this.formservice.addProgramma(
-            this.programmaData.afdelingId,
-            this.programmaData.programma,
-            this.programmaData.datum
-          ).subscribe();
-        }
+        this.ProgrammaForm.sendFormData();      
+        this.addProgrammaData();
         this.ProgrammaForm.clearForm()
         break;
       default:
@@ -131,15 +117,51 @@ export class FormSelectorComponent implements OnInit{
     }     
   }
 
+  addProgrammaData() {
+    const user = this.localservice.getData('usr');
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      this.as.getUserByName(user).subscribe((data : Users) => {
+        this.programmaData.afdelingId = data.AfdelingId
+        console.log("PorgrammaID: ",this.programmaData.afdelingId)
+      
+        if(this.validForm) {
+          this.formservice.addProgramma(
+            this.programmaData.afdelingId,
+            this.programmaData.programma,
+            this.programmaData.datum
+          ).subscribe();
+        }
+      })
+    })
+  }
+
   // Add the data that is not gathered by the form
   addBlogpostData() {
-    this.blogpostData.userId = this.activeUser[0].id
-    this.blogpostData.timePosted = new Date()
-    if(this.blogpostData.Link == "") {
-      this.blogpostData.HasLink = 0
-    } else {
-      this.blogpostData.HasLink = 1
-    }
+    const user = this.localservice.getData('usr');
+    console.log(user)
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      console.log("In addBlogpostData")
+      this.userByName = data
+      this.blogpostData.userId = this.userByName.id
+      this.blogpostData.timePosted =  '2024-05-07 18:59:40';
+      if(this.blogpostData.Link == "") {
+        this.blogpostData.HasLink = 0
+      } else {
+        this.blogpostData.HasLink = 1
+      }
+      if(this.validForm) {
+        this.formservice.addBlogpost(
+          this.blogpostData.userId,
+          this.blogpostData.title,
+          this.blogpostData.description,
+          this.blogpostData.Image,
+          this.blogpostData.Link,
+          this.blogpostData.category,
+          this.blogpostData.timePosted,
+          this.blogpostData.HasLink,
+        ).subscribe();
+      }
+    })   
   }
 
   // Validation
@@ -172,5 +194,27 @@ export class FormSelectorComponent implements OnInit{
         // somethign wrong with emiting
         break;
     }
+  }
+
+  getCurrentLoggedInUserId():number {
+    const user = this.localservice.getData('usr');
+    var usrId = 0
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      usrId = data.id
+      console.log(usrId)
+      return data.id;      
+    })
+    return usrId;          
+  }
+
+  getCurrentLoggedInUserAfdelingId():number {
+    const user = this.localservice.getData('usr');
+    var afdId = 0
+    this.as.getUserByName(user).subscribe((data : Users) => {
+      afdId = data.AfdelingId
+      console.log(afdId)
+      return data.AfdelingId;      
+    })
+    return afdId;      
   }
 }

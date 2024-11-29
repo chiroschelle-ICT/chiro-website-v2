@@ -1,8 +1,16 @@
 <div class="border-2 border-black h-[calc(100%-30px)] overflow-x-auto" > 
     @for(p of nearest_programmas; track $index) {
-        <div>
-            {{ p.afdelingId }} <br>
-            {{ p.programma }}
+        <div class="mx-1 my-1" 
+            [style.background]="getAfdelingBgBrColors(p.afdelingId)[0]" 
+            [style.border]="getAfdelingBgBrColors(p.afdelingId)[1]"
+        >        
+            <span>{{p.programma}}</span><br>
+            <span>{{p.datum}}</span> <br>
+            <span>{{p.afdelingId}}</span> <br>
+            <span class="font-extrabold"> {{p.id}} </span>
         </div>
+        @if ($index%2 == 0) {
+            <div class="my-2"></div>
+        }
     }
 </div>                                                                                                                          
