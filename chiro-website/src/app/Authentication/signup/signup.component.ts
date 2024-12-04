@@ -65,8 +65,8 @@ export class SignupComponent implements OnInit{
       data.value.jaarLeiding,
       data.value.leeftijd,
     ]
-    this.as.addUser(usersData)
-  
+    this.as.addUser(usersData).subscribe()
+    // this.as.addInfo(infoData).subscribe()
 
 
   }

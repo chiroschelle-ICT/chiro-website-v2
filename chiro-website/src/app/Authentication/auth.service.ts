@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { LocalstorageService } from '../Services/localstorage.service';
 import { FormGroup } from '@angular/forms';
+import { Info } from '../Model/Info';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
   public isAuth = new BehaviorSubject<boolean>(false);
 
   private baseUsersRoute = 'http://localhost:3000/api/users';
+  private baseUInfoRoute = 'http://localhost:3000/api/info';
 
   // API call to retrieve data
   getUserByName(un:string) : Observable<Users> {
@@ -35,7 +37,10 @@ export class AuthService {
 
   // -- User Creation
   addUser(usr:any) {
+    console.log(usr)
     return this.http.post(this.baseUsersRoute+"/addUser",usr);
   }
-
+  addInfo(info:any) {
+    return this.http.post(this.baseUInfoRoute+"/addInfo",info)
+  }
 }

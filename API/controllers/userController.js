@@ -112,29 +112,34 @@ exports.postUsers = (req, res) => {
 };
 
 exports.postUser = (req, res) => {
-    const {username, name, afdelingID, password} = req.body
+    // If req.body is an array
+    const [username, name, afdelingID, password] = req.body;
 
+    // Validate payload
+    if (!username || !name || !afdelingID || !password) {
+        return res.status(400).json({ message: "Missing or invalid fields" });
+    }
+
+    // SQL query
     const query = 'INSERT INTO users (id, username, Name, AfdelingId, password) VALUES (NULL, ?, ?, ?, ?)';
-    db.query(query, [username, name, afdelingID, password], (err, res) => {
-        console.error('ERROR querying database: ' + err.stack);
-        res.status(200).send('ERROR Querying database');
-        return res;
-    })
-    res.json({message: 'User Added Succesfully'})
-
-    
-}
-
+    db.query(query, [username, name, afdelingID, password], (err, result) => {
+        if (err) {
+            console.error('ERROR querying database: ' + err.stack);
+            return res.status(500).send('ERROR Querying database');
+        }
+        res.json({ message: 'User Added Successfully' });
+    });
+};
 
 // PUT | Update user
 exports.putUser = (req, res) => {
     const UId = req.params.id
-    const {Name, AfdelingId } = req.body;
+    const {username ,Name, AfdelingId } = req.body;
     if(!UId || !Name || !AfdelingId) {
         return res.status(400).json({ error: 'All fields are required' });
     }
-    const query = 'UPDATE users SET Name = ?, AfdelingId = ? WHERE id = ?';
-    db.query(query, [Name, AfdelingId, UId], (err, result) => {
+    const query = 'UPDATE users SET username = ?, Name = ?, AfdelingId = ? WHERE id = ?';
+    db.query(query, [username,Name, AfdelingId, UId], (err, result) => {
         console.error('ERROR querying database: ' + err.stack);
         res.status(200).send('ERROR Querying database');
         return;
