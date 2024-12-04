@@ -56,6 +56,7 @@ exports.getInfoByUserId = (req, res) => {
 // POST | Add new Info
 exports.postInfo = (req, res) => {
     const { userId ,afdelingId, email, phone, groeps, jaar_leiding, leeftijd } = req.body;
+    console.log(req.body)
     if(!userId || !afdelingId || !email || !phone || !jaar_leiding || !leeftijd) {
         return res.status(400).json({ error: 'All fields are required' });
     }

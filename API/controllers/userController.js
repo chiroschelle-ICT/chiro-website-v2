@@ -82,35 +82,6 @@ exports.getAllUsersInfo = (req, res) => {
     })
 }
 
-
-// POST | Add new User post
-exports.postUsers = (req, res) => {
-    const users = req.body; // Assuming req.body is the array of users
-    if (!Array.isArray(users) || users.length === 0) {
-        return res.status(400).json({ error: 'No users provided' });
-    }
-
-    // Iterate over the array of users
-    users.forEach(user => {
-        const { Name, AfdelingId } = user;
-        if (!Name || !AfdelingId) {
-            console.error('Skipping user: Missing required fields');
-            return; // Skip this user and continue with the next one
-        }
-
-        const query = 'INSERT INTO users (id, Name, AfdelingId) VALUES (NULL, ?, ?)';
-        db.query(query, [Name, AfdelingId], (err, result) => {
-            if (err) {
-                console.error('ERROR querying database: ' + err.stack);
-                // Continue with the next user even if an error occurs
-                return;
-            }
-        });
-    });
-
-    res.json({ message: 'Users added successfully' });
-};
-
 exports.postUser = (req, res) => {
     // If req.body is an array
     const [username, name, afdelingID, password] = req.body;
@@ -147,70 +118,37 @@ exports.putUser = (req, res) => {
     res.json({message: 'User Update Succesfully'})
 }
 
-// POST | Add new users
-exports.postUsers = (req, res) => {
-    const users = req.body; // Assuming req.body is an array of user objects
-
-    // Check if the body contains an array of users
-    if (!Array.isArray(users) || users.length === 0) {
-        return res.status(400).json({ error: 'No users provided' });
+// POST | Add new User and Info
+exports.postUserAndInfo = (req, res) => {
+    const [ username, name, afdelingID, password, email, phone, groeps, jaar_leiding, leeftijd ] = req.body;
+    // Validate the required fields for both user and info
+    if (!username || !name || !afdelingID || !password || !email || !phone || !jaar_leiding || !leeftijd) {
+        return res.status(400).json({ message: "Missing or invalid fields" });
     }
 
-    let validUsers = [];
-    let invalidUsers = [];
-
-    // Validate each user object
-    users.forEach(user => {
-        const { Name, AfdelingId } = user;
-
-        // Basic validation
-        if (typeof Name !== 'string' || Name.trim() === '' || typeof AfdelingId !== 'number') {
-            invalidUsers.push(user);
-            console.error('Skipping user due to invalid data:', user);
-            return; // Skip this user and continue with the next one
+    // Insert the user data into the 'users' table
+    const userQuery = 'INSERT INTO users (id, username, Name, AfdelingId, password) VALUES (NULL, ?, ?, ?, ?)';
+    db.query(userQuery, [username, name, afdelingID, password], (err, userResult) => {
+        if (err) {
+            console.error('Error inserting user:', err);
+            return res.status(500).send('Error inserting user');
         }
 
-        // Additional validation for Name length
-        if (Name.length > 100) {
-            invalidUsers.push(user);
-            console.error('Skipping user due to Name length issue:', user);
-            return; // Skip this user and continue with the next one
-        }
+        // Get the userId (auto-generated ID of the newly inserted user)
+        const userId = userResult.insertId;
 
-        validUsers.push(user);
-    });
-
-    // If no valid users, respond with error
-    if (validUsers.length === 0) {
-        return res.status(400).json({ error: 'All provided users are invalid' });
-    }
-
-    // Insert valid users into the database
-    let insertedCount = 0;
-
-    validUsers.forEach(user => {
-        const { Name, AfdelingId } = user;
-        const query = 'INSERT INTO users (id, Name, AfdelingId) VALUES (NULL, ?, ?)';
-
-        db.query(query, [Name, AfdelingId], (err, result) => {
+        // Insert the corresponding info data into the 'info' table using the userId
+        const query = 'INSERT INTO info (id, userId, email, phone, groeps, jaar_leiding, leeftijd, image) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(query, [userId, email, phone, groeps, jaar_leiding, leeftijd, 'unkown.jpg'], (err, result) => {
             if (err) {
-                console.error('ERROR querying database: ' + err.stack);
+                console.error('Error querying database: ' + err.stack);
+                res.status(500).send('Error querying database');
                 return;
             }
-            insertedCount++;
-            // Check if all valid users have been inserted
-            if (insertedCount === validUsers.length) {
-                res.json({ message: 'Users added successfully', inserted: validUsers.length, failed: invalidUsers.length });
-            }
+            res.json({ message: 'Info Added Successfully' });
         });
     });
-
-    // If there were valid users but none were inserted (e.g., due to connection issues)
-    if (validUsers.length > 0 && insertedCount === 0) {
-        res.status(500).json({ message: 'Error occurred while inserting users', failed: invalidUsers.length });
-    }
 };
-
 
 // DELETE | delete a user
 exports.deleteUser = (req, res) => {

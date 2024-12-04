@@ -57,8 +57,6 @@ export class SignupComponent implements OnInit{
       data.value.name,
       data.value.afdelingId,
       data.value.password,
-    ]
-    const infoData = [
       data.value.email,
       data.value.phone,
       data.value.isGroeps,
@@ -66,9 +64,6 @@ export class SignupComponent implements OnInit{
       data.value.leeftijd,
     ]
     this.as.addUser(usersData).subscribe()
-    // this.as.addInfo(infoData).subscribe()
-
-
   }
 
 }

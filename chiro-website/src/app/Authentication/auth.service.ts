@@ -17,7 +17,7 @@ export class AuthService {
 
   public isAuth = new BehaviorSubject<boolean>(false);
 
-  private baseUsersRoute = 'http://localhost:3000/api/users';
+  private baseUsersRoute = 'http://localhost:3000/api/users/add';
   private baseUInfoRoute = 'http://localhost:3000/api/info';
 
   // API call to retrieve data
@@ -38,9 +38,10 @@ export class AuthService {
   // -- User Creation
   addUser(usr:any) {
     console.log(usr)
-    return this.http.post(this.baseUsersRoute+"/addUser",usr);
+    return this.http.post(this.baseUsersRoute,usr);
   }
   addInfo(info:any) {
-    return this.http.post(this.baseUInfoRoute+"/addInfo",info)
+    console.log(info)
+    return this.http.post(this.baseUInfoRoute+"/postInfo",info)
   }
 }
