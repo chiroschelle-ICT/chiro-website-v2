@@ -20,8 +20,11 @@ router.post('/users/add', userController.postUserAndInfo);
 // POST | Create new user
 // router.post('/users/addUser', userController.postUser);
 
+// PUT | Update Password
+router.put('/users/editPw/:id', userController.putuserPassword);
 // PUT | Update User
 router.put('/users/editUser/:id', userController.putUser);
+
 
 // DELETE | Delete user by id
 router.delete('/users/deleteUser/:id', userController.deleteUser);

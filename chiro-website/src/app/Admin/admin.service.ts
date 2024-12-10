@@ -82,6 +82,10 @@ export class AdminService {
     const aUser = this.localstorageservice.getData("usr");
     return this.getUserByName(aUser)
   }
+  putUserPassword(id: number, password: string) {
+    const body = { password }
+    return this.http.put(this.baseUsersRoute+"/editPw/"+`${id}`, body);
+  }
 
   // --- GOEPIE Actions ---
   // --- GOEPIE Actions ---

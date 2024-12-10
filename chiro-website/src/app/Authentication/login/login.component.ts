@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit{
   borderColor!: string;
   backgroundColor!: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   validateLogin(input: NgForm) {
     if (!input.value.username || !input.value.username.trim()) {
@@ -47,13 +48,14 @@ export class LoginComponent implements OnInit{
   
 
   loginUser() {
-    if (this.authservice.login(this.username, this.password, this.users)) {
+    if (this.authservice.login(this.username, this.password, this.users).success) {
       this.validLogin("Ingelogd!"); // "Logged in!"
       setTimeout(() => {
         this.router.navigate(['admin']);
       }, 1500);
     } else {
-      this.invalidLogin("Foute gegevens"); // "Incorrect details"
+      const loginResponse = this.authservice.login(this.username, this.password, this.users);
+      this.invalidLogin(loginResponse.message);
     }
   }
   

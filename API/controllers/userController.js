@@ -118,7 +118,31 @@ exports.putUser = (req, res) => {
     res.json({message: 'User Update Succesfully'})
 }
 
-// POST | Add new User and Info
+// PUT | Update user's password
+exports.putuserPassword = (req, res) => {
+    const uId = req.params.id;
+    const { password } = req.body;
+
+    if (!password) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const query = 'UPDATE users SET password = ? WHERE id = ?';
+    
+    db.query(query, [password, uId], (err, result) => {
+        if (err) {
+            console.error('ERROR querying database: ', err);
+            return res.status(500).json({ error: 'Error querying the database' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ message: 'User updated successfully' });
+    });
+};
+
 exports.postUserAndInfo = (req, res) => {
     const [ username, name, afdelingID, password, email, phone, groeps, jaar_leiding, leeftijd ] = req.body;
     // Validate the required fields for both user and info
